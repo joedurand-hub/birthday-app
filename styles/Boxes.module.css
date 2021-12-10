@@ -1,0 +1,53 @@
+.container {
+	padding: 0 2rem;
+}
+
+.main {
+	max-height: 100vh;
+	padding: 4rem 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.terms {
+	height: 100vh;
+	margin: 20px;
+}
+
+.section {
+	display: flex;
+	flex-direction: row;
+}
+
+.instructions {
+	display: flex;
+	flex-direction: column;
+	align-items:flex-start;
+}
+
+.form {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+}
+
+
+@media screen and (min-width: 769px) {
+	.instructions {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.paragraph {
+		width: 50%;
+	}
+	.section {
+		display: flex;
+		justify-content: center;
+		align-content: center;
+	}
+ }
