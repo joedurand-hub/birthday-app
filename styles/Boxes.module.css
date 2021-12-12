@@ -1,27 +1,50 @@
 .container {
-	padding: 0 2rem;
+	background: #e6e6e6;
+	height: 100vh;
 }
 
 .main {
-	max-height: 100vh;
-	padding: 4rem 0;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background: #ffff;
+	box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.336);
+	-webkit-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.329);
+	-moz-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.253);
+}
+.container_terms {
+	padding: 25px;
+	margin: 0;
+	background: #e6e6e6;
 }
 
 .terms {
+	background: #ffff;
+	padding: 20px;
 	height: 100vh;
-	margin: 20px;
+	border-radius: 20px;
+	box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.336);
+	-webkit-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.329);
+	-moz-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.253);
+}
+
+.terms_title {
+	margin-bottom: 15px;
+}
+
+.terms_author {
+	margin-top: 15px;
 }
 
 .section {
 	display: flex;
 	flex-direction: row;
+	margin-bottom: 50px;
 }
 
-.instructions {
+.terms_instructions {
 	display: flex;
 	flex-direction: column;
 	align-items:flex-start;
@@ -37,17 +60,27 @@
 
 
 @media screen and (min-width: 769px) {
-	.instructions {
+
+	.container {
+		padding: 100px;
+	}
+
+	.terms_instructions {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 	}
-	.paragraph {
+	.terms_paragraph {
+		text-align: center;
 		width: 50%;
 	}
 	.section {
 		display: flex;
 		justify-content: center;
 		align-content: center;
+	}
+	.main {
+		height: 75vh;
+		border-radius: 15px;
 	}
  }

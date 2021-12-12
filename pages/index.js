@@ -18,7 +18,7 @@ export default function Home() {
 			<main className={styles.main}>
 				<Image src="/boxHappy.svg" width={350} height={350} />
 				<Link href="/terms">
-					<a className={buttons.button_primary}>Log in</a>
+					<a className={buttons.anchor_primary}>Log in</a>
 				</Link>
 			</main>
 		</div>
