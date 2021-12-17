@@ -1,0 +1,42 @@
+.terms_instructions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.terms_title {
+	margin-top: 5px;
+}
+
+.section {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	margin-bottom: 50px;
+}
+
+.terms_paragraph {
+	text-align: center;
+}
+
+
+
+@media screen and (min-width: 769px) {
+
+	.terms_instructions {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.terms_paragraph {
+		text-align: center;
+		width: 50%;
+	}
+	.section {
+		display: flex;
+		justify-content: center;
+		align-content: center;
+	}
+
+ }
