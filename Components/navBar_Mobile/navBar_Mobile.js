@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "../../styles/navBar.module.css";
 import { AnchorPrimary, AnchorSecondary } from "../AnchorsButton/anchor";
 
-function Footer() {
+function NavBarMobile() {
 	return (
 		<footer className={styles.navBarMobile}>
 			<Link href="/allBirthdays">
@@ -16,4 +16,4 @@ function Footer() {
 	);
 }
 
-export default Footer;
+export default NavBarMobile;
