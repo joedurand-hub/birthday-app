@@ -11,7 +11,7 @@ function Card({ firstName, lastName, birthday, email, image }) {
 				<tbody>
 					<tr className={card.texts}>
 						<td className={card.td}>
-							{firstName} {lastName}
+							{firstName, lastName}
 						</td>
 						<td className={card.td}>{birthday}</td>
 						<td className={card.td}>{email}</td>
