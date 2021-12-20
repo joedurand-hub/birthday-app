@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/container.module.css";
-import { AnchorToNext } from "../Components/Anchor/anchor";
+import { AnchorPrimary } from "../Components/Anchor/anchor";
 
 function Home() {
 	return (
@@ -21,7 +21,7 @@ function Home() {
 			<main className={styles.containerApp}>
 				<Image src="/boxHappy.svg" width={350} height={350} />
 				<Link href="/terms" passHref>
-					<AnchorToNext name="Log in" />
+					<AnchorPrimary name="Log in" />
 				</Link>
 			</main>
 		</div>

@@ -5,8 +5,8 @@ import Link from "next/link";
 import container from "../styles/container.module.css";
 import terms from "../styles/terms.module.css";
 import buttons from "../styles/buttons.module.css";
-import footer from "../styles/footer.module.css";
-import { AnchorCancel } from "../Components/Anchor/anchor";
+import navBarMobile from "../styles/navBar.module.css";
+import { AnchorCancel } from "../Components/AnchorsButton/anchor";
 import { useRouter } from "next/router";
 
 function Terms() {
@@ -48,7 +48,7 @@ function Terms() {
 						Terms and Conditions
 					</label>
 				</section>
-				<footer className={footer.footer}>
+				<footer className={terms.navBarMobileTerms}>
 					<Link href="/">
 						<AnchorCancel name="Decline" />
 					</Link>
@@ -58,7 +58,7 @@ function Terms() {
 							router.push("/birthdays");
 						}}
 						disabled={buttonActive}
-						className={buttons.button_primary}
+						className={terms.button_terms}
 					>
 						Accept
 					</button>

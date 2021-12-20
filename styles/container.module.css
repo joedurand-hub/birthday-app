@@ -19,12 +19,21 @@
         background: #ffff;
     }
 
+    .container_components {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        word-wrap: break-word;
+        
+    }
+
     .container_cards {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             height: 91vh;
+            word-wrap: break-word;
     }
 
 @media screen and (min-width: 769px) {

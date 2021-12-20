@@ -7,10 +7,12 @@ function Card({ firstName, lastName, birthday, email, image }) {
 			<img src="avatar.png" className={card.image} alt="Image not found"></img>
 			{/* <Image src={} width={50} height={50} alt="Image not found"/> */}
 
-			<table >
+			<table>
 				<tbody>
 					<tr className={card.texts}>
-						<td className={card.td}>{firstName} {lastName}</td>
+						<td className={card.td}>
+							{firstName} {lastName}
+						</td>
 						<td className={card.td}>{birthday}</td>
 						<td className={card.td}>{email}</td>
 					</tr>

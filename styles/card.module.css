@@ -7,7 +7,6 @@
     height: 18vh;
     margin: 5px;
     padding: 5px;
-    border: 1px solid black;
     background: #ffff;
     border-radius: 15px;
 }
@@ -53,7 +52,6 @@
         height: 17vh;
         margin: 5px;
         padding: 5px;
-        border: 1px solid black;
         background: #ffff;
         border-radius: 15px;
     }
@@ -66,7 +64,6 @@
     }
     
     .image {
-        border: 1px solid black;
         border-radius: 5px;
     }
     
