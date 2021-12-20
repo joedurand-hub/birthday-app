@@ -1,0 +1,76 @@
+.anchor_primary {
+	width: 25%;
+	height: 37px;
+    line-height: 37px;
+	text-decoration: none;
+	background: hsl(218, 100%, 50%);
+	color: #ffff;
+	text-align: center;
+	border-radius: 20px;
+}
+
+.anchor_primary:hover {
+	background: hsla(218, 100%, 50%, 0.795);
+}
+
+.anchor_primary:focus {
+	border: 1px solid #0000;
+}
+
+.button_primary {
+	border: none;
+	width: 25%;
+	height: 37px;
+    line-height: 37px;
+	font-size: 16px;
+	font-weight: 600;
+	background: hsl(218, 100%, 50%);
+	color: #ffff;
+	text-align: center;
+	border-radius: 20px;
+
+}
+
+.button_primary:hover {
+	cursor: pointer;
+	background: hsla(218, 100%, 50%, 0.795);
+}
+
+.button_primary:focus {
+	border: 1px solid #0000;
+}
+
+.button_primary:disabled {
+	cursor: not-allowed;
+	background: #ccc;
+  }
+
+.button_secondary {
+	width: 25%;
+	height: 37px;
+    line-height: 37px;
+	text-decoration: none;
+	background: #e6e6e6;
+	color: rgb(0, 0, 0);
+	text-align: center;
+	border-radius: 20px;
+    margin: 5px;
+}
+
+.button_cancel {
+	width: 25%;
+	height: 37px;
+    line-height: 37px;
+	text-decoration: none;
+	background: #ee0f0f;
+	color: rgb(243, 243, 243);
+	text-align: center;
+	border-radius: 20px;
+    margin: 5px;
+}
+
+
+.button_cancel:hover {
+	background: #ee0f0fd2;
+	color: rgb(243, 243, 243);
+}
