@@ -5,7 +5,7 @@ import NavBarDesktop from "../Components/navBar_Desktop/navBar_Desktop";
 import Card from "../Components/Card/card";
 import { startOfToday } from "date-fns";
 import { eachDayOfInterval } from "date-fns";
-import { addDays, differenceInWeeks } from "date-fns";
+import { addDays, differenceInDays, setYear } from "date-fns";
 import { format } from "date-fns";
 
 // eachDayOfInterval devuelve una matriz de fechas dentro de un intervalo dado
@@ -17,39 +17,44 @@ import { format } from "date-fns";
 // Tengo que realizar un filtrado sobre mis cumpleaños y devolver los que se encuentren entre start y end.
 
 function Birthdays({ data }) {
+	const newDay = new Date(); // seteo en hoy cada día
+	const currentTime = format(newDay, "yyyy-MM-dd");
+
+	const finishTime = addDays(newDay, 7); // seteo en 7 días el fin de la semana
+	const difference = differenceInDays(finishTime, newDay); // diferencia entre ambos
+
 	const allBirthdays = data.birthdays?.map((objectUser) => {
-		let fechas = objectUser.birthday.substr(0, 9);
-		return console.log(fechas);
+		// todos los cumpleaños
+		let nuevasFechas = new Date(objectUser.birthday);
+		let fechaConYear = setYear(nuevasFechas, 2021);
+		// let fechas = objectUser.birthday.substr(0, 9);
+		return { ...objectUser, birthday: fechaConYear };
 	});
 
-	const filtroCoincidencias = allBirthdays.filter((fecha) => {
-		if (fecha == hoy) {
-			console.log("esta fecha es igual");
-		}
-	});
-
-	const hoy = format(new Date(), "yyyy-MM-dd");
-	console.log(hoy, "hoy");
-
-	function getDates(startDate, endDate, interval) {}
+	const fechasCoincidentes = allBirthdays.filter(
+		(objectUser) =>
+			differenceInDays(objectUser.birthday, newDay) <= 6 &&
+			differenceInDays(objectUser.birthday, newDay) >= 0,
+	);
 
 	return (
 		<div className={style.container_components}>
 			<NavBarDesktop />
+
 			<div className={style.container_cards}>
-				{data.birthdays.length > 1 ? (
+				{fechasCoincidentes.length > 1 ? (
 					<h1> Birthdays coming soon! </h1>
 				) : (
 					<h1> No Birthdays coming soon </h1>
 				)}
-				{data.birthdays ? (
-					data.birthdays
+				{fechasCoincidentes ? (
+					fechasCoincidentes
 						?.map((objectUser, index) => (
 							<Card
 								key={index}
 								firstName={objectUser.firstName}
 								lastName={objectUser.lastName}
-								birthday={objectUser.birthday}
+								birthday={format(objectUser.birthday, "yyyy-MM-dd")}
 								email={objectUser.email}
 							/>
 						))
