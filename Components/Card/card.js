@@ -1,4 +1,3 @@
-import Image from "next/image";
 import card from "../../styles/card.module.css";
 
 function Card({ firstName, lastName, birthday, email }) {
