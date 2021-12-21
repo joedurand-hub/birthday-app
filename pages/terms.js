@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import container from "../styles/container.module.css";
 import terms from "../styles/terms.module.css";
-import buttons from "../styles/buttons.module.css";
-import navBarMobile from "../styles/navBar.module.css";
 import { AnchorCancel } from "../Components/AnchorsButton/anchor";
 import { useRouter } from "next/router";
 

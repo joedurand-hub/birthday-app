@@ -34,9 +34,14 @@
 
 }
 
-.td {
-    font-size: 16px;
+.card_text {
+    font-size: 15px;
     font-weight: bold;
+    margin: 0;
+}
+
+.card_text_span {
+    font-size: 15px;
     margin: 0;
 }
 
@@ -78,9 +83,13 @@
     
     }
     
-    .td {
+    .card_text {
         font-size: 16px;
         font-weight: bold;
+        margin: 0;
+    }
+    .card_text_span {
+        font-size: 16px;
         margin: 0;
     }
     

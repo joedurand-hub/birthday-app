@@ -1,10 +1,10 @@
+import Link from "next/link";
 import styles from "../../styles/navBar.module.css";
 import { AnchorPrimary, AnchorSecondary } from "../AnchorsButton/anchor";
-import Link from "next/link";
 
-function navBarDesktop() {
+function NavBar() {
 	return (
-		<nav className={styles.navBarDesktop}>
+		<nav className={styles.navBar}>
 			<Link href="/allBirthdays">
 				<AnchorSecondary name="All birthdays" />
 			</Link>
@@ -16,4 +16,4 @@ function navBarDesktop() {
 	);
 }
 
-export default navBarDesktop;
+export default NavBar;
