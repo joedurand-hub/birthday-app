@@ -2,22 +2,23 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import style from "../styles/container.module.css";
 import NavBar from "../Components/navBar/navBar";
 import Card from "../Components/Card/card";
-import { setYear, differenceInDays } from "date-fns";
+import { isWithinInterval, addDays, parseISO } from "date-fns";
 
 
-function Birthdays({data}) {
+function Birthdays({birthdayDataInterval}) {
+	console.log(birthdayDataInterval)
 
 
 	return (
 		<div className={style.container_components}>
 			<div className={style.container_cards}>
-				{data.length > 1 ? (
+				{birthdayDataInterval.length > 1 ? (
 					<h1> Birthdays coming soon! </h1>
 				) : (
 					<h1> No Birthdays coming soon </h1>
 				)}
-				{data ? (
-					data.birthdays
+				{birthdayDataInterval ? (
+					birthdayDataInterval.birthdays
 						?.map((objectUser, index) => (
 							<Card
 								key={index}
@@ -41,33 +42,30 @@ export default Birthdays;
 
 
 export async function getServerSideProps() {
-	let data;
+	const birthdayDataInterval = [];
 
-	try {
-		data = await getBirthdaysInfo();
-		const newDay = new Date(); 
+		const resp = await fetch("https://birthday-app-api.vercel.app/api/v1/john/birthdays");
+		let data = await resp.json();
 
-		const allBirthdays = data.birthdays?.map((objectUser) => {
-			let newDate = new Date(objectUser.birthday);
-			let dateOnYear = setYear(newDate, 2021);
-			return { ...objectUser, birthday: dateOnYear };
-		});
-		
-		data = allBirthdays.filter(
-			(objectUser) =>
-				differenceInDays(objectUser.birthday, newDay) <= 6 &&
-				differenceInDays(objectUser.birthday, newDay) >= 0,
-		);
-	} catch (error) {
-		console.log(error);
-		return { notFound: true };
-	}
+		const todayDate = new Date();
+		// const interval = {
+		// 	start: todayDate,
+		// 	end: addDays(todayDate, 7),
+		// };
+
+		data.birthdays?.map((objDataUser) => {
+			const birthdaysInterval = isWithinInterval(parseISO(objDataUser.birthday), {start: todayDate, end: addDays(todayDate, 7)});
+			if (birthdaysInterval) {
+				birthdayDataInterval.push(objDataUser);
+			}
+		})
+
 	if (!data) {
 		return {
 			notFound: true,
 		};
 	}
 	return {
-		props: { data },
+		props: { birthdayDataInterval },
 	};
 }
