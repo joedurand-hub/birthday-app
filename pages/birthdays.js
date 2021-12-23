@@ -2,29 +2,41 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import style from "../styles/container.module.css";
 import NavBar from "../Components/navBar/navBar";
 import Card from "../Components/Card/card";
-import { isWithinInterval, addDays, parseISO } from "date-fns";
+import { differenceInDays, setYear, format } from "date-fns";
 
+function Birthdays({ data }) {
+	console.log("data:", data);
+	const newDay = new Date();
 
-function Birthdays({birthdayDataInterval}) {
-	console.log(birthdayDataInterval)
-
+	const allBirthdays = data.birthdays?.map((objectUser) => {
+		let newDate = new Date(objectUser.birthday);
+		let dateOnYear = setYear(newDate, 2021);
+		return { ...objectUser, birthday: dateOnYear };
+	});
+	
+	const dataMatching = allBirthdays.filter(
+		(objectUser) =>
+		differenceInDays(objectUser.birthday, newDay) <= 6 &&
+		differenceInDays(objectUser.birthday, newDay) >= 0,
+		);
+		console.log("dataMatching:", dataMatching)
 
 	return (
 		<div className={style.container_components}>
 			<div className={style.container_cards}>
-				{birthdayDataInterval.length > 1 ? (
+				{dataMatching.length > 1 ? (
 					<h1> Birthdays coming soon! </h1>
 				) : (
 					<h1> No Birthdays coming soon </h1>
 				)}
-				{birthdayDataInterval ? (
-					birthdayDataInterval.birthdays
+				{dataMatching ? (
+					dataMatching
 						?.map((objectUser, index) => (
 							<Card
 								key={index}
 								firstName={objectUser.firstName}
 								lastName={objectUser.lastName}
-								birthday={objectUser.birthday}
+								birthday={format(objectUser.birthday, 'yyyy-MM-dd')}
 								email={objectUser.email}
 							/>
 						))
@@ -40,25 +52,10 @@ function Birthdays({birthdayDataInterval}) {
 
 export default Birthdays;
 
-
 export async function getServerSideProps() {
-	const birthdayDataInterval = [];
 
-		const resp = await fetch("https://birthday-app-api.vercel.app/api/v1/john/birthdays");
-		let data = await resp.json();
-
-		const todayDate = new Date();
-		// const interval = {
-		// 	start: todayDate,
-		// 	end: addDays(todayDate, 7),
-		// };
-
-		data.birthdays?.map((objDataUser) => {
-			const birthdaysInterval = isWithinInterval(parseISO(objDataUser.birthday), {start: todayDate, end: addDays(todayDate, 7)});
-			if (birthdaysInterval) {
-				birthdayDataInterval.push(objDataUser);
-			}
-		})
+	const resp = await fetch("https://birthday-app-api.vercel.app/api/v1/john/birthdays");
+	const data = await resp.json();
 
 	if (!data) {
 		return {
@@ -66,6 +63,6 @@ export async function getServerSideProps() {
 		};
 	}
 	return {
-		props: { birthdayDataInterval },
+		props: { data },
 	};
 }
