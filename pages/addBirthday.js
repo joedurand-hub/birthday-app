@@ -43,6 +43,12 @@ function AddBirthday() {
 	};
 
 	const handleSubmit = async () => {
+		if(setFirstName === "" || setFirstName === null) {
+			return "Todos los campos deben completarse antes de guardar los cambios"
+		}
+		if(setFirstName.length > 26 || setFirstName < 3){
+			"El nombre y el apellido solo aceptan caracteres y hasta 25, revise su entrada"
+		}
 		e.preventDefault();
 		await fetch(
 			"https://birthday-app-api.vercel.app/api/v1/john/birthdays/add",
@@ -85,6 +91,8 @@ function AddBirthday() {
 						placeholder=" Name"
 						type="text"
 						name="firstName"
+						minLength={3}
+						maxLength={25}
 						value={firstName}
 						required
 					/>
@@ -98,6 +106,8 @@ function AddBirthday() {
 						placeholder=" Lastname"
 						type="text"
 						name="lastName"
+						minLength={3}
+						maxLength={25}
 						value={lastName}
 						required
 					/>
