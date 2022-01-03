@@ -21,15 +21,21 @@ function AddBirthday() {
 		const eTargetName = e.target.name;
 		switch (eTargetName) {
 			case "firstName":
+				console.log(e.target.value)
 				setFirstName(e.target.value);
 				break;
 
 			case "lastName":
+				console.log(e.target.value)
 				setLastName(e.target.value);
 				break;
 
 			case "email":
-				setEmail(e.target.value);
+				console.log("antes de la regExp", e.target.value)
+				if(new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(e.target.value)) {
+					setEmail(e.target.value);
+				}
+				console.log("después de la RegExp", e.target.value)
 				break;
 
 			case "birthday":
@@ -119,7 +125,7 @@ function AddBirthday() {
 					<input
 						className={styleForm.form_input}
 						placeholder=" user@user.com"
-						type="text"
+						type="email"
 						name="email"
 						value={email}
 						required
