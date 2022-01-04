@@ -1,11 +1,10 @@
 import { useState } from "react";
 import Link from "next/link";
-import Image from 'next/image'
 import { AnchorCancel } from "../Components/AnchorsButton/anchor";
 import styles from "../styles/container.module.css";
 import styleForm from "../styles/form.module.css";
-import formNavBar from '../styles/navBar.module.css'
-import button from '../styles/buttons.module.css'
+import formNavBar from "../styles/navBar.module.css";
+import button from "../styles/buttons.module.css";
 import { useRouter } from "next/router";
 
 function AddBirthday() {
@@ -14,33 +13,28 @@ function AddBirthday() {
 	const [email, setEmail] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [birthday, setBirthday] = useState("");
-	const [errors, setErrors] = useState({});
+
+	const emailRegExp = new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g);
 
 	const handleInputChange = function (e) {
-		e.preventDefault();
 		const eTargetName = e.target.name;
+		const value = e.target.value;
 		switch (eTargetName) {
 			case "firstName":
-				console.log(e.target.value)
-				setFirstName(e.target.value);
+				setFirstName(value);
+
 				break;
 
 			case "lastName":
-				console.log(e.target.value)
-				setLastName(e.target.value);
+				setLastName(value);
 				break;
 
 			case "email":
-				console.log("antes de la regExp", e.target.value)
-				if(new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(e.target.value)) {
-					setEmail(e.target.value);
-				}
-				console.log("después de la RegExp", e.target.value)
+				setEmail(value);
 				break;
 
 			case "birthday":
-				birthday(e.target.value);
-				console.log(e.target.value);
+				setBirthday(value);
 				break;
 
 			default:
@@ -48,46 +42,53 @@ function AddBirthday() {
 		}
 	};
 
-	const handleSubmit = async () => {
-		if(setFirstName === "" || setFirstName === null) {
-			return "Todos los campos deben completarse antes de guardar los cambios"
-		}
-		if(setFirstName.length > 26 || setFirstName < 3){
-			"El nombre y el apellido solo aceptan caracteres y hasta 25, revise su entrada"
-		}
-		e.preventDefault();
-		await fetch(
-			"https://birthday-app-api.vercel.app/api/v1/john/birthdays/add",
-			{
-				method: "POST",
-				body: JSON.stringify({
-					firstName: firstName,
-					email: email,
-					lastName: lastName,
-					birthday: birthday,
-				}),
-				headers: {
-					"Content-Type": "application/json",
+	const handleSubmit = async (e) => {
+		if (emailRegExp.test(e.target.value) && firstName && lastName && birthday) {
+			await fetch(
+				"https://birthday-app-api.vercel.app/api/v1/john/birthdays/add",
+				{
+					method: "POST",
+					headers: {
+						Accept: "application/json",
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({
+						firstName,
+						email,
+						lastName,
+						birthday,
+					}),
 				},
-			},
-		);
-		e.target.reset();
-		alert("Birthday saved!"); // modal a futuro?
-		setFirstName("");
-		setLastName("");
-		setBirthday("");
-		setEmail("");
-	};
+			)
+				.then((response) => {
+					if (response.ok) {
+						console.log("method POST:", response);
+						return response.json();
+					}
+				})
+				// .then((response) => console.log("Success:", response))
+				.then((response) => console.log("Success", response))
+				.then((response) => response.redirect(307, "/birthdays"))
+				.catch((error) => console.error("Error:", error));
 
+			alert("Birthday saved!");
+			setFirstName("");
+			setLastName("");
+			setEmail("");
+			setBirthday("");
+		}
+	};
 	return (
 		<div className={styles.containerApp}>
 			<form
 				className={styleForm.form}
+				id="add_birthday"
 				onChange={(e) => handleInputChange(e)}
-
 			>
 				<div className={styleForm.form_container}>
-				<h1 className={styleForm.form_title}>¡Add a birthday to your list!</h1>
+					<h1 className={styleForm.form_title}>
+						¡Add a birthday to your list!
+					</h1>
 					<label className={styleForm.form_label} htmlFor="firstName">
 						{" "}
 						Firt name{" "}
@@ -99,10 +100,10 @@ function AddBirthday() {
 						name="firstName"
 						minLength={3}
 						maxLength={25}
+						pattern="[A-Za-z ]*"
 						value={firstName}
 						required
 					/>
-
 					<label className={styleForm.form_label} htmlFor="lastName">
 						{" "}
 						Last name{" "}
@@ -114,8 +115,9 @@ function AddBirthday() {
 						name="lastName"
 						minLength={3}
 						maxLength={25}
+						pattern="[A-Za-z ]*"
 						value={lastName}
-						required
+						required={true}
 					/>
 
 					<label className={styleForm.form_label} htmlFor="email">
@@ -128,7 +130,7 @@ function AddBirthday() {
 						type="email"
 						name="email"
 						value={email}
-						required
+						required={true}
 					/>
 
 					<label className={styleForm.form_label} htmlFor="birthday">
@@ -138,30 +140,26 @@ function AddBirthday() {
 					<input
 						className={styleForm.form_input}
 						type="date"
+						max={new Date()}
 						name="birthday"
 						value={birthday}
 						required
 					/>
-
 				</div>
 			</form>
-					<nav className={formNavBar.navBar} onSubmit={(e) => handleSubmit(e)}>
-						<Link href="/">
-							<AnchorCancel name="Cancel" />
-						</Link>
+			<nav className={formNavBar.navBar}>
+				<Link href="/birthdays">
+					<AnchorCancel name="Cancel" />
+				</Link>
 
-						<button
-						className={button.button_primary}
-							type="submit"
-							name="submit"
-							value="Submit"
-							onClick={() => {
-								router.push("/birthdays");
-							}}
-						>
-							Save
-						</button>
-					</nav>
+				<input
+					className={button.button_primary}
+					type="submit"
+					name="submit"
+					value="Save"
+					form="add_birthday"
+				/>
+			</nav>
 		</div>
 	);
 }
