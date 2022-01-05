@@ -32,7 +32,7 @@ function AddBirthday() {
 				setEmail(value);
 				break;
 
-			case "birthday": 
+			case "birthday":
 				setBirthday(value);
 				break;
 
@@ -41,29 +41,21 @@ function AddBirthday() {
 		}
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		// if (
-		// 	emailRegExp.test(e.target.value) &&
-		// 	typeof firstName != "number" &&
-		// 	typeof lastName != "number"
-		// ) {
-		await fetch(
-			"https://birthday-app-api.vercel.app/api/v1/john/birthdays/add",
-			{
-				method: "POST",
-				headers: {
-					Accept: "application/json",
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({
-					firstName,
-					email,
-					lastName,
-					birthday,
-				}),
+	const handleSubmit = (e) => {
+		// e.preventDefault();
+		fetch("https://birthday-app-api.vercel.app/api/v1/john/birthdays/add", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
 			},
-		)
+			body: JSON.stringify({
+				firstName,
+				email,
+				lastName,
+				birthday,
+			}),
+		})
 			.then((response) => {
 				if (response.ok) {
 					console.log("method POST:", response);
@@ -73,25 +65,20 @@ function AddBirthday() {
 			.then((response) => console.log("Success:", response))
 			.catch((error) => console.error("Error:", error));
 
-		// alert("Birthday saved!"); // modal a futuro?
-		// setFirstName("");
-		// setLastName("");
-		// setBirthday("");
-		// setEmail("");
-		// setTimeout(() => {
-		// 	alert("Redirect to you Birthdays");
-		// }, 1000);
+		// setTimeout(router.push("/birthdays"), 1000)
 	};
-	// };
 	return (
-
-// valido cada input
-// renderizo un span o algo para mostrar los errores
-// verifico si todos están completos y tras eso habilito el botón
-
-
 		<div className={styles.containerApp}>
-			<form className={styleForm.form} id="add_birthday" onChange={(e) => handleInputChange(e)}>
+			<form
+				className={styleForm.form}
+				id="add_birthday"
+				onChange={(e) => handleInputChange(e)}
+				onSubmit={(e) => {
+					e.preventDefault();
+					handleSubmit(e);
+					router.push("/birthdays");
+				}}
+			>
 				<div className={styleForm.form_container}>
 					<h1 className={styleForm.form_title}>
 						¡Add a birthday to your list!
@@ -110,7 +97,6 @@ function AddBirthday() {
 						pattern="[A-Za-z ]*"
 						value={firstName}
 						required
-						
 					/>
 					<label className={styleForm.form_label} htmlFor="lastName">
 						{" "}
@@ -154,25 +140,19 @@ function AddBirthday() {
 						required
 					/>
 				</div>
-				</form>
-			<nav className={formNavBar.navBar}>
-				<Link href="/birthdays">
-					<AnchorCancel name="Cancel" />
-				</Link>
+				<nav className={formNavBar.navBar}>
+					<Link href="/birthdays">
+						<AnchorCancel name="Cancel" />
+					</Link>
 
-				<input
-					className={button.button_primary}
-					type="submit"
-					name="submit"
-					value="Save"
-					form="add_birthday"
-					onClick={(e) => {
-						handleSubmit(e);
-						router.push("/birthdays");
-					}}
+					<input
+						className={button.button_primary}
+						type="submit"
+						name="submit"
+						value="Save"
 					/>
-					
-			</nav>
+				</nav>
+			</form>
 		</div>
 	);
 }
