@@ -13,7 +13,6 @@ function AddBirthday() {
 	const [email, setEmail] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [birthday, setBirthday] = useState("");
-	const emailRegExp = new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g);
 
 	const handleInputChange = function (e) {
 		const eTargetName = e.target.name;
@@ -42,7 +41,6 @@ function AddBirthday() {
 	};
 
 	const handleSubmit = (e) => {
-		// e.preventDefault();
 		fetch("https://birthday-app-api.vercel.app/api/v1/john/birthdays/add", {
 			method: "POST",
 			headers: {
@@ -65,7 +63,6 @@ function AddBirthday() {
 			.then((response) => console.log("Success:", response))
 			.catch((error) => console.error("Error:", error));
 			alert('Birthday saved!')
-		// setTimeout(router.push("/birthdays"), 1000)
 	};
 	return (
 		<div className={styles.containerApp}>
