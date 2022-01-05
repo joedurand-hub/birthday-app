@@ -13,7 +13,6 @@ function AddBirthday() {
 	const [email, setEmail] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [birthday, setBirthday] = useState("");
-
 	const emailRegExp = new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g);
 
 	const handleInputChange = function (e) {
@@ -33,7 +32,7 @@ function AddBirthday() {
 				setEmail(value);
 				break;
 
-			case "birthday":
+			case "birthday": 
 				setBirthday(value);
 				break;
 
@@ -43,48 +42,56 @@ function AddBirthday() {
 	};
 
 	const handleSubmit = async (e) => {
-		if (emailRegExp.test(e.target.value) && firstName && lastName && birthday) {
-			await fetch(
-				"https://birthday-app-api.vercel.app/api/v1/john/birthdays/add",
-				{
-					method: "POST",
-					headers: {
-						Accept: "application/json",
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						firstName,
-						email,
-						lastName,
-						birthday,
-					}),
+		e.preventDefault();
+		// if (
+		// 	emailRegExp.test(e.target.value) &&
+		// 	typeof firstName != "number" &&
+		// 	typeof lastName != "number"
+		// ) {
+		await fetch(
+			"https://birthday-app-api.vercel.app/api/v1/john/birthdays/add",
+			{
+				method: "POST",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
 				},
-			)
-				.then((response) => {
-					if (response.ok) {
-						console.log("method POST:", response);
-						return response.json();
-					}
-				})
-				// .then((response) => console.log("Success:", response))
-				.then((response) => console.log("Success", response))
-				.then((response) => response.redirect(307, "/birthdays"))
-				.catch((error) => console.error("Error:", error));
+				body: JSON.stringify({
+					firstName,
+					email,
+					lastName,
+					birthday,
+				}),
+			},
+		)
+			.then((response) => {
+				if (response.ok) {
+					console.log("method POST:", response);
+					return response.json();
+				}
+			})
+			.then((response) => console.log("Success:", response))
+			.catch((error) => console.error("Error:", error));
 
-			alert("Birthday saved!");
-			setFirstName("");
-			setLastName("");
-			setEmail("");
-			setBirthday("");
-		}
+		// alert("Birthday saved!"); // modal a futuro?
+		// setFirstName("");
+		// setLastName("");
+		// setBirthday("");
+		// setEmail("");
+		// setTimeout(() => {
+		// 	alert("Redirect to you Birthdays");
+		// }, 1000);
 	};
+	// };
 	return (
+
+// valido cada input
+// renderizo un span o algo para mostrar los errores
+// verifico si todos están completos y tras eso habilito el botón
+
+
 		<div className={styles.containerApp}>
-			<form
-				className={styleForm.form}
-				id="add_birthday"
-				onChange={(e) => handleInputChange(e)}
-			>
+			<form className={styleForm.form} id="add_birthday" onChange={(e) => handleInputChange(e)}>
 				<div className={styleForm.form_container}>
 					<h1 className={styleForm.form_title}>
 						¡Add a birthday to your list!
@@ -103,6 +110,7 @@ function AddBirthday() {
 						pattern="[A-Za-z ]*"
 						value={firstName}
 						required
+						
 					/>
 					<label className={styleForm.form_label} htmlFor="lastName">
 						{" "}
@@ -140,13 +148,13 @@ function AddBirthday() {
 					<input
 						className={styleForm.form_input}
 						type="date"
-						max={new Date()}
+						max={new Date().toString()}
 						name="birthday"
 						value={birthday}
 						required
 					/>
 				</div>
-			</form>
+				</form>
 			<nav className={formNavBar.navBar}>
 				<Link href="/birthdays">
 					<AnchorCancel name="Cancel" />
@@ -158,7 +166,12 @@ function AddBirthday() {
 					name="submit"
 					value="Save"
 					form="add_birthday"
-				/>
+					onClick={(e) => {
+						handleSubmit(e);
+						router.push("/birthdays");
+					}}
+					/>
+					
 			</nav>
 		</div>
 	);
