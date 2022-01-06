@@ -1,8 +1,7 @@
-import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import style from "../styles/container.module.css";
 import NavBar from "../Components/navBar/navBar";
 import Card from "../Components/Card/card";
-import { differenceInDays, setYear, format } from "date-fns";
+import { differenceInDays, compareAsc, setYear, format } from "date-fns";
 
 function Birthdays({ data }) {
 	console.log("data:", data);
@@ -13,13 +12,17 @@ function Birthdays({ data }) {
 		let dateOnYear = setYear(newDate, 2022);
 		return { ...objectUser, birthday: dateOnYear };
 	});
-	
-	const dataMatching = allBirthdays.filter(
-		(objectUser) =>
-		differenceInDays(objectUser.birthday, newDay) <= 6 &&
-		differenceInDays(objectUser.birthday, newDay) >= 0,
-		);
-		console.log("dataMatching:", dataMatching)
+
+	const dataMatching = allBirthdays
+		.filter(
+			(objectUser) =>
+				differenceInDays(objectUser.birthday, newDay) <= 7 &&
+				differenceInDays(objectUser.birthday, newDay) >= 1,
+		)
+		.sort((a, b) => {
+			return compareAsc(a.birthday, b.birthday)
+		})
+	console.log("dataMatching:", dataMatching);
 
 	return (
 		<div className={style.container_components}>
@@ -36,7 +39,7 @@ function Birthdays({ data }) {
 								key={index}
 								firstName={objectUser.firstName}
 								lastName={objectUser.lastName}
-								birthday={format(objectUser.birthday, 'yyyy-MM-dd')}
+								birthday={format(objectUser.birthday, "yyyy-MM-dd")}
 								email={objectUser.email}
 							/>
 						))
@@ -53,8 +56,9 @@ function Birthdays({ data }) {
 export default Birthdays;
 
 export async function getServerSideProps() {
-
-	const resp = await fetch("https://birthday-app-api.vercel.app/api/v1/john/birthdays");
+	const resp = await fetch(
+		"https://birthday-app-api.vercel.app/api/v1/john/birthdays",
+	);
 	const data = await resp.json();
 
 	if (!data) {

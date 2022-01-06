@@ -5,14 +5,13 @@
 	min-width: 120px;
 	width: 25%;
 	height: 37px;
-    line-height: 37px;
+	line-height: 37px;
 	font-size: 16px;
 	font-weight: 600;
 	background: hsl(218, 100%, 50%);
 	color: #ffff;
 	text-align: center;
 	border-radius: 20px;
-
 }
 
 .button_primary:hover {
@@ -27,7 +26,7 @@
 .button_primary:disabled {
 	cursor: not-allowed;
 	background: #ccc;
-  }
+}
 
 .button_secondary {
 	border: none;
@@ -36,13 +35,22 @@
 	min-width: 120px;
 	width: 25%;
 	height: 37px;
-    line-height: 37px;
-	background: #e6671e;
+	line-height: 37px;
+	background: #e05d11;
 	color: #ffff;
 	font-weight: 600;
 	text-align: center;
 	border-radius: 20px;
-    margin: 5px;
+	margin: 5px;
+}
+
+.button_secondary:hover {
+	cursor: pointer;
+	background: #e6671e;
+}
+
+.button_primary:focus {
+	border: 1px solid #0000;
 }
 
 .button_cancel {
@@ -51,21 +59,19 @@
 	word-wrap: break-word;
 	width: 25%;
 	height: 37px;
-    line-height: 37px;
+	line-height: 37px;
 	background: #ee0f0f;
 	color: rgb(243, 243, 243);
 	text-align: center;
 	border-radius: 20px;
-    margin: 5px;
+	margin: 5px;
 	cursor: pointer;
 }
-
 
 .button_cancel:hover {
 	background: #ee0f0fd2;
 	color: rgb(243, 243, 243);
 }
-
 
 .back {
 	cursor: pointer;
