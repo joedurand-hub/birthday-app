@@ -2,29 +2,6 @@ import React from "react";
 import style from "../../styles/buttons.module.css";
 import Image from "next/image";
 
-
-
-// export function AnchorPrimary({onClick, href, name, disabled}, ref) {
-// 	return (
-// 		<a
-// 			href={href}
-// 			onClick={onClick}
-// 			ref={ref}
-// 			disabled={disabled}
-// 			className={style.button_primary}
-// 		>
-// 			{name}
-// 		</a>
-// 	)
-// }
-
-const FancyButton = React.forwardRef((props, ref) => (
-	<button ref={ref} className="FancyButton">
-	  {props.children}
-	</button>
-  ));
-
-
 export const AnchorPrimary = React.forwardRef(
 	({ onClick, href, name, disabled }, ref) => {
 		return (
