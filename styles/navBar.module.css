@@ -1,0 +1,39 @@
+@media screen and (max-width: 768px) {
+    .navBar {
+        width: 100%;
+        height: 9vh;
+        background: #ffffff;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border-left: none;
+        border-right: none;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom: none;
+        position: fixed;
+        bottom: 0;
+    }
+    
+}
+
+@media screen and (min-width: 769px) {
+    .navBar {
+        width: 100%;
+        height: 9vh;
+        background: #ffffff;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border-left: none;
+        border-right: none;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-top: none;
+        position: fixed;
+        top: 0;
+    }
+    
+}
