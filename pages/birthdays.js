@@ -1,8 +1,7 @@
-import getBirthdaysInfo from "./api/getBirthdaysInfo";
-import style from "../styles/container.module.css";
 import NavBar from "../Components/navBar/navBar";
 import Card from "../Components/Card/card";
 import { differenceInDays, setYear, format } from "date-fns";
+import style from "../styles/container.module.css";
 
 function Birthdays({ data }) {
 	console.log("data:", data);

@@ -138,7 +138,7 @@ function AddBirthday() {
 					/>
 				</div>
 				<nav className={formNavBar.navBar}>
-					<Link href="/birthdays">
+					<Link href="/birthdays" passHref={true}>
 						<AnchorCancel name="Cancel" />
 					</Link>
 

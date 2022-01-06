@@ -1,6 +1,30 @@
 import React from "react";
 import style from "../../styles/buttons.module.css";
 import Image from "next/image";
+
+
+
+// export function AnchorPrimary({onClick, href, name, disabled}, ref) {
+// 	return (
+// 		<a
+// 			href={href}
+// 			onClick={onClick}
+// 			ref={ref}
+// 			disabled={disabled}
+// 			className={style.button_primary}
+// 		>
+// 			{name}
+// 		</a>
+// 	)
+// }
+
+const FancyButton = React.forwardRef((props, ref) => (
+	<button ref={ref} className="FancyButton">
+	  {props.children}
+	</button>
+  ));
+
+
 export const AnchorPrimary = React.forwardRef(
 	({ onClick, href, name, disabled }, ref) => {
 		return (
@@ -28,7 +52,7 @@ export const AnchorCancel = React.forwardRef(({ onClick, href, name }, ref) => {
 export const AnchorToBack = React.forwardRef(({ onClick, href }, ref) => {
 	return (
 		<a href={href} onClick={onClick} ref={ref}>
-			<Image src="/back.png" width={50} height={50} className={style.back} />
+			<Image src="/back.png" width={50} height={50} className={style.back} alt="Image not found" />
 		</a>
 	);
 });
