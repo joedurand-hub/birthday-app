@@ -7,7 +7,7 @@ import { AnchorToBack } from "../Components/AnchorsButton/anchor"
 
 function allBirthdays() {
 	return <div className={styles.containerApp}>
-			<Link href='/birthdays'>
+			<Link href='/birthdays' passHref>
 			<AnchorToBack/>
 			</Link>
 	</div>;
