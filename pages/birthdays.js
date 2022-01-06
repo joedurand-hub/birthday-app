@@ -10,7 +10,7 @@ function Birthdays({ data }) {
 
 	const allBirthdays = data.birthdays?.map((objectUser) => {
 		let newDate = new Date(objectUser.birthday);
-		let dateOnYear = setYear(newDate, 2021);
+		let dateOnYear = setYear(newDate, 2022);
 		return { ...objectUser, birthday: dateOnYear };
 	});
 	
