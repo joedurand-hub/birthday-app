@@ -4,7 +4,7 @@ import { AnchorCancel } from "../Components/AnchorsButton/anchor";
 import styles from "../styles/container.module.css";
 import styleForm from "../styles/form.module.css";
 import formNavBar from "../styles/navBar.module.css";
-import button from "../styles/buttons.module.css";
+import button from "../styles/Buttons.module.css";
 import { useRouter } from "next/router";
 
 function AddBirthday() {
