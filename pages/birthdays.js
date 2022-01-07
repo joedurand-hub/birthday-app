@@ -23,10 +23,10 @@ function Birthdays({ data }) {
 	return (
 		<div className={style.container_components}>
 			<div className={style.container_cards}>
-				{dataMatching.length > 1 ? (
-					<h1> Birthdays coming soon! </h1>
+			{dataMatching.length > 1 ? (
+					<h1 className={style.container_cards_title}> Birthdays coming soon! </h1>
 				) : (
-					<h1> No Birthdays coming soon </h1>
+					<h1 className={style.container_cards_title}> No Birthdays coming soon </h1>
 				)}
 				{dataMatching ? (
 					dataMatching

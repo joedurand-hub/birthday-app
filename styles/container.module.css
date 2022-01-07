@@ -39,6 +39,10 @@
             
     }
 
+    .container_cards_title {
+        margin-top: 20px;
+    }
+
 @media screen and (min-width: 769px) {
 
 	.containerApp {
