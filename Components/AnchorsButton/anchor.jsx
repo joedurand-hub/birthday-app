@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../../styles/buttons.module.css";
+import style from "../../styles/Buttons.module.css";
 import Image from "next/image";
 
 export const AnchorPrimary = React.forwardRef(
