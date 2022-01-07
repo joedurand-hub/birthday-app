@@ -25,7 +25,7 @@ function Terms() {
 
 			<main className={container.container_content}>
 				<div className={terms.terms_instructions}>
-					<h1 className={terms.terms_title}>Hello "name of user"</h1>
+					<h1 className={terms.terms_title}>Hello name of user</h1>
 					<Image src="/cake.jpg" width={225} height={225} alt="Image not found" />
 					<h4>Author: Joel Durand</h4>
 					<p className={terms.terms_paragraph}>
