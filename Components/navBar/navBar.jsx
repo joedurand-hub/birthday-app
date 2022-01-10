@@ -10,7 +10,7 @@ function NavBar() {
 			</Link>
 
 			<Link href="/add-birthday" passHref={true}>
-				<AnchorPrimary name="Add Birthday" />
+				<AnchorPrimary name="Add" />
 			</Link>
 		</nav>
 	);
