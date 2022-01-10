@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { AnchorCancel } from "../components/AnchorsButton/Anchor";
+import { AnchorCancel } from "../Components/AnchorsButton/Anchor";
 import styles from "../styles/container.module.css";
 import styleForm from "../styles/form.module.css";
 import formNavBar from "../styles/navBar.module.css";

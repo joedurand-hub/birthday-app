@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { AnchorToBack } from "../components/AnchorsButton/Anchor";
+import { AnchorToBack } from "../Components/AnchorsButton/Anchor";
 
 function allBirthdays({ data }) {
 	return (

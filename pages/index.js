@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/container.module.css";
-import { AnchorPrimary } from "../components/AnchorsButton/Anchor";
+import { AnchorPrimary } from "../Components/AnchorsButton/Anchor";
 
 function Home() {
 	return (

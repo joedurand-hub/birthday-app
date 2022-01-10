@@ -1,5 +1,5 @@
-import NavBar from "../components/NavBar/NavBar";
-import Card from "../components/Card/Card";
+import NavBar from "../Components/NavBar/NavBar";
+import Card from "../Components/Card/Card";
 import { differenceInDays, setYear, format } from "date-fns";
 import style from "../styles/container.module.css";
 
