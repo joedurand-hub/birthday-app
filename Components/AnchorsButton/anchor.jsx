@@ -29,7 +29,13 @@ export const AnchorCancel = React.forwardRef(({ onClick, href, name }, ref) => {
 export const AnchorToBack = React.forwardRef(({ onClick, href }, ref) => {
 	return (
 		<a href={href} onClick={onClick} ref={ref}>
-			<Image src="/back.png" width={50} height={50} className={style.back} alt="Image not found" />
+			<Image
+				src="/back.png"
+				width={50}
+				height={50}
+				className={style.back}
+				alt="Image not found"
+			/>
 		</a>
 	);
 });

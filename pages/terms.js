@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import container from "../styles/container.module.css";
 import terms from "../styles/terms.module.css";
-import { AnchorCancel } from "../Components/AnchorsButton/anchor";
+import { AnchorCancel } from "../components/AnchorsButton/Anchor";
 import { useRouter } from "next/router";
 
 function Terms() {
@@ -26,7 +26,12 @@ function Terms() {
 			<main className={container.container_content}>
 				<div className={terms.terms_instructions}>
 					<h1 className={terms.terms_title}>Hello name of user</h1>
-					<Image src="/cake.jpg" width={225} height={225} alt="Image not found" />
+					<Image
+						src="/cake.jpg"
+						width={225}
+						height={225}
+						alt="Image not found"
+					/>
 					<h4>Author: Joel Durand</h4>
 					<p className={terms.terms_paragraph}>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

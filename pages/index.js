@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/container.module.css";
-import { AnchorPrimary } from "../Components/AnchorsButton/anchor";
+import { AnchorPrimary } from "../components/AnchorsButton/Anchor";
 
 function Home() {
 	return (
@@ -15,7 +15,12 @@ function Home() {
 			</Head>
 
 			<main className={styles.containerApp}>
-				<Image src="/boxHappy.svg" width={350} height={350} alt="Image not found" />
+				<Image
+					src="/boxHappy.svg"
+					width={350}
+					height={350}
+					alt="Image not found"
+				/>
 				<Link href="/terms" passHref>
 					<AnchorPrimary name="Log in" />
 				</Link>

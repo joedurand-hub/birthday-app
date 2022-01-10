@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { AnchorCancel } from "../Components/AnchorsButton/anchor";
+import { AnchorCancel } from "../components/AnchorsButton/Anchor";
 import styles from "../styles/container.module.css";
 import styleForm from "../styles/form.module.css";
 import formNavBar from "../styles/navBar.module.css";
@@ -62,14 +62,14 @@ function AddBirthday() {
 			})
 			.then((response) => console.log("Success:", response))
 			.catch((error) => console.error("Error:", error));
-			alert('Birthday saved!')
+		alert("Birthday saved!");
 	};
+
 	return (
 		<div className={styles.containerApp}>
 			<form
 				className={styleForm.form}
 				id="add_birthday"
-				onChange={(e) => handleInputChange(e)}
 				onSubmit={(e) => {
 					e.preventDefault();
 					handleSubmit(e);
@@ -81,12 +81,12 @@ function AddBirthday() {
 						¡Add a birthday to your list!
 					</h1>
 					<label className={styleForm.form_label} htmlFor="firstName">
-						{" "}
-						Firt name{" "}
+						Firt name
 					</label>
 					<input
+						onChange={(e) => handleInputChange(e)}
 						className={styleForm.form_input}
-						placeholder=" Name"
+						placeholder="Name"
 						type="text"
 						name="firstName"
 						minLength={3}
@@ -96,12 +96,12 @@ function AddBirthday() {
 						required
 					/>
 					<label className={styleForm.form_label} htmlFor="lastName">
-						{" "}
-						Last name{" "}
+						Last name
 					</label>
 					<input
+						onChange={(e) => handleInputChange(e)}
 						className={styleForm.form_input}
-						placeholder=" Lastname"
+						placeholder="Lastname"
 						type="text"
 						name="lastName"
 						minLength={3}
@@ -112,12 +112,12 @@ function AddBirthday() {
 					/>
 
 					<label className={styleForm.form_label} htmlFor="email">
-						{" "}
-						Email{" "}
+						Email
 					</label>
 					<input
+						onChange={(e) => handleInputChange(e)}
 						className={styleForm.form_input}
-						placeholder=" user@user.com"
+						placeholder="user@user.com"
 						type="email"
 						name="email"
 						value={email}
@@ -125,10 +125,10 @@ function AddBirthday() {
 					/>
 
 					<label className={styleForm.form_label} htmlFor="birthday">
-						{" "}
-						Birthday{" "}
+						Birthday
 					</label>
 					<input
+						onChange={(e) => handleInputChange(e)}
 						className={styleForm.form_input}
 						type="date"
 						max={new Date().toString()}

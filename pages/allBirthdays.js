@@ -1,16 +1,15 @@
 import React from "react";
-import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
-import styles from "../styles/container.module.css";
-import { AnchorToBack } from "../Components/AnchorsButton/anchor"
+import { AnchorToBack } from "../components/AnchorsButton/Anchor";
 
-function allBirthdays() {
-	return <div className={styles.containerApp}>
-			<Link href='/birthdays' passHref>
-			<AnchorToBack/>
+function allBirthdays({ data }) {
+	return (
+		<div className={styles.containerApp}>
+			<Link href="/birthdays" passHref>
+				<AnchorToBack />
 			</Link>
-	</div>;
+		</div>
+	);
 }
 
 export default allBirthdays;
