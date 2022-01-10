@@ -3,13 +3,12 @@ import style from "../../styles/Buttons.module.css";
 import Image from "next/image";
 
 export const AnchorPrimary = React.forwardRef(
-	({ onClick, href, name, disabled }, ref) => {
+	({ onClick, href, name }, ref) => {
 		return (
 			<a
 				href={href}
 				onClick={onClick}
 				ref={ref}
-				disabled={disabled}
 				className={style.button_primary}
 			>
 				{name}

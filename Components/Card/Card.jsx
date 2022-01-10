@@ -15,8 +15,8 @@ function Card({ firstName, lastName, birthday, email }) {
 				<h4 className={card.card_text}>
 					{firstName} {lastName}
 				</h4>
-				<span className={card.card_span}>{email}</span>
-				<span className={card.card_span}>{birthday}</span>
+				<p className={card.card_text_p}>{email}</p>
+				<p className={card.card_text_p}>{birthday}</p>
 			</div>
 		</div>
 	);

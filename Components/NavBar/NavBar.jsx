@@ -5,11 +5,11 @@ import { AnchorPrimary, AnchorSecondary } from "../AnchorsButton/Anchor";
 function NavBar() {
 	return (
 		<nav className={styles.navBar}>
-			<Link href="/all-birthdays" passHref={true}>
+			<Link href="/all-birthdays" passHref>
 				<AnchorSecondary name="All birthdays" />
 			</Link>
 
-			<Link href="/add-birthday" passHref={true}>
+			<Link href="/add-birthday" passHref>
 				<AnchorPrimary name="Add" />
 			</Link>
 		</nav>
