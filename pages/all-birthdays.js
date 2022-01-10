@@ -17,7 +17,7 @@ function allBirthdays({ data }) {
 				) : (
 					<h1>
 						{" "}
-						<Link href="/addBirthday">
+						<Link href="/add-birthday">
 							<a>Set your Birthday reminders</a>
 						</Link>{" "}
 					</h1>
