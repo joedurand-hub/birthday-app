@@ -81,7 +81,7 @@ function AddBirthday() {
 						¡Add a birthday to your list!
 					</h1>
 					<label className={styleForm.form_label} htmlFor="firstName">
-						Firt name
+						First name
 					</label>
 					<input
 						onChange={(e) => handleInputChange(e)}
@@ -101,7 +101,7 @@ function AddBirthday() {
 					<input
 						onChange={(e) => handleInputChange(e)}
 						className={styleForm.form_input}
-						placeholder="Lastname"
+						placeholder="Last name"
 						type="text"
 						name="lastName"
 						minLength={3}
@@ -131,7 +131,7 @@ function AddBirthday() {
 						onChange={(e) => handleInputChange(e)}
 						className={styleForm.form_input}
 						type="date"
-						max={new Date().toString()}
+						max={new Date()}
 						name="birthday"
 						value={birthday}
 						required
