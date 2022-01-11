@@ -1,3 +1,4 @@
+import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import { differenceInCalendarDays, setYear, format } from "date-fns";
@@ -55,16 +56,8 @@ function Birthdays({ data }) {
 export default Birthdays;
 
 export async function getServerSideProps() {
-	const resp = await fetch(
-		"https://birthday-app-api.vercel.app/api/v1/john/birthdays",
-	);
-	const data = await resp.json();
+	const data = await getBirthdaysInfo();
 
-	if (!data) {
-		return {
-			notFound: true,
-		};
-	}
 	return {
 		props: { data },
 	};
