@@ -1,22 +1,27 @@
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
-import { differenceInDays, setYear, format } from "date-fns";
+import { differenceInCalendarDays, setYear, format } from "date-fns";
 import style from "../styles/container.module.css";
 
 function Birthdays({ data }) {
 	const newDay = new Date();
 
 	const allBirthdays = data.birthdays?.map((objectUser) => {
-		let newDate = new Date(objectUser.birthday);
-		let dateOnYear = setYear(newDate, 2022);
-		return { ...objectUser, birthday: dateOnYear };
+		return {
+			...objectUser,
+			birthday: setYear(new Date(objectUser.birthday), 2022),
+		};
 	});
 
-	const dataMatching = allBirthdays.filter(
-		(objectUser) =>
-			differenceInDays(objectUser.birthday, newDay) <= 6 &&
-			differenceInDays(objectUser.birthday, newDay) >= 0,
-	);
+	const dataMatching = allBirthdays.filter((objectUser) => {
+		const birthdayCalendarDaysDifference = differenceInCalendarDays(
+			objectUser.birthday,
+			newDay,
+		);
+		return (
+			birthdayCalendarDaysDifference <= 6 && birthdayCalendarDaysDifference >= 0
+		);
+	});
 
 	return (
 		<div className={style.container_components}>
@@ -30,21 +35,17 @@ function Birthdays({ data }) {
 						No Birthdays coming soon
 					</h1>
 				)}
-				{dataMatching ? (
-					dataMatching
-						?.map((objectUser, index) => (
-							<Card
-								key={index}
-								firstName={objectUser.firstName}
-								lastName={objectUser.lastName}
-								birthday={format(objectUser.birthday, "yyyy-MM-dd")}
-								email={objectUser.email}
-							/>
-						))
-						.slice(0, 50)
-				) : (
-					<h1>No data has been found</h1>
-				)}
+				{dataMatching
+					?.map((objectUser, index) => (
+						<Card
+							key={index}
+							firstName={objectUser.firstName}
+							lastName={objectUser.lastName}
+							birthday={format(objectUser.birthday, "yyyy-MM-dd")}
+							email={objectUser.email}
+						/>
+					))
+					.slice(0, 50)}
 			</div>
 			<NavBar />
 		</div>
