@@ -10,7 +10,7 @@ function allBirthdays({ data }) {
   return (
     <div className={style.container_all_birthdays}>
       <div className={style.container_navigation}>
-        <Link href="/birthdays">
+        <Link href="/birthdays" passHref>
           <AnchorToBack src={"/back.png"} alt={"Icon to back"} />
         </Link>
       </div>
@@ -20,7 +20,7 @@ function allBirthdays({ data }) {
         ) : (
           <div className={style.container_error}>
             <h1>
-              <Link href="/add-birthday">
+              <Link href="/add-birthday" passHref>
                 <a>Set your Birthday reminders</a>
               </Link>
             </h1>
