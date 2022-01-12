@@ -23,6 +23,11 @@
 	height: 75px;
 }
 
+.icons {
+	max-width: 25%;
+	height: 35px;
+}
+
 .texts {
 	width: 50%;
 	display: flex;
@@ -40,8 +45,8 @@
 	margin: 0;
 }
 
-.card_text_p {
-	font-size: 13px;
+.card_text_seconday {
+	font-size: 14px;
 	margin: 0;
 }
 
@@ -70,6 +75,14 @@
 		border-radius: 5px;
 	}
 
+	.icons {
+		margin: 10px;
+	}
+	.icons:hover {
+		width: 30px;
+		height: 450px;
+	}
+
 	.texts {
 		width: 50%;
 		display: flex;
@@ -85,7 +98,7 @@
 		font-weight: bold;
 		margin: 0;
 	}
-	.card_text_p {
+	.card_text_seconday {
 		font-size: 16px;
 		margin: 0;
 	}

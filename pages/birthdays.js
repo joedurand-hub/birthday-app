@@ -1,7 +1,13 @@
+import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
-import { differenceInCalendarDays, setYear, format } from "date-fns";
 import style from "../styles/container.module.css";
+import {
+	differenceInCalendarDays,
+	compareAsc,
+	setYear,
+	format,
+} from "date-fns";
 
 function Birthdays({ data }) {
 	const newDay = new Date();
@@ -13,15 +19,20 @@ function Birthdays({ data }) {
 		};
 	});
 
-	const dataMatching = allBirthdays.filter((objectUser) => {
-		const birthdayCalendarDaysDifference = differenceInCalendarDays(
-			objectUser.birthday,
-			newDay,
-		);
-		return (
-			birthdayCalendarDaysDifference <= 6 && birthdayCalendarDaysDifference >= 0
-		);
-	});
+	const dataMatching = allBirthdays
+		.filter((objectUser) => {
+			const birthdayCalendarDaysDifference = differenceInCalendarDays(
+				objectUser.birthday,
+				newDay,
+			);
+			return (
+				birthdayCalendarDaysDifference <= 6 &&
+				birthdayCalendarDaysDifference >= 0
+			);
+		})
+		.sort((a, b) => {
+			return compareAsc(a.birthday, b.birthday);
+		});
 
 	return (
 		<div className={style.container_components}>
@@ -55,16 +66,8 @@ function Birthdays({ data }) {
 export default Birthdays;
 
 export async function getServerSideProps() {
-	const resp = await fetch(
-		"https://birthday-app-api.vercel.app/api/v1/john/birthdays",
-	);
-	const data = await resp.json();
+	const data = await getBirthdaysInfo();
 
-	if (!data) {
-		return {
-			notFound: true,
-		};
-	}
 	return {
 		props: { data },
 	};

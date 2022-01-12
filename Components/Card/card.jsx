@@ -1,3 +1,4 @@
+import Link from "next/link";
 import card from "../../styles/card.module.css";
 import Image from "next/image";
 
@@ -9,7 +10,7 @@ function Card({ firstName, lastName, birthday, email }) {
 				width={90}
 				height={75}
 				className={card.image}
-				alt="Image not found"
+				alt="Avatar"
 			/>
 			<div className={card.texts}>
 				<h4 className={card.card_text}>
@@ -18,6 +19,21 @@ function Card({ firstName, lastName, birthday, email }) {
 				<p className={card.card_text_seconday}>{email}</p>
 				<p className={card.card_text_seconday}>{birthday}</p>
 			</div>
+			<Image
+				src="/edit.png"
+				width={35}
+				height={35}
+				alt="Edit icon"
+				className={card.icons}
+			/>
+			<Image
+				src="/delete.png"
+				width={35}
+				height={35}
+				alt="Delete icon"
+				className={card.icons}
+			/>
+			{/* <Link href="/update-user"></Link> */}
 		</div>
 	);
 }
