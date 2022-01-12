@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import container from "../styles/container.module.css";
 import terms from "../styles/terms.module.css";
-import { AnchorCancel } from "../components/AnchorsButton/Anchor";
+import { AnchorCancel } from "../Components/AnchorsButton/Anchor";
 import { useRouter } from "next/router";
 
 function Terms() {

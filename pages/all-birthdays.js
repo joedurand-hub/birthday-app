@@ -8,7 +8,7 @@ import { AnchorToBack } from "../Components/AnchorsButton/anchor";
 function allBirthdays({ data }) {
 	return (
 		<div className={style.container_all_birthdays}>
-			<div className={style.container_all_cards}>
+			<div className={style.container_cards}>
 				<Link href="/birthdays">
 					<AnchorToBack />
 				</Link>
@@ -16,10 +16,9 @@ function allBirthdays({ data }) {
 					<h1 className={style.container_title}> Birthdays coming soon! </h1>
 				) : (
 					<h1>
-						{" "}
 						<Link href="/add-birthday">
 							<a>Set your Birthday reminders</a>
-						</Link>{" "}
+						</Link>
 					</h1>
 				)}
 				{data ? (

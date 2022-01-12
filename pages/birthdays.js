@@ -1,27 +1,38 @@
+import getBirthdaysInfo from "./api/getBirthdaysInfo";
+import NavBar from "../Components/NavBar/NavBar";
+import Card from "../Components/Card/Card";
 import style from "../styles/container.module.css";
-import NavBar from "../Components/navBar/navBar";
-import Card from "../Components/Card/card";
-import { differenceInDays, compareAsc, setYear, format } from "date-fns";
+import {
+	differenceInCalendarDays,
+	compareAsc,
+	setYear,
+	format,
+} from "date-fns";
 
 function Birthdays({ data }) {
 	const newDay = new Date();
 
 	const allBirthdays = data.birthdays?.map((objectUser) => {
-		let newDate = new Date(objectUser.birthday);
-		let dateOnYear = setYear(newDate, 2022);
-		return { ...objectUser, birthday: dateOnYear };
+		return {
+			...objectUser,
+			birthday: setYear(new Date(objectUser.birthday), 2022),
+		};
 	});
 
 	const dataMatching = allBirthdays
-		.filter(
-			(objectUser) =>
-				differenceInDays(objectUser.birthday, newDay) <= 7 &&
-				differenceInDays(objectUser.birthday, newDay) >= 1,
-		)
+		.filter((objectUser) => {
+			const birthdayCalendarDaysDifference = differenceInCalendarDays(
+				objectUser.birthday,
+				newDay,
+			);
+			return (
+				birthdayCalendarDaysDifference <= 6 &&
+				birthdayCalendarDaysDifference >= 0
+			);
+		})
 		.sort((a, b) => {
 			return compareAsc(a.birthday, b.birthday);
 		});
-	console.log("dataMatching:", dataMatching);
 
 	return (
 		<div className={style.container_components}>
@@ -35,21 +46,17 @@ function Birthdays({ data }) {
 						No Birthdays coming soon
 					</h1>
 				)}
-				{dataMatching ? (
-					dataMatching
-						?.map((objectUser, index) => (
-							<Card
-								key={index}
-								firstName={objectUser.firstName}
-								lastName={objectUser.lastName}
-								birthday={format(objectUser.birthday, "yyyy-MM-dd")}
-								email={objectUser.email}
-							/>
-						))
-						.slice(0, 50)
-				) : (
-					<h1>No data has been found</h1>
-				)}
+				{dataMatching
+					?.map((objectUser, index) => (
+						<Card
+							key={index}
+							firstName={objectUser.firstName}
+							lastName={objectUser.lastName}
+							birthday={format(objectUser.birthday, "yyyy-MM-dd")}
+							email={objectUser.email}
+						/>
+					))
+					.slice(0, 50)}
 			</div>
 			<NavBar />
 		</div>
@@ -59,16 +66,8 @@ function Birthdays({ data }) {
 export default Birthdays;
 
 export async function getServerSideProps() {
-	const resp = await fetch(
-		"https://birthday-app-api.vercel.app/api/v1/john/birthdays",
-	);
-	const data = await resp.json();
+	const data = await getBirthdaysInfo();
 
-	if (!data) {
-		return {
-			notFound: true,
-		};
-	}
 	return {
 		props: { data },
 	};

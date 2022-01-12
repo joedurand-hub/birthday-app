@@ -33,13 +33,10 @@
 	align-items: center;
 	word-wrap: break-word;
 	text-align: center;
+	margin-top: 20px;
 	margin-bottom: 40px;
 	padding-bottom: 45px;
 }
-.container_cards_title {
-	margin-top: 20px;
-}
-
 .container_cards_title {
 	margin-top: 20px;
 }
@@ -69,5 +66,14 @@
 		text-align: center;
 		margin-top: 70px;
 		padding-bottom: 10px;
+	}
+	.container_cards_title {
+		margin-top: 20px;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.container_cards_title {
+		margin-top: 40px;
 	}
 }
