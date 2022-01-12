@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import style from "../styles/container.module.css";
 import Card from "../Components/Card/card";
-import { AnchorToBack } from "../Components/AnchorsButton/anchor";
+import { AnchorToBack } from "../Components/AnchorsButton/Anchor";
 
 function allBirthdays({ data }) {
   return (
