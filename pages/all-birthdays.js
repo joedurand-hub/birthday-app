@@ -11,7 +11,7 @@ function allBirthdays({ data }) {
     <div className={style.container_all_birthdays}>
       <div className={style.container_navigation}>
         <Link href="/birthdays">
-          <AnchorToBack />
+          <AnchorToBack src={"/back.png"} alt={"Icon to back"} />
         </Link>
       </div>
       <div className={style.container_cards}>
