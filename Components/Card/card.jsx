@@ -19,20 +19,7 @@ function Card({ firstName, lastName, birthday, email }) {
 				<p className={card.card_text_seconday}>{email}</p>
 				<p className={card.card_text_seconday}>{birthday}</p>
 			</div>
-			<Image
-				src="/edit.png"
-				width={35}
-				height={35}
-				alt="Edit icon"
-				className={card.icons}
-			/>
-			<Image
-				src="/delete.png"
-				width={35}
-				height={35}
-				alt="Delete icon"
-				className={card.icons}
-			/>
+
 			{/* <Link href="/update-user"></Link> */}
 		</div>
 	);
