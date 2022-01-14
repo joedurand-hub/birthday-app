@@ -2,8 +2,8 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import React from "react";
 import Link from "next/link";
 import style from "../styles/container.module.css";
-import Card from "../Components/Card/card";
-import { AnchorIcons } from "../Components/AnchorsButton/anchor";
+import Card from "../Components/Card/Card";
+import { AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
 function allBirthdays({ data }) {
   return (
@@ -45,11 +45,6 @@ export default allBirthdays;
 export async function getServerSideProps() {
   const data = await getBirthdaysInfo();
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
   return {
     props: { data },
   };

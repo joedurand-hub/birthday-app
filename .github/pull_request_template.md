@@ -4,11 +4,9 @@
 
 ## General Overview
 
-Method POST, form, styles and component anchorsButton.
-
 ### URLs affected
 
-- http://localhost:3000/addBirthday
+- http://localhost:3000/
 
 ## Change Examples
 
