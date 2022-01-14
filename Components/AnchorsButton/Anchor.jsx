@@ -25,19 +25,21 @@ export const AnchorCancel = React.forwardRef(({ onClick, href, name }, ref) => {
   );
 });
 
-export const AnchorToBack = React.forwardRef(({ onClick, href, icon }, ref) => {
-  return (
-    <a href={href} onClick={onClick} ref={ref} icon={icon}>
-      <Image
-        src="/back.png"
-        width={50}
-        height={50}
-        className={style.back}
-        alt="Image not found"
-      />
-    </a>
-  );
-});
+export const AnchorIcons = React.forwardRef(
+  ({ onClick, href, src, alt, width, height }, ref) => {
+    return (
+      <a href={href} onClick={onClick} ref={ref}>
+        <Image
+          src={src}
+          width={width}
+          height={height}
+          className={style.back}
+          alt={alt}
+        />
+      </a>
+    );
+  }
+);
 
 export const AnchorSecondary = React.forwardRef(
   ({ onClick, href, name }, ref) => {

@@ -30,6 +30,14 @@
   .form_title {
     text-align: center;
   }
+
+  .error {
+    border-color: red;
+  }
+
+  .error:focus {
+    outline-color: red;
+  }
 }
 
 @media screen and (min-width: 769px) {
