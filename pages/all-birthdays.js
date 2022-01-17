@@ -33,6 +33,7 @@ function allBirthdays({ data }) {
             lastName={objectUser.lastName}
             birthday={objectUser.birthday}
             email={objectUser.email}
+            id={objectUser.id}
           />
         ))}
       </div>

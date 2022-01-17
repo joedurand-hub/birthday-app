@@ -29,13 +29,7 @@ export const AnchorIcons = React.forwardRef(
   ({ onClick, href, src, alt, width, height }, ref) => {
     return (
       <a href={href} onClick={onClick} ref={ref}>
-        <Image
-          src={src}
-          width={width}
-          height={height}
-          className={style.back}
-          alt={alt}
-        />
+        <Image src={src} width={width} height={height} alt={alt} />
       </a>
     );
   }

@@ -7,31 +7,31 @@ import formNavBar from "../styles/navBar.module.css";
 import button from "../styles/Buttons.module.css";
 import { useRouter } from "next/router";
 
-const initialState = {
-  firstname: "",
-  lastname: "",
-  email: "",
-  birthday: "",
-};
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "update":
-      return {
-        // comment from me.
-        // for me.
-        //The payload has the "key" property that allows me to dynamically handle multiple inputs
-        [action.payload.key]: action.payload.value,
-      };
-    default:
-      state;
-  }
-};
-
-function UpdateBirthday() {
+function UpdateBirthday({ user }) {
   const router = useRouter();
-  const [state, dispatch] = useReducer(reducer, initialState);
-  console.log("state", state);
+
+  const initialState = {
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
+    birthday: user.birthday,
+  };
+
+  const reducer = (state, action) => {
+    switch (action.type) {
+      case "update":
+        return {
+          [action.payload.key]: action.payload.value,
+        };
+      default:
+        state;
+    }
+  };
+
+  const [{ firstName, lastName, email, birthday }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   const handleInputAction = (event) => {
     dispatch({
@@ -40,29 +40,32 @@ function UpdateBirthday() {
     });
   };
 
-  const handleSubmit = (e) => {
-    fetch(`https://birthday-app-api.vercel.app/api/v1/john/birthdays/${id}`, {
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        firstName,
-        email,
-        lastName,
-        birthday,
-      }),
-    })
+  const handleSubmit = () => {
+    fetch(
+      `https://birthday-app-api.vercel.app/api/v1/john/birthdays/${user.id}`,
+      {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          birthday,
+        }),
+      }
+    )
       .then((response) => {
         if (response.ok) {
-          console.log("method POST:", response);
+          console.log("method PUT:", response);
           return response.json();
         }
       })
       .then((response) => console.log("Success:", response))
       .catch((error) => console.error("Error:", error));
-    alert("Birthday saved!");
+    alert("Birthday updated!");
   };
 
   return (
@@ -86,7 +89,7 @@ function UpdateBirthday() {
             className={styleForm.form_input}
             placeholder="Name"
             type="text"
-            value={state.firstname}
+            value={firstName}
             name="firstName"
             minLength={3}
             maxLength={25}
@@ -105,7 +108,7 @@ function UpdateBirthday() {
             minLength={3}
             maxLength={25}
             pattern="[A-Za-z ]*"
-            value={state.lastname}
+            value={lastName}
             required={true}
           />
 
@@ -118,7 +121,7 @@ function UpdateBirthday() {
             placeholder="user@user.com"
             type="email"
             name="email"
-            value={state.email}
+            value={email}
             required={true}
           />
 
@@ -131,7 +134,7 @@ function UpdateBirthday() {
             type="date"
             max={new Date()}
             name="birthday"
-            value={state.birthday}
+            value={birthday}
             required
           />
         </div>
@@ -153,3 +156,19 @@ function UpdateBirthday() {
 }
 
 export default UpdateBirthday;
+
+export async function getServerSideProps({ query }) {
+  try {
+    const id = query.id;
+    const response = await fetch(
+      `https://birthday-app-api.vercel.app/api/v1/john/birthdays`
+    );
+    const { birthdays } = await response.json();
+    const user = birthdays.find((objectUser) => objectUser.id == id);
+    return {
+      props: { user },
+    };
+  } catch (error) {
+    console.log(error);
+  }
+}
