@@ -50,3 +50,8 @@
   cursor: pointer;
   font-size: 15px;
 }
+
+.modal_container_icons {
+  display: flex;
+  flex-direction: column;
+}

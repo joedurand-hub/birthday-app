@@ -45,9 +45,8 @@
   margin: 0;
 }
 
-.container_icons {
-  display: flex;
-  flex-direction: column;
+.icons {
+  cursor: pointer;
 }
 
 @media screen and (min-width: 769px) {
@@ -93,9 +92,5 @@
   .card_text_seconday {
     font-size: 16px;
     margin: 0;
-  }
-  .container_icons {
-    display: flex;
-    flex-direction: row;
   }
 }

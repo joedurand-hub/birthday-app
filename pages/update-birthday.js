@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useReducer } from "react";
 import Link from "next/link";
 import { AnchorCancel } from "../Components/AnchorsButton/Anchor";
 import styles from "../styles/container.module.css";
@@ -21,6 +21,7 @@ function UpdateBirthday({ user }) {
     switch (action.type) {
       case "update":
         return {
+          ...state,
           [action.payload.key]: action.payload.value,
         };
       default:
@@ -28,10 +29,9 @@ function UpdateBirthday({ user }) {
     }
   };
 
-  const [{ firstName, lastName, email, birthday }, dispatch] = useReducer(
-    reducer,
-    initialState
-  );
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log("state", state);
 
   const handleInputAction = (event) => {
     dispatch({
@@ -50,10 +50,10 @@ function UpdateBirthday({ user }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          birthday,
+          firstName: state.firstName,
+          lastName: state.lastName,
+          email: state.email,
+          birthday: state.birthday,
         }),
       }
     )
@@ -72,7 +72,6 @@ function UpdateBirthday({ user }) {
     <div className={styles.containerApp}>
       <form
         className={styleForm.form}
-        id="add_birthday"
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(e);
@@ -89,7 +88,7 @@ function UpdateBirthday({ user }) {
             className={styleForm.form_input}
             placeholder="Name"
             type="text"
-            value={firstName}
+            value={state.firstName}
             name="firstName"
             minLength={3}
             maxLength={25}
@@ -104,11 +103,11 @@ function UpdateBirthday({ user }) {
             className={styleForm.form_input}
             placeholder="Last name"
             type="text"
-            name="lastname"
+            name="lastName"
             minLength={3}
             maxLength={25}
             pattern="[A-Za-z ]*"
-            value={lastName}
+            value={state.lastName}
             required={true}
           />
 
@@ -121,7 +120,7 @@ function UpdateBirthday({ user }) {
             placeholder="user@user.com"
             type="email"
             name="email"
-            value={email}
+            value={state.email}
             required={true}
           />
 
@@ -134,7 +133,7 @@ function UpdateBirthday({ user }) {
             type="date"
             max={new Date()}
             name="birthday"
-            value={birthday}
+            value={state.birthday}
             required
           />
         </div>
@@ -165,6 +164,7 @@ export async function getServerSideProps({ query }) {
     );
     const { birthdays } = await response.json();
     const user = birthdays.find((objectUser) => objectUser.id == id);
+    console.log("user:", user);
     return {
       props: { user },
     };

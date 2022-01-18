@@ -1,13 +1,33 @@
 import { AnchorIcons } from "../AnchorsButton/Anchor";
-import button from "../../styles/Buttons.module.css";
-import Modal from "../Modal/Modal";
 import { useModal } from "../../hooks/useModal";
+import { useRouter } from "next/router";
+import Modal from "../Modal/Modal";
 import Link from "next/link";
-import card from "../../styles/card.module.css";
 import Image from "next/image";
+import card from "../../styles/card.module.css";
+import button from "../../styles/Buttons.module.css";
+import modal from "../../styles/modal.module.css";
 
 function Card({ firstName, lastName, birthday, email, id }) {
   const [isOpenModal, openModal, closeModal] = useModal(false);
+  const router = useRouter();
+
+  const handleSubmit = () => {
+    fetch(`https://birthday-app-api.vercel.app/api/v1/john/birthdays/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("method DELETE:", response);
+          return response.json();
+        }
+      })
+      .then((response) => console.log("Success:", response))
+      .catch((error) => console.error("Error:", error));
+  };
 
   return (
     <div className={card.card}>
@@ -25,7 +45,7 @@ function Card({ firstName, lastName, birthday, email, id }) {
         <p className={card.card_text_seconday}>{email}</p>
         <p className={card.card_text_seconday}>{birthday}</p>
       </div>
-      <div className={card.container_icons}>
+      <div className={modal.modal_container_icons}>
         <Link href={`update-birthday/?id=${id}`} passHref>
           <AnchorIcons
             src={"/edit.png"}
@@ -35,16 +55,23 @@ function Card({ firstName, lastName, birthday, email, id }) {
             className={card.icons}
           />
         </Link>
-        <div>
-          <AnchorIcons
+        <div className={card.container_modal}>
+          <Image
             src={"/delete-icon.png"}
-            alt={"Edit icon"}
+            alt={"Delete icon"}
             width={35}
             height={35}
             className={card.icons}
             onClick={openModal}
           />
-          <Modal isOpen={isOpenModal} closeModal={closeModal}>
+        </div>
+        <Modal isOpen={isOpenModal} closeModal={closeModal}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(e);
+            }}
+          >
             <h1>User</h1>
             <p>Are you sure you want to delete this card?</p>
             <Image
@@ -53,9 +80,15 @@ function Card({ firstName, lastName, birthday, email, id }) {
               height={150}
               alt="Delete Card"
             />
-            <button className={button.button_cancel}>Delete</button>
-          </Modal>
-        </div>
+            <button
+              type="submit"
+              className={button.button_cancel}
+              onClick={closeModal}
+            >
+              Delete
+            </button>
+          </form>
+        </Modal>
       </div>
     </div>
   );
