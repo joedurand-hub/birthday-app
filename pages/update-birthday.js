@@ -1,10 +1,6 @@
 import { useReducer } from "react";
-import Link from "next/link";
-import { AnchorCancel } from "../Components/AnchorsButton/Anchor";
+import Form from "../Components/Form/Form";
 import styles from "../styles/container.module.css";
-import styleForm from "../styles/form.module.css";
-import formNavBar from "../styles/navBar.module.css";
-import button from "../styles/Buttons.module.css";
 import { useRouter } from "next/router";
 
 function UpdateBirthday({ user }) {
@@ -63,93 +59,25 @@ function UpdateBirthday({ user }) {
           return response.json();
         }
       })
-      .then((response) => console.log("Success:", response))
+      .then((response) => {
+        console.log("Success:", response);
+        alert("Birthday updated!");
+        router.push("/birthdays");
+      })
       .catch((error) => console.error("Error:", error));
-    alert("Birthday updated!");
   };
 
   return (
     <div className={styles.containerApp}>
-      <form
-        className={styleForm.form}
+      <Form
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(e);
-          router.push("/birthdays");
         }}
-      >
-        <div className={styleForm.form_container}>
-          <h1 className={styleForm.form_title}>Edit the information.</h1>
-          <label className={styleForm.form_label} htmlFor="firstName">
-            First name
-          </label>
-          <input
-            onChange={handleInputAction}
-            className={styleForm.form_input}
-            placeholder="Name"
-            type="text"
-            value={state.firstName}
-            name="firstName"
-            minLength={3}
-            maxLength={25}
-            pattern="[A-Za-z ]*"
-            required
-          />
-          <label className={styleForm.form_label} htmlFor="lastName">
-            Last name
-          </label>
-          <input
-            onChange={handleInputAction}
-            className={styleForm.form_input}
-            placeholder="Last name"
-            type="text"
-            name="lastName"
-            minLength={3}
-            maxLength={25}
-            pattern="[A-Za-z ]*"
-            value={state.lastName}
-            required={true}
-          />
-
-          <label className={styleForm.form_label} htmlFor="email">
-            Email
-          </label>
-          <input
-            onChange={handleInputAction}
-            className={styleForm.form_input}
-            placeholder="user@user.com"
-            type="email"
-            name="email"
-            value={state.email}
-            required={true}
-          />
-
-          <label className={styleForm.form_label} htmlFor="birthday">
-            Birthday
-          </label>
-          <input
-            onChange={handleInputAction}
-            className={styleForm.form_input}
-            type="date"
-            max={new Date()}
-            name="birthday"
-            value={state.birthday}
-            required
-          />
-        </div>
-        <nav className={formNavBar.navBar}>
-          <Link href="/birthdays" passHref={true}>
-            <AnchorCancel name="Cancel" />
-          </Link>
-
-          <input
-            className={button.button_primary}
-            type="submit"
-            name="submit"
-            value="Save"
-          />
-        </nav>
-      </form>
+        onChange={handleInputAction}
+        values={state}
+        title={"Edit the birthday Card!"}
+      ></Form>
     </div>
   );
 }

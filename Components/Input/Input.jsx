@@ -5,6 +5,9 @@ const InputField = ({
   name,
   placeholder,
   type,
+  minLength,
+  maxLength,
+  pattern,
   onChange,
   htmlFor,
 }) => {
@@ -22,6 +25,10 @@ const InputField = ({
         name={name}
         placeholder={placeholder}
         onChange={onChange}
+        minLength={minLength}
+        maxLength={maxLength}
+        pattern={pattern}
+        required={true}
       />
     </div>
   );

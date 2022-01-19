@@ -1,8 +1,6 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
-import { useModal } from "../hooks/useModal";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
-// import Modal from "../Components/Modal/Modal";
 import style from "../styles/container.module.css";
 import {
   differenceInCalendarDays,
@@ -12,7 +10,6 @@ import {
 } from "date-fns";
 
 function Birthdays({ data }) {
-  // const [isOpenModal, openModal, closeModal] = useModal(false)
   const newDay = new Date();
 
   const allBirthdays = data.birthdays?.map((objectUser) => {

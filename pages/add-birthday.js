@@ -56,6 +56,7 @@ function AddBirthday() {
         }}
         onChange={(e) => handleInputChange(e)}
         values={values}
+        title={"¡Add a birthday to your list!"}
       ></Form>
     </div>
   );

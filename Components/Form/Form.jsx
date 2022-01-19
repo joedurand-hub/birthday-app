@@ -3,14 +3,16 @@ import { AnchorCancel } from "../AnchorsButton/Anchor";
 import styles from "../../styles/container.module.css";
 import styleForm from "../../styles/form.module.css";
 import Input from "../Input/Input";
+import Button from "../Button/Button";
 import button from "../../styles/Buttons.module.css";
+import formNavBar from "../../styles/navBar.module.css";
 
-function Form({ onSubmit, onChange, values }) {
+function Form({ onSubmit, onChange, values, title }) {
   return (
     <div className={styles.containerApp}>
       <form className={styleForm.form} onSubmit={onSubmit}>
-        <h1 className={styleForm.form_title}>¡Add a birthday to your list!</h1>
         <div className={styleForm.form_container}>
+          <h1 className={styleForm.form_title}>{title}</h1>
           <Input
             label={"First Name"}
             htmlFor={"firstName"}
@@ -59,17 +61,17 @@ function Form({ onSubmit, onChange, values }) {
             value={values.birthday}
             required={true}
           />
-          <nav>
+          <nav className={formNavBar.navBar}>
             <Link href="/birthdays" passHref>
               <AnchorCancel name="Cancel" />
             </Link>
-            <button
+            <Button
               className={button.button_primary}
               type="submit"
               name="submit"
-              value="Save"
               onSubmit={onSubmit}
-            ></button>
+              name={"Save"}
+            />
           </nav>
         </div>
       </form>
