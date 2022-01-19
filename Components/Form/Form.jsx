@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { AnchorCancel } from "../AnchorsButton/Anchor";
 import styles from "../../styles/container.module.css";
 import styleForm from "../../styles/form.module.css";
