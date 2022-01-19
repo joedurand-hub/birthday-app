@@ -49,6 +49,10 @@
   cursor: pointer;
 }
 
+.icons:focus .card {
+  display: block;
+}
+
 @media screen and (min-width: 769px) {
   .card {
     display: flex;

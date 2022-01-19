@@ -10,7 +10,6 @@ import modal from "../../styles/modal.module.css";
 
 function Card({ firstName, lastName, birthday, email, id }) {
   const [isOpenModal, openModal, closeModal] = useModal(false);
-  const router = useRouter();
 
   const handleSubmit = () => {
     fetch(`https://birthday-app-api.vercel.app/api/v1/john/birthdays/${id}`, {
