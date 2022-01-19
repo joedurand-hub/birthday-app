@@ -47,7 +47,10 @@ function AddBirthday() {
           return response.json();
         }
       })
-      .then((response) => console.log("Success:", response))
+      .then((response) => {
+        console.log(response);
+        router.push("/birthdays");
+      })
       .catch((error) => console.error("Error:", error));
     alert("Birthday saved!");
   };
@@ -58,7 +61,6 @@ function AddBirthday() {
         onSubmit={(e) => {
           e.preventDefault();
           handleSubmit(e);
-          router.push("/birthdays");
         }}
         onChange={(e) => handleInputChange(e)}
         values={values}

@@ -28,7 +28,7 @@ function allBirthdays({ data }) {
         )}
         {data.birthdays?.map((objectUser, index) => (
           <Card
-            key={index}
+            key={objectUser.id}
             firstName={objectUser.firstName}
             lastName={objectUser.lastName}
             birthday={objectUser.birthday}

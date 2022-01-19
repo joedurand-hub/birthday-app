@@ -1,9 +1,9 @@
 import { AnchorIcons } from "../AnchorsButton/Anchor";
 import { useModal } from "../../hooks/useModal";
-import { useRouter } from "next/router";
 import Modal from "../Modal/Modal";
 import Link from "next/link";
 import Image from "next/image";
+import Button from "../Button/Button";
 import card from "../../styles/card.module.css";
 import button from "../../styles/Buttons.module.css";
 import modal from "../../styles/modal.module.css";
@@ -44,7 +44,7 @@ function Card({ firstName, lastName, birthday, email, id }) {
         <p className={card.card_text_seconday}>{email}</p>
         <p className={card.card_text_seconday}>{birthday}</p>
       </div>
-      <div className={modal.modal_container_icons}>
+      <div className={card.container_icons}>
         <Link href={`update-birthday/?id=${id}`} passHref>
           <AnchorIcons
             src={"/edit.png"}
@@ -54,16 +54,14 @@ function Card({ firstName, lastName, birthday, email, id }) {
             className={card.icons}
           />
         </Link>
-        <div className={card.container_modal}>
-          <Image
-            src={"/delete-icon.png"}
-            alt={"Delete icon"}
-            width={35}
-            height={35}
-            className={card.icons}
-            onClick={openModal}
-          />
-        </div>
+        <Image
+          src={"/delete-icon.png"}
+          alt={"Delete icon"}
+          width={35}
+          height={35}
+          className={card.icons}
+          onClick={openModal}
+        />
         <Modal isOpen={isOpenModal} closeModal={closeModal}>
           <form
             onSubmit={(e) => {
@@ -71,21 +69,22 @@ function Card({ firstName, lastName, birthday, email, id }) {
               handleSubmit(e);
             }}
           >
-            <h1>User</h1>
-            <p>Are you sure you want to delete this card?</p>
+            <h2 key={id}>User</h2>
+            <p>
+              Do you want to delete <strong>{firstName}</strong>’s birthday?
+            </p>
             <Image
               src="/delete.png"
               width={350}
               height={150}
               alt="Delete Card"
             />
-            <button
+            <Button
               type="submit"
               className={button.button_cancel}
               onClick={closeModal}
-            >
-              Delete
-            </button>
+              name={"Delete"}
+            />
           </form>
         </Modal>
       </div>

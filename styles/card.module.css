@@ -12,7 +12,6 @@
 }
 
 .card:active {
-  cursor: pointer;
   box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.336);
   -webkit-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.329);
   -moz-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.253);
@@ -49,8 +48,13 @@
   cursor: pointer;
 }
 
-.icons:focus .card {
+/* .icons:focus .card {
   display: block;
+} */
+
+.container_icons {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 769px) {
@@ -96,5 +100,10 @@
   .card_text_seconday {
     font-size: 16px;
     margin: 0;
+  }
+
+  .container_icons {
+    display: flex;
+    flex-direction: row;
   }
 }

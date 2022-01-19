@@ -4,7 +4,7 @@ function Modal({ children, isOpen, closeModal }) {
   const modalHandleClick = (e) => e.stopPropagation();
 
   return (
-    <article
+    <div
       className={`${isOpen ? styles.is_open : styles.modal_container}`}
       onClick={closeModal}
     >
@@ -14,7 +14,7 @@ function Modal({ children, isOpen, closeModal }) {
         </button>
         {children}
       </div>
-    </article>
+    </div>
   );
 }
 
