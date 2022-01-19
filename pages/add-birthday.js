@@ -1,14 +1,6 @@
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { AnchorCancel } from "../Components/AnchorsButton/Anchor";
 import styles from "../styles/container.module.css";
-import styleForm from "../styles/form.module.css";
-import NavBar from "../Components/NavBar/NavBar";
-import formNavBar from "../styles/navBar.module.css";
-import button from "../styles/Buttons.module.css";
 import { useRouter } from "next/router";
-import Input from "../Components/Input/Input";
 import Form from "../Components/Form/Form";
 
 function AddBirthday() {
