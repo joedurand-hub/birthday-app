@@ -1,10 +1,8 @@
-import Link from "next/link";
-import { AnchorCancel } from "../AnchorsButton/Anchor";
+import { Anchor } from "../AnchorsButton/Anchor";
 import styles from "../../styles/container.module.css";
 import styleForm from "../../styles/form.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import button from "../../styles/Buttons.module.css";
 import formNavBar from "../../styles/navBar.module.css";
 
 function Form({ onSubmit, onChange, values, title }) {
@@ -62,11 +60,9 @@ function Form({ onSubmit, onChange, values, title }) {
             required={true}
           />
           <nav className={formNavBar.navBar}>
-            <Link href="/birthdays" passHref>
-              <AnchorCancel name="Cancel" />
-            </Link>
+            <Anchor name="Cancel" to="/birthdays" variant="cancel" />
             <Button
-              className={button.button_primary}
+              variant="primary"
               type="submit"
               name="submit"
               onSubmit={onSubmit}

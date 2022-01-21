@@ -36,9 +36,8 @@ function Birthdays({ data }) {
 
   return (
     <div className={style.container_components}>
-      {/* <Modal></Modal> */}
       <div className={style.container_cards}>
-        {dataMatching.length > 1 ? (
+        {dataMatching.length > 0 ? (
           <h1 className={style.container_cards_title}>
             Birthdays coming soon!
           </h1>
@@ -48,9 +47,9 @@ function Birthdays({ data }) {
           </h1>
         )}
         {dataMatching
-          ?.map((objectUser, index) => (
+          ?.map((objectUser) => (
             <Card
-              key={index}
+              key={objectUser.dataMatching}
               firstName={objectUser.firstName}
               lastName={objectUser.lastName}
               birthday={format(objectUser.birthday, "yyyy-MM-dd")}
@@ -59,6 +58,7 @@ function Birthdays({ data }) {
             />
           ))
           .slice(0, 50)}
+        {/*  This is to temporarily limit the number of cards. It will be replaced by pagination functionality */}
       </div>
       <NavBar />
     </div>

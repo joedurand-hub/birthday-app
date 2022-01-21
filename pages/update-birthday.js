@@ -27,8 +27,6 @@ function UpdateBirthday({ user }) {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log("state", state);
-
   const handleInputAction = (event) => {
     dispatch({
       type: "update",
@@ -55,16 +53,16 @@ function UpdateBirthday({ user }) {
     )
       .then((response) => {
         if (response.ok) {
-          console.log("method PUT:", response);
+          console.log("method PUT, success:", response);
+          alert("Birthday updated!");
+          router.push("/birthdays");
           return response.json();
         }
       })
-      .then((response) => {
-        console.log("Success:", response);
-        alert("Birthday updated!");
-        router.push("/birthdays");
-      })
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        alert("An error has occurred, please try again later");
+        console.error("Error:", error);
+      });
   };
 
   return (

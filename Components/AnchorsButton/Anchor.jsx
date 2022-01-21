@@ -1,50 +1,34 @@
 import React from "react";
-import style from "../../styles/Buttons.module.css";
+import styles from "../../styles/Buttons.module.css";
 import Image from "next/image";
+import { cc } from "../../helpers/variant.js";
+import Link from "next/link";
 
-export const AnchorPrimary = React.forwardRef(
-  ({ onClick, href, name }, ref) => {
+export const Anchor = React.forwardRef(
+  ({ onClick, to, name, variant = "primary", disabled }, ref) => {
     return (
-      <a
-        href={href}
-        onClick={onClick}
-        ref={ref}
-        className={style.button_primary}
-      >
-        {name}
-      </a>
+      <Link href={to} passHref>
+        <a
+          onClick={onClick}
+          ref={ref}
+          className={cc(
+            styles.button,
+            styles[variant],
+            disabled && styles.disabled
+          )}
+        >
+          {name}
+        </a>
+      </Link>
     );
   }
 );
-
-export const AnchorCancel = React.forwardRef(({ onClick, href, name }, ref) => {
-  return (
-    <a href={href} onClick={onClick} ref={ref} className={style.button_cancel}>
-      {name}
-    </a>
-  );
-});
 
 export const AnchorIcons = React.forwardRef(
   ({ onClick, href, src, alt, width, height }, ref) => {
     return (
       <a href={href} onClick={onClick} ref={ref}>
         <Image src={src} width={width} height={height} alt={alt} />
-      </a>
-    );
-  }
-);
-
-export const AnchorSecondary = React.forwardRef(
-  ({ onClick, href, name }, ref) => {
-    return (
-      <a
-        href={href}
-        onClick={onClick}
-        ref={ref}
-        className={style.button_secondary}
-      >
-        {name}
       </a>
     );
   }

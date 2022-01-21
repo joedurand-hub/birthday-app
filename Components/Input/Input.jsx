@@ -9,12 +9,11 @@ const InputField = ({
   maxLength,
   pattern,
   onChange,
-  htmlFor,
 }) => {
   return (
     <div className={input.field}>
       {label && (
-        <label htmlFor={htmlFor} className={input.form_label}>
+        <label htmlFor={name} className={input.form_label}>
           {label}
         </label>
       )}

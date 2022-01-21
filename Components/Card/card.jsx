@@ -1,15 +1,17 @@
 import { AnchorIcons } from "../AnchorsButton/Anchor";
 import { useModal } from "../../hooks/useModal";
+import { useFetch } from "../../hooks/useFetch";
+
 import Modal from "../Modal/Modal";
 import Link from "next/link";
 import Image from "next/image";
 import Button from "../Button/Button";
+import { useRouter } from "next/router";
 import card from "../../styles/card.module.css";
-import button from "../../styles/Buttons.module.css";
-import modal from "../../styles/modal.module.css";
 
 function Card({ firstName, lastName, birthday, email, id }) {
   const [isOpenModal, openModal, closeModal] = useModal(false);
+  const router = useRouter();
 
   const handleSubmit = () => {
     fetch(`https://birthday-app-api.vercel.app/api/v1/john/birthdays/${id}`, {
@@ -20,12 +22,16 @@ function Card({ firstName, lastName, birthday, email, id }) {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("method DELETE:", response);
+          console.log("method DELETE, success:", response);
+          alert("Birthday deleted!");
+          router.push("/birthdays");
           return response.json();
         }
       })
-      .then((response) => console.log("Success:", response))
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => {
+        alert("An error has occurred, please try again later");
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -62,14 +68,16 @@ function Card({ firstName, lastName, birthday, email, id }) {
           className={card.icons}
           onClick={openModal}
         />
-        <Modal isOpen={isOpenModal} closeModal={closeModal}>
+        <Modal key={id} isOpen={isOpenModal} closeModal={closeModal}>
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              alert("Birthday deleted!");
+              router.push("/birthdays");
               handleSubmit(e);
             }}
           >
-            <h2 key={id}>User</h2>
+            <h2>User</h2>
             <p>
               Do you want to delete <strong>{firstName}</strong>’s birthday?
             </p>
@@ -81,7 +89,7 @@ function Card({ firstName, lastName, birthday, email, id }) {
             />
             <Button
               type="submit"
-              className={button.button_cancel}
+              variant="cancel"
               onClick={closeModal}
               name={"Delete"}
             />

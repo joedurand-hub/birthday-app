@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import style from "../styles/container.module.css";
 import Card from "../Components/Card/Card";
-import { AnchorIcons } from "../Components/AnchorsButton/Anchor";
+import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
 function allBirthdays({ data }) {
   return (
@@ -17,16 +17,16 @@ function allBirthdays({ data }) {
             height={50}
           />
         </Link>
-        {data.birthdays.length > 1 ? (
+        {data.birthdays.length > 0 ? (
           <h1 className={style.container_title}> Birthdays coming soon! </h1>
         ) : (
-          <h1>
-            <Link href="/add-birthday" passHref>
-              <a>Set your Birthday reminders</a>
-            </Link>
-          </h1>
+          <Anchor
+            to="/add-birthday"
+            name="Set your Birthday reminders"
+            variant="secondary"
+          />
         )}
-        {data.birthdays?.map((objectUser, index) => (
+        {data.birthdays?.map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}

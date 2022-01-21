@@ -36,15 +36,15 @@ function AddBirthday() {
       .then((response) => {
         if (response.ok) {
           console.log("method POST:", response);
+          alert("Birthday saved!");
+          router.push("/birthdays");
           return response.json();
         }
       })
-      .then((response) => {
-        console.log(response);
-        router.push("/birthdays");
-      })
-      .catch((error) => console.error("Error:", error));
-    alert("Birthday saved!");
+      .catch((error) => {
+        alert("An error has occurred, please try again later");
+        console.error("Error:", error);
+      });
   };
 
   return (
