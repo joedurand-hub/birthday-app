@@ -1,97 +1,68 @@
-@media screen and (max-width: 768px) {
-  .modal_container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: none;
-  }
 
-  .modal_container .is_open {
-    display: flex;
-  }
-
-  .modal {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    background-color: #ffff;
-    width: 90%;
-    height: 350px;
-    padding: 10px;
-    border: 1px solid black;
-    border-radius: 25px;
-    cursor: default;
-  }
-
-  .modal_close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 7%;
-    height: 9%;
-    border: none;
-    border-radius: 50%;
-    color: white;
-    background: rgb(241, 36, 36);
-  }
-
-  .modal_close:hover {
-    color: white;
-    background: red;
-    cursor: pointer;
-    font-size: 15px;
-  }
+.modal_container {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }
 
-@media screen and (min-width: 768px) {
-  .modal_container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    display: none;
-  }
+.modal_container .is_open {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .modal_container .is_open {
-    display: flex;
-  }
+.modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  left: 5%;
+  z-index: 999;
+  background-color: #ffff;
+  width: 90%;
+  height: 400px;
+  padding: 10px;
+  border-radius: 25px;
+  cursor: default;
+  box-shadow: rgba(143, 43, 201, 0.863) 0px 22px 70px 4px;
+}
 
+.modal_close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 7%;
+  height: 9%;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  background: rgb(241, 36, 36);
+}
+
+.modal_close:hover {
+  color: white;
+  background: red;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.modal_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (min-width: 769px) {
   .modal {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    background-color: #ffff;
-    width: 550px;
-    height: 350px;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 25px;
-    cursor: default;
-  }
-
-  .modal_close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 7%;
-    height: 9%;
-    border: none;
-    border-radius: 50%;
-    color: white;
-    background: rgb(241, 36, 36);
-  }
-
-  .modal_close:hover {
-    color: white;
-    background: red;
-    cursor: pointer;
-    font-size: 15px;
+    left: 20%;
+    width: 60%;
   }
 }
