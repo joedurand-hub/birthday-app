@@ -2,11 +2,15 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import style from "../styles/container.module.css";
+import Image from "next/image";
 import {
   differenceInCalendarDays,
   compareAsc,
   setYear,
   format,
+  isToday,
+  addDays,
+  isTomorrow,
 } from "date-fns";
 
 function Birthdays({ data }) {
@@ -27,12 +31,17 @@ function Birthdays({ data }) {
       );
       return (
         birthdayCalendarDaysDifference <= 6 &&
-        birthdayCalendarDaysDifference >= 0
+        birthdayCalendarDaysDifference >= -1
       );
     })
     .sort((a, b) => {
       return compareAsc(a.birthday, b.birthday);
     });
+
+  dataMatching.filter((objectUser) => {
+    console.log(addDays(objectUser.birthday, 1));
+    console.log("es hoy", isToday(objectUser.birthday));
+  });
 
   return (
     <div className={style.container_components}>
@@ -46,19 +55,36 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
-        {dataMatching
-          ?.map((objectUser) => (
-            <Card
-              key={objectUser.dataMatching}
-              firstName={objectUser.firstName}
-              lastName={objectUser.lastName}
-              birthday={format(objectUser.birthday, "yyyy-MM-dd")}
-              email={objectUser.email}
-              id={objectUser.id}
-            />
-          ))
-          .slice(0, 50)}
-        {/*  This is to temporarily limit the number of cards. It will be replaced by pagination functionality */}
+        {dataMatching?.map(
+          (objectUser) =>
+            isTomorrow(objectUser.birthday) && (
+              <Card
+                key={objectUser.id}
+                firstName={objectUser.firstName}
+                lastName={objectUser.lastName}
+                birthday={format(objectUser.birthday, "yyyy-MM-dd")}
+                email={objectUser.email}
+                id={objectUser.id}
+              >
+                <Image
+                  src="/email.png"
+                  width={35}
+                  height={35}
+                  alt="email icon"
+                />
+              </Card>
+            )
+        )}
+        {/* {dataMatching?.map((objectUser) => (
+          <Card
+            key={objectUser.dataMatching}
+            firstName={objectUser.firstName}
+            lastName={objectUser.lastName}
+            birthday={format(objectUser.birthday, "yyyy-MM-dd")}
+            email={objectUser.email}
+            id={objectUser.id}
+          />
+        ))} */}
       </div>
       <NavBar />
     </div>

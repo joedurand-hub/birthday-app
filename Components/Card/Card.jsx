@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import card from "../../styles/card.module.css";
 import modal_card from "../../styles/modal.module.css";
 
-function Card({ firstName, lastName, birthday, email, id }) {
+function Card({ firstName, lastName, birthday, email, id, children }) {
   const [isOpenModal, openModal, closeModal] = useModal(false);
   const router = useRouter();
 
@@ -40,7 +40,6 @@ function Card({ firstName, lastName, birthday, email, id }) {
           className={modal_card.modal_form}
           onSubmit={(e) => {
             e.preventDefault();
-            alert("Birthday deleted!");
             router.push("/birthdays");
             handleSubmit(e);
           }}
@@ -91,6 +90,7 @@ function Card({ firstName, lastName, birthday, email, id }) {
             className={card.icons}
             onClick={openModal}
           />
+          {children}
         </div>
       </div>
     </>
