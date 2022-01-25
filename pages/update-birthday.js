@@ -53,7 +53,6 @@ function UpdateBirthday({ user }) {
     )
       .then((response) => {
         if (response.ok) {
-          console.log("method PUT, success:", response);
           alert("Birthday updated!");
           router.push("/birthdays");
           return response.json();
@@ -61,7 +60,6 @@ function UpdateBirthday({ user }) {
       })
       .catch((error) => {
         alert("An error has occurred, please try again later");
-        console.error("Error:", error);
       });
   };
 
@@ -90,11 +88,9 @@ export async function getServerSideProps({ query }) {
     );
     const { birthdays } = await response.json();
     const user = birthdays.find((objectUser) => objectUser.id == id);
-    console.log("user:", user);
     return {
       props: { user },
     };
   } catch (error) {
-    console.log(error);
   }
 }
