@@ -1,6 +1,6 @@
 # Fixes
 
-- [JIRA_ID](https://humandecode.atlassian.net/jira/software/c/projects/BDA/boards/25)
+[JIRA_ID](https://humandecode.atlassian.net/jira/software/c/projects/BDA/boards/25)
 
 ## General Overview
 
