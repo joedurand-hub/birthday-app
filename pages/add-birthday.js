@@ -16,7 +16,6 @@ function AddBirthday() {
     const eTargetName = e.target.name;
     const value = e.target.value;
     setValues({ ...values, [eTargetName]: value });
-    console.log(values);
   };
 
   const handleSubmit = (e) => {
@@ -35,7 +34,6 @@ function AddBirthday() {
     })
       .then((response) => {
         if (response.ok) {
-          console.log("method POST:", response);
           alert("Birthday saved!");
           router.push("/birthdays");
           return response.json();
