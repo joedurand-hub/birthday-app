@@ -1,14 +1,16 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
+import { useState } from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import Modal from "../Components/Modal/Modal";
-import Button from "../Components/Button/Button";
+import modal from '../styles/modal.module.css';
 import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
 import Image from "next/image";
+import Input from "../Components/Input/Input";
 import Link from "next/link";
 import { useModal } from "../hooks/useModal";
-import { AnchorIcons } from "../Components/AnchorsButton/Anchor";
+import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 import {
   differenceInCalendarDays,
   compareAsc,
@@ -18,6 +20,12 @@ import {
 } from "date-fns";
 
 function Birthdays({ data }) {
+  const [dataUser, setDataUser] = useState(null);
+  const [mailto, setMailto] = useState({
+    email: "",
+    subject: "",
+    message: "",
+  });
   const [isOpenModalEmail, openModalEmail, closeModalEmail] = useModal(false);
   const newDay = new Date();
 
@@ -43,17 +51,57 @@ function Birthdays({ data }) {
       return compareAsc(a.birthday, b.birthday);
     });
 
+  const dataInModal = dataMatching.find(
+    (objectUser) => objectUser.id == dataUser
+  );
+  const userDataForTheModal = [];
+  userDataForTheModal.push(dataInModal);
+
+  const handleMenssage = (e) => {
+    const eTargetName = e.target.name;
+    const value = e.target.value;
+    setMailto({ [eTargetName]: value });
+  };
+
   return (
     <div className={style.container_components}>
       <div className={style.container_cards}>
         <Modal isOpen={isOpenModalEmail} closeModal={closeModalEmail}>
-          <h4>Nuevo título</h4>
-          <Button
-            type="submit"
-            variant="secondary"
-            onClick={closeModalEmail}
-            name={"Send"}
-          />
+          {userDataForTheModal?.map((objectUser) => (
+            objectUser ?
+            <form onChange={(e) => handleMenssage(e)} className={modal.modal_form}>
+              <h3>
+                Wish {objectUser.firstName} {objectUser.lastName} a happy
+                birthday
+              </h3>
+
+              <h4
+                type="email"
+                placeholder={"Email"}
+                value={objectUser.email}
+                name="email"
+              >{objectUser.email}</h4>
+              <Input
+                type="text"
+                placeholder={"Subject"}
+                value={mailto.subject}
+                name="subject"
+              />
+              <textarea className={modal.modal_textarea}
+                type="text"
+                placeholder="Message"
+                name="message"
+                value={mailto.message}
+              >
+                Message
+              </textarea>
+              <Anchor className={modal.modal_anchor}
+                to={`mailto:${objectUser.email}?subject=${mailto.subject}&body=${mailto.message}`}
+                name="Send"
+                variant="secondary"
+              />
+            </form> : ""
+          ))}
         </Modal>
         {dataMatching.length > 0 ? (
           <h1 className={style.container_cards_title}>
@@ -64,54 +112,33 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
-        {dataMatching?.map((objectUser) =>
-          isToday(objectUser.birthday) ? (
-            <Card
-              key={objectUser.id}
-              firstName={objectUser.firstName}
-              lastName={objectUser.lastName}
-              birthday={format(objectUser.birthday, "yyyy-MM-dd")}
-              email={objectUser.email}
-              id={objectUser.id}
-              src={"/avatar.png"}
-              width={90}
-              height={75}
-              className={card.image}
-            >
-              <div className={card.email}>
-                <Image
-                  src={"/email.png"}
-                  width={35}
-                  height={35}
-                  alt={"Email icon"}
-                  onClick={openModalEmail}
-                />
-              </div>
-              <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
-                <AnchorIcons
-                  src={"/edit.png"}
-                  alt={"Edit icon"}
-                  width={35}
-                  height={35}
-                  className={card.icons}
-                />
-              </Link>
-            </Card>
-          ) : (
-            <Card
-              key={objectUser.id}
-              firstName={objectUser.firstName}
-              lastName={objectUser.lastName}
-              birthday={format(objectUser.birthday, "yyyy-MM-dd")}
-              email={objectUser.email}
-              id={objectUser.id}
-              src={"/avatar.png"}
-              width={90}
-              height={75}
-              className={card.image}
-              alt={"Avatar"}
-            >
-              <div className={card.container_icons}>
+        {dataMatching?.map((objectUser) => (
+          <Card
+            key={objectUser.id}
+            firstName={objectUser.firstName}
+            lastName={objectUser.lastName}
+            birthday={format(objectUser.birthday, "yyyy-MM-dd")}
+            email={objectUser.email}
+            id={objectUser.id}
+            src={"/avatar.png"}
+            width={90}
+            height={75}
+            className={card.image}
+          >
+            {isToday(objectUser.birthday) ? (
+              <>
+                <div className={card.email}>
+                  <Image
+                    src={"/email.png"}
+                    width={35}
+                    height={35}
+                    alt={"Email icon"}
+                    onClick={() => {
+                      setDataUser(objectUser.id);
+                      openModalEmail();
+                    }}
+                  />
+                </div>
                 <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
                   <AnchorIcons
                     src={"/edit.png"}
@@ -121,10 +148,20 @@ function Birthdays({ data }) {
                     className={card.icons}
                   />
                 </Link>
-              </div>
-            </Card>
-          )
-        )}
+              </>
+            ) : (
+              <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
+                <AnchorIcons
+                  src={"/edit.png"}
+                  alt={"Edit icon"}
+                  width={35}
+                  height={35}
+                  className={card.icons}
+                />
+              </Link>
+            )}
+          </Card>
+        ))}
       </div>
       <NavBar />
     </div>

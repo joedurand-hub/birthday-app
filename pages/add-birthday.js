@@ -29,7 +29,7 @@ function AddBirthday() {
         firstName: values.firstName,
         lastName: values.lastName,
         email: values.email,
-        birthday: addDays(values.birthday, 1),
+        birthday: values.birthday,
       }),
     })
       .then((response) => {
