@@ -1,9 +1,10 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import Modal from "../Components/Modal/Modal";
-import modal from '../styles/modal.module.css';
+import Paginate from "../Components/Paginate/Paginate";
+import modal from "../styles/modal.module.css";
 import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
 import Image from "next/image";
@@ -29,12 +30,15 @@ function Birthdays({ data }) {
   const [isOpenModalEmail, openModalEmail, closeModalEmail] = useModal(false);
   const newDay = new Date();
 
-  const allBirthdays = data.birthdays?.map((objectUser) => {
-    return {
-      ...objectUser,
-      birthday: setYear(new Date(objectUser.birthday), 2022),
-    };
-  });
+  
+  const allBirthdays = useMemo(() => {
+   return data.birthdays?.map((objectUser) => {
+      return {
+        ...objectUser,
+        birthday: setYear(new Date(objectUser.birthday), 2022),
+      };
+    });
+  }, [data]);
 
   const dataMatching = allBirthdays
     .filter((objectUser) => {
@@ -52,7 +56,7 @@ function Birthdays({ data }) {
     });
 
   const dataInModal = dataMatching.find(
-    (objectUser) => objectUser.id == dataUser
+    (objectUser) => objectUser.id === dataUser
   );
   const userDataForTheModal = [];
   userDataForTheModal.push(dataInModal);
@@ -60,34 +64,47 @@ function Birthdays({ data }) {
   const handleMenssage = (e) => {
     const eTargetName = e.target.name;
     const value = e.target.value;
-    setMailto({ [eTargetName]: value });
+    setMailto({ ...mailto, [eTargetName]: value });
   };
 
+  const cancelMenssage = (e) => {
+    const eTargetName = e.target.name;
+    setMailto({ [eTargetName]: "" });
+  };
+
+  console.log("subject", mailto.subject);
+
   return (
-    <div className={style.container_components}>
+    <main className={style.container_components}>
       <div className={style.container_cards}>
         <Modal isOpen={isOpenModalEmail} closeModal={closeModalEmail}>
-          {userDataForTheModal?.map((objectUser) => (
-            objectUser ?
-            <form onChange={(e) => handleMenssage(e)} className={modal.modal_form}>
+          {dataInModal ? (
+            <form
+              className={modal.modal_form}
+            >
               <h3>
-                Wish {objectUser.firstName} {objectUser.lastName} a happy
+                Wish {dataInModal.firstName} {dataInModal.lastName} a happy
                 birthday
               </h3>
 
               <h4
                 type="email"
                 placeholder={"Email"}
-                value={objectUser.email}
+                value={dataInModal.email}
                 name="email"
-              >{objectUser.email}</h4>
+              >
+                {dataInModal.email}
+              </h4>
               <Input
+              onChange={(e) => handleMenssage(e)}
                 type="text"
                 placeholder={"Subject"}
                 value={mailto.subject}
                 name="subject"
               />
-              <textarea className={modal.modal_textarea}
+              <textarea
+              onChange={(e) => handleMenssage(e)}
+                className={modal.modal_textarea}
                 type="text"
                 placeholder="Message"
                 name="message"
@@ -95,13 +112,25 @@ function Birthdays({ data }) {
               >
                 Message
               </textarea>
-              <Anchor className={modal.modal_anchor}
-                to={`mailto:${objectUser.email}?subject=${mailto.subject}&body=${mailto.message}`}
+              <Anchor
+                className={modal.modal_anchor}
+                onClick={() => {
+                  cancelMenssage();
+                }}
+                to={"/birthdays"}
+                name="Cancel"
+                variant="cancel"
+              />
+              <Anchor
+                className={modal.modal_anchor}
+                to={`mailto:${dataInModal.email}?subject=${mailto.subject}&body=${mailto.message}`}
                 name="Send"
                 variant="secondary"
               />
-            </form> : ""
-          ))}
+            </form>
+          ) : (
+            ""
+          )}
         </Modal>
         {dataMatching.length > 0 ? (
           <h1 className={style.container_cards_title}>
@@ -164,7 +193,7 @@ function Birthdays({ data }) {
         ))}
       </div>
       <NavBar />
-    </div>
+    </main>
   );
 }
 

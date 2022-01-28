@@ -34,6 +34,9 @@ function allBirthdays({ data }) {
             birthday={objectUser.birthday}
             email={objectUser.email}
             id={objectUser.id}
+            src={"/avatar.png"}
+            width={90}
+            height={75}
           />
         ))}
       </div>

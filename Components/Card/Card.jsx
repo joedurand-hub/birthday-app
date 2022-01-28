@@ -45,7 +45,7 @@ function Card({
 
   return (
     <>
-      <Modal key={id} isOpen={isOpenModalDelete} closeModal={closeModalDelete}>
+      <Modal isOpen={isOpenModalDelete} closeModal={closeModalDelete}>
         <form
           className={modal.modal_form}
           onSubmit={(e) => {
