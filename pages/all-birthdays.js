@@ -2,6 +2,7 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import React from "react";
 import Link from "next/link";
 import style from "../styles/container.module.css";
+import card from '../styles/card.module.css';
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
@@ -34,7 +35,21 @@ function allBirthdays({ data }) {
             birthday={objectUser.birthday}
             email={objectUser.email}
             id={objectUser.id}
-          />
+            src={"/avatar.png"}
+            width={90}
+            height={75}
+            className={card.image}
+          >
+             <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
+                <AnchorIcons
+                  src={"/edit.png"}
+                  alt={"Edit icon"}
+                  width={35}
+                  height={35}
+                  className={card.icons}
+                />
+              </Link>
+          </Card>
         ))}
       </div>
     </div>

@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import Form from "../Components/Form/Form";
 import styles from "../styles/container.module.css";
 import { useRouter } from "next/router";
+import { format } from "date-fns";
 
 function UpdateBirthday({ user }) {
   const router = useRouter();
@@ -10,8 +11,10 @@ function UpdateBirthday({ user }) {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
-    birthday: user.birthday,
+    birthday: format(Date.parse(user.birthday), 'yyyy-MM-dd'),
   };
+
+  console.log(initialState);
 
   const reducer = (state, action) => {
     switch (action.type) {
@@ -47,7 +50,7 @@ function UpdateBirthday({ user }) {
           firstName: state.firstName,
           lastName: state.lastName,
           email: state.email,
-          birthday: state.birthday,
+          birthday: format(Date.parse(state.birthday), 'yyyy-MM-dd'),
         }),
       }
     )
@@ -91,6 +94,5 @@ export async function getServerSideProps({ query }) {
     return {
       props: { user },
     };
-  } catch (error) {
-  }
+  } catch (error) {}
 }

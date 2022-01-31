@@ -8,6 +8,7 @@ import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
 import Image from "next/image";
 import Input from "../Components/Input/Input";
+import Button from "../Components/Button/Button";
 import Link from "next/link";
 import { useModal } from "../hooks/useModal";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
@@ -29,9 +30,8 @@ function Birthdays({ data }) {
   const [isOpenModalEmail, openModalEmail, closeModalEmail] = useModal(false);
   const newDay = new Date();
 
-  
   const allBirthdays = useMemo(() => {
-   return data.birthdays?.map((objectUser) => {
+    return data.birthdays?.map((objectUser) => {
       return {
         ...objectUser,
         birthday: setYear(new Date(objectUser.birthday), 2022),
@@ -66,21 +66,19 @@ function Birthdays({ data }) {
     setMailto({ ...mailto, [eTargetName]: value });
   };
 
-  const cancelMessage = (e) => {
-    const eTargetName = e.target.name;
-    setMailto({ [eTargetName]: "" });
+  const handleCancel = (e) => {
+    setMailto({
+      message: "",
+      subject: "",
+    });
   };
-
-  console.log("subject", mailto.subject);
 
   return (
     <main className={style.container_components}>
       <div className={style.container_cards}>
         <Modal isOpen={isOpenModalEmail} closeModal={closeModalEmail}>
           {dataInModal && (
-            <form
-              className={modal.modal_form}
-            >
+            <form className={modal.modal_form}>
               <h3>
                 Wish {dataInModal.firstName} {dataInModal.lastName} a happy
                 birthday
@@ -95,14 +93,14 @@ function Birthdays({ data }) {
                 {dataInModal.email}
               </h4>
               <Input
-              onChange={(e) => cancelMessage(e)}
+                onChange={(e) => handleMessage(e)}
                 type="text"
                 placeholder={"Subject"}
                 value={mailto.subject}
                 name="subject"
               />
               <textarea
-              onChange={(e) => handleMessage(e)}
+                onChange={(e) => handleMessage(e)}
                 className={modal.modal_textarea}
                 type="text"
                 placeholder="Message"
@@ -111,21 +109,23 @@ function Birthdays({ data }) {
               >
                 Message
               </textarea>
-              <Anchor
-                className={modal.modal_anchor}
-                onClick={() => {
-                  cancelMenssage();
-                }}
-                to={"/birthdays"}
-                name="Cancel"
-                variant="cancel"
-              />
-              <Anchor
-                className={modal.modal_anchor}
-                to={`mailto:${dataInModal.email}?subject=${mailto.subject}&body=${mailto.message}`}
-                name="Send"
-                variant="secondary"
-              />
+              <div className={modal.modal_container_buttons}>
+                <Button
+                  onClick={(e) => {
+                    handleCancel(e)
+                    closeModalEmail(e)
+                  }}
+                  name="Cancel"
+                  variant="cancel"
+                  type="button"
+                />
+                <Anchor
+                  className={modal.modal_anchor}
+                  to={`mailto:${dataInModal.email}?subject=${mailto.subject}&body=${mailto.message}`}
+                  name="Send"
+                  variant="primary"
+                />
+              </div>
             </form>
           )}
         </Modal>
