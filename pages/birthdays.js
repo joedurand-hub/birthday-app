@@ -30,6 +30,8 @@ function Birthdays({ data }) {
   const [isOpenModalEmail, openModalEmail, closeModalEmail] = useModal(false);
   const newDay = new Date();
 
+  // pensar como agrupar la data
+  //
   
   const allBirthdays = useMemo(() => {
    return data.birthdays?.map((objectUser) => {
@@ -61,13 +63,13 @@ function Birthdays({ data }) {
   const userDataForTheModal = [];
   userDataForTheModal.push(dataInModal);
 
-  const handleMenssage = (e) => {
+  const handleMessage = (e) => {
     const eTargetName = e.target.name;
     const value = e.target.value;
     setMailto({ ...mailto, [eTargetName]: value });
   };
 
-  const cancelMenssage = (e) => {
+  const cancelMessage = (e) => {
     const eTargetName = e.target.name;
     setMailto({ [eTargetName]: "" });
   };
@@ -78,7 +80,7 @@ function Birthdays({ data }) {
     <main className={style.container_components}>
       <div className={style.container_cards}>
         <Modal isOpen={isOpenModalEmail} closeModal={closeModalEmail}>
-          {dataInModal ? (
+          {dataInModal && (
             <form
               className={modal.modal_form}
             >
@@ -96,14 +98,14 @@ function Birthdays({ data }) {
                 {dataInModal.email}
               </h4>
               <Input
-              onChange={(e) => handleMenssage(e)}
+              onChange={(e) => cancelMessage(e)}
                 type="text"
                 placeholder={"Subject"}
                 value={mailto.subject}
                 name="subject"
               />
               <textarea
-              onChange={(e) => handleMenssage(e)}
+              onChange={(e) => handleMessage(e)}
                 className={modal.modal_textarea}
                 type="text"
                 placeholder="Message"
@@ -128,8 +130,6 @@ function Birthdays({ data }) {
                 variant="secondary"
               />
             </form>
-          ) : (
-            ""
           )}
         </Modal>
         {dataMatching.length > 0 ? (
