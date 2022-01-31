@@ -66,7 +66,7 @@ function Birthdays({ data }) {
     setMailto({ ...mailto, [eTargetName]: value });
   };
 
-  const handleCancel = (e) => {
+  const handleCancel = () => {
     setMailto({
       message: "",
       subject: "",
@@ -112,8 +112,8 @@ function Birthdays({ data }) {
               <div className={modal.modal_container_buttons}>
                 <Button
                   onClick={(e) => {
-                    handleCancel(e)
-                    closeModalEmail(e)
+                    handleCancel(e);
+                    closeModalEmail(e);
                   }}
                   name="Cancel"
                   variant="cancel"
