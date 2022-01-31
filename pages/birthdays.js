@@ -3,7 +3,6 @@ import { useState, useMemo } from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import Modal from "../Components/Modal/Modal";
-import Paginate from "../Components/Paginate/Paginate";
 import modal from "../styles/modal.module.css";
 import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
@@ -30,8 +29,6 @@ function Birthdays({ data }) {
   const [isOpenModalEmail, openModalEmail, closeModalEmail] = useModal(false);
   const newDay = new Date();
 
-  // pensar como agrupar la data
-  //
   
   const allBirthdays = useMemo(() => {
    return data.birthdays?.map((objectUser) => {
