@@ -48,13 +48,18 @@
   cursor: pointer;
 }
 
-/* .icons:focus .card {
-  display: block;
-} */
-
 .container_icons {
   display: flex;
   flex-direction: column;
+}
+
+.email {
+  display: none;
+}
+
+.card:hover .email {
+ display:block;
+ cursor: pointer;
 }
 
 @media screen and (min-width: 769px) {

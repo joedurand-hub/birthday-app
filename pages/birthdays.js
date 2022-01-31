@@ -1,23 +1,36 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
+import { useState, useMemo } from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
+import Modal from "../Components/Modal/Modal";
+import modal from "../styles/modal.module.css";
+import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
+import Image from "next/image";
+import Input from "../Components/Input/Input";
+import Button from "../Components/Button/Button";
+import Link from "next/link";
+import { useModal } from "../hooks/useModal";
+import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 import {
   differenceInCalendarDays,
   compareAsc,
   setYear,
   format,
+  isToday,
 } from "date-fns";
 
 function Birthdays({ data }) {
   const newDay = new Date();
 
-  const allBirthdays = data.birthdays?.map((objectUser) => {
-    return {
-      ...objectUser,
-      birthday: setYear(new Date(objectUser.birthday), 2022),
-    };
-  });
+  const allBirthdays = useMemo(() => {
+    return data.birthdays?.map((objectUser) => {
+      return {
+        ...objectUser,
+        birthday: setYear(new Date(objectUser.birthday), 2022),
+      };
+    });
+  }, [data]);
 
   const dataMatching = allBirthdays
     .filter((objectUser) => {
@@ -35,7 +48,7 @@ function Birthdays({ data }) {
     });
 
   return (
-    <div className={style.container_components}>
+    <main className={style.container_components}>
       <div className={style.container_cards}>
         {dataMatching.length > 0 ? (
           <h1 className={style.container_cards_title}>
@@ -46,22 +59,33 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
-        {dataMatching
-          ?.map((objectUser) => (
-            <Card
-              key={objectUser.dataMatching}
-              firstName={objectUser.firstName}
-              lastName={objectUser.lastName}
-              birthday={format(objectUser.birthday, "yyyy-MM-dd")}
-              email={objectUser.email}
-              id={objectUser.id}
-            />
-          ))
-          .slice(0, 50)}
-        {/*  This is to temporarily limit the number of cards. It will be replaced by pagination functionality */}
+        {dataMatching?.map((objectUser) => (
+          <Card
+            key={objectUser.id}
+            firstName={objectUser.firstName}
+            lastName={objectUser.lastName}
+            birthday={format(objectUser.birthday, "yyyy-MM-dd")}
+            email={objectUser.email}
+            id={objectUser.id}
+            src={"/avatar.png"}
+            width={90}
+            height={75}
+            className={card.image}
+          >
+            <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
+              <AnchorIcons
+                src={"/edit.png"}
+                alt={"Edit icon"}
+                width={35}
+                height={35}
+                className={card.icons}
+              />
+            </Link>
+          </Card>
+        ))}
       </div>
       <NavBar />
-    </div>
+    </main>
   );
 }
 
