@@ -63,9 +63,11 @@ function Birthdays({ data }) {
     setMailto({ ...mailto, [eTargetName]: value });
   };
 
-  const cancelMessage = (e) => {
-    const eTargetName = e.target.name;
-    setMailto({ [eTargetName]: "" });
+  const handleCancel = () => {
+    setMailto({
+      message: "",
+      subject: "",
+    });
   };
 
   console.log("subject", mailto.subject);
@@ -108,21 +110,23 @@ function Birthdays({ data }) {
               >
                 Message
               </textarea>
-              <Anchor
-                className={modal.modal_anchor}
-                onClick={() => {
-                  cancelMenssage();
-                }}
-                to={"/birthdays"}
-                name="Cancel"
-                variant="cancel"
-              />
-              <Anchor
-                className={modal.modal_anchor}
-                to={`mailto:${dataInModal.email}?subject=${mailto.subject}&body=${mailto.message}`}
-                name="Send"
-                variant="secondary"
-              />
+              <div className={modal.modal_container_buttons}>
+                <Button
+                  onClick={(e) => {
+                    handleCancel(e);
+                    closeModalEmail(e);
+                  }}
+                  name="Cancel"
+                  variant="cancel"
+                  type="button"
+                />
+                <Anchor
+                  className={modal.modal_anchor}
+                  to={`mailto:${dataInModal.email}?subject=${mailto.subject}&body=${mailto.message}`}
+                  name="Send"
+                  variant="primary"
+                />
+              </div>
             </form>
           )}
         </Modal>
