@@ -59,12 +59,25 @@ function Card({
             Do you want to delete <strong>{firstName}</strong>’s birthday?
           </p>
           <Image src="/delete.png" width={350} height={150} alt="Delete Card" />
-          <Button
-            type="submit"
-            variant="cancel"
-            onClick={closeModalDelete}
-            name={"Delete"}
-          />
+          <div className={modal.modal_container_buttons}>
+            <Button
+              type="button"
+              variant="cancel"
+              onClick={closeModalDelete}
+              name="Cancel"
+            />
+            <Button
+              type="submit"
+              variant="secondary"
+              onClick={closeModalDelete}
+              name={"Delete"}
+              onSubmit={(e) => {
+                e.preventDefault();
+                router.push("/birthdays");
+                handleSubmit(e);
+              }}
+            />
+          </div>
         </form>
       </Modal>
       <div className={card.card}>

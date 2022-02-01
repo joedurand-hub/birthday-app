@@ -2,6 +2,7 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import React from "react";
 import Link from "next/link";
 import style from "../styles/container.module.css";
+import card from '../styles/card.module.css';
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 

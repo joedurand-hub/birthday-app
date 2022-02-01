@@ -2,6 +2,7 @@ import { cc } from "../../helpers/variant.js";
 import styles from "../../styles/Buttons.module.css";
 const Button = ({
   name,
+  type,
   onClick,
   onSubmit,
   variant = "primary",
@@ -9,7 +10,7 @@ const Button = ({
 }) => {
   return (
     <button
-      type="submit"
+      type={type}
       onClick={onClick}
       onSubmit={onSubmit}
       className={cc(

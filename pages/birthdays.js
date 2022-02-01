@@ -9,6 +9,7 @@ import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
 import Image from "next/image";
 import Input from "../Components/Input/Input";
+import Button from "../Components/Button/Button";
 import Link from "next/link";
 import { useModal } from "../hooks/useModal";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
@@ -21,13 +22,6 @@ import {
 } from "date-fns";
 
 function Birthdays({ data }) {
-  const [dataUser, setDataUser] = useState(null);
-  const [mailto, setMailto] = useState({
-    email: "",
-    subject: "",
-    message: "",
-  });
-  const [isOpenModalEmail, openModalEmail, closeModalEmail] = useModal(false);
   const newDay = new Date();
 
   // pensar como agrupar la data
@@ -154,41 +148,15 @@ function Birthdays({ data }) {
             height={75}
             className={card.image}
           >
-            {isToday(objectUser.birthday) ? (
-              <>
-                <div className={card.email}>
-                  <Image
-                    src={"/email.png"}
-                    width={35}
-                    height={35}
-                    alt={"Email icon"}
-                    onClick={() => {
-                      setDataUser(objectUser.id);
-                      openModalEmail();
-                    }}
-                  />
-                </div>
-                <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
-                  <AnchorIcons
-                    src={"/edit.png"}
-                    alt={"Edit icon"}
-                    width={35}
-                    height={35}
-                    className={card.icons}
-                  />
-                </Link>
-              </>
-            ) : (
-              <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
-                <AnchorIcons
-                  src={"/edit.png"}
-                  alt={"Edit icon"}
-                  width={35}
-                  height={35}
-                  className={card.icons}
-                />
-              </Link>
-            )}
+            <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
+              <AnchorIcons
+                src={"/edit.png"}
+                alt={"Edit icon"}
+                width={35}
+                height={35}
+                className={card.icons}
+              />
+            </Link>
           </Card>
         ))}
       </div>
