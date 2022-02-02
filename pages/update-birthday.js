@@ -14,7 +14,6 @@ function UpdateBirthday({ user }) {
     birthday: format(Date.parse(user.birthday), 'yyyy-MM-dd'),
   };
 
-  console.log(initialState);
 
   const reducer = (state, action) => {
     switch (action.type) {

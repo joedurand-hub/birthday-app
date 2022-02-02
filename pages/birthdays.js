@@ -3,8 +3,8 @@ import { useState, useMemo } from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import Modal from "../Components/Modal/Modal";
-import Paginate from "../Components/Paginate/Paginate";
 import modal from "../styles/modal.module.css";
+import button from "../styles/Buttons.module.css"
 import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
 import Image from "next/image";
@@ -20,15 +20,20 @@ import {
   format,
   isToday,
 } from "date-fns";
+import { usePagination } from "../hooks/usePagination";
 
 function Birthdays({ data }) {
+  const [dataUser, setDataUser] = useState(null);
+  const [mailto, setMailto] = useState({
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isOpenModalEmail, openModalEmail, closeModalEmail] = useModal(false);
   const newDay = new Date();
 
-  // pensar como agrupar la data
-  //
-  
   const allBirthdays = useMemo(() => {
-   return data.birthdays?.map((objectUser) => {
+    return data.birthdays.map((objectUser) => {
       return {
         ...objectUser,
         birthday: setYear(new Date(objectUser.birthday), 2022),
@@ -70,16 +75,14 @@ function Birthdays({ data }) {
     });
   };
 
-  console.log("subject", mailto.subject);
+  const [filterData, nextPage, previousPage, currentPage] = usePagination(dataMatching)
 
   return (
     <main className={style.container_components}>
       <div className={style.container_cards}>
         <Modal isOpen={isOpenModalEmail} closeModal={closeModalEmail}>
           {dataInModal && (
-            <form
-              className={modal.modal_form}
-            >
+            <form className={modal.modal_form}>
               <h3>
                 Wish {dataInModal.firstName} {dataInModal.lastName} a happy
                 birthday
@@ -94,14 +97,14 @@ function Birthdays({ data }) {
                 {dataInModal.email}
               </h4>
               <Input
-              onChange={(e) => cancelMessage(e)}
+                onChange={(e) => handleMessage(e)}
                 type="text"
                 placeholder={"Subject"}
                 value={mailto.subject}
                 name="subject"
               />
               <textarea
-              onChange={(e) => handleMessage(e)}
+                onChange={(e) => handleMessage(e)}
                 className={modal.modal_textarea}
                 type="text"
                 placeholder="Message"
@@ -139,7 +142,8 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
-        {dataMatching?.map((objectUser) => (
+        {
+        filterData().map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}
@@ -152,19 +156,71 @@ function Birthdays({ data }) {
             height={75}
             className={card.image}
           >
-            <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
-              <AnchorIcons
-                src={"/edit.png"}
-                alt={"Edit icon"}
-                width={35}
-                height={35}
-                className={card.icons}
-              />
-            </Link>
+            {isToday(objectUser.birthday) ? (
+              <>
+                <div className={card.email}>
+                  <Image
+                    src={"/email.png"}
+                    width={35}
+                    height={35}
+                    alt={"Email icon"}
+                    onClick={() => {
+                      setDataUser(objectUser.id);
+                      openModalEmail();
+                    }}
+                  />
+                </div>
+                <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
+                  <AnchorIcons
+                    src={"/edit.png"}
+                    alt={"Edit icon"}
+                    width={35}
+                    height={35}
+                    className={card.icons}
+                  />
+                </Link>
+              </>
+            ) : (
+              <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
+                <AnchorIcons
+                  src={"/edit.png"}
+                  alt={"Edit icon"}
+                  width={35}
+                  height={35}
+                  className={card.icons}
+                />
+              </Link>
+            )}
           </Card>
         ))}
+        <div className={style.container_divs_button}>
+          <Button
+            onClick={() => {
+              previousPage()
+            }}
+            variant={`${currentPage -1 <= 0 ? button.disabled : "primary" }`}
+            name="Previous"
+            type="button"
+          />
+          <Button
+            onClick={() => {
+              console.log("currentPage", currentPage)
+              nextPage()
+            }}
+            name="Next"
+            variant={`${
+              currentPage + 1 >= dataMatching.length
+                ? button.disabled
+                : "primary"
+            }`}
+            type="button"
+          />
+        </div>
       </div>
       <NavBar />
+      {
+
+      }
     </main>
   );
 }

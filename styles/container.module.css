@@ -51,6 +51,12 @@
   flex-direction: column;
 }
 
+.container_divs_button {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
 @media screen and (min-width: 769px) {
   .containerApp {
     padding: 25px;

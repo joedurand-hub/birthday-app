@@ -5,6 +5,7 @@ async function getBirthdaysInfo() {
     );
     const data = await resp.json();
     return data;
+    
   } catch (error) {
     if (error) {
       return {
