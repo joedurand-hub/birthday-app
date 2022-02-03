@@ -87,7 +87,7 @@ function AllBirthdays({ data }) {
   );
 }
 
-export default allBirthdays;
+export default AllBirthdays;
 
 export async function getServerSideProps() {
   const data = await getBirthdaysInfo();
