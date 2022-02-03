@@ -9,8 +9,8 @@ import Loading from "../Components/Loading/Loading";
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
-const [filterData, nextPage, previousPage, currentPage] = usePagination(data.birthdays)
 function AllBirthdays({ data }) {
+  const [filterData, nextPage, previousPage, currentPage] = usePagination(data.birthdays)
 
   return (
     <div className={style.container_all_birthdays}>
