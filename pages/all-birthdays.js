@@ -1,5 +1,4 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
-import { React } from "react";
 import { usePagination } from "../hooks/usePagination";
 import Link from "next/link";
 import style from "../styles/container.module.css";
@@ -10,8 +9,8 @@ import Loading from "../Components/Loading/Loading";
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
-function allBirthdays({ data }) {
 const [filterData, nextPage, previousPage, currentPage] = usePagination(data.birthdays)
+function AllBirthdays({ data }) {
 
   return (
     <div className={style.container_all_birthdays}>
