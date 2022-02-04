@@ -12,8 +12,14 @@ import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
 function AllBirthdays({ data }) {
-  const { currentData, nextPage, previousPage, itemsToPaginate, changePage, currentPage } =
-    usePagination(data.birthdays);
+  const {
+    currentData,
+    nextPage,
+    previousPage,
+    itemsToPaginate,
+    changePage,
+    currentPage,
+  } = usePagination(data.birthdays);
 
   return (
     <div className={style.container_all_birthdays}>
@@ -69,15 +75,14 @@ function AllBirthdays({ data }) {
             onClick={() => {
               previousPage();
             }}
-            variant={`${currentPage - 1 <= 0 ? button.disabled  :"primary"}`}
+            variant={`${currentPage - 1 <= 0 ? button.disabled : "primary"}`}
             name="Previous"
             type="button"
           />
 
-
-      {itemsToPaginate().map((item, index) => (
-        <Paginate key={index} onClick={changePage} items={item}/>
-      ))}
+          {itemsToPaginate().map((item, index) => (
+            <Paginate key={index} onClick={changePage} items={item} />
+          ))}
 
           <Button
             onClick={nextPage}
