@@ -1,6 +1,7 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import { usePagination } from "../hooks/usePagination";
 import Link from "next/link";
+import Paginate from "../Components/Paginate/Paginate";
 import { useState } from "react";
 import style from "../styles/container.module.css";
 import card from "../styles/card.module.css";
@@ -11,7 +12,7 @@ import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
 function AllBirthdays({ data }) {
-  const { currentData, nextPage, previousPage, changePage, currentPage } =
+  const { currentData, nextPage, previousPage, itemsToPaginate, changePage, currentPage } =
     usePagination(data.birthdays);
 
   return (
@@ -63,38 +64,26 @@ function AllBirthdays({ data }) {
         ) : (
           <Loading />
         )}
-        <div className={style.container_divs_button}>
+        <div className={style.container_paginated}>
           <Button
             onClick={() => {
               previousPage();
             }}
-            variant={`${currentPage - 1 < 0 ? button.disabled : "primary"}`}
+            variant={`${currentPage - 1 <= 0 ? button.disabled  :"primary"}`}
             name="Previous"
             type="button"
           />
-          {!currentPage === 1 && (
-            <button
-              onClick={() => {
-                changePage(1);
-              }}
-            >
-              Click
-            </button>
-          )}
 
-          {currentData().map((pageNumber, index) => {
-            return (
-              <button key={index} onClick={() => changePage(pageNumber)}>
-                <span>{pageNumber}</span>
-              </button>
-            );
-          })}
+
+      {itemsToPaginate().map((item, index) => (
+        <Paginate key={index} onClick={changePage} items={item}/>
+      ))}
 
           <Button
             onClick={nextPage}
             name="Next"
             variant={`${
-              currentPage + 5 > data.birthdays.length
+              currentPage + 1 >= currentData().length
                 ? button.disabled
                 : "primary"
             }`}

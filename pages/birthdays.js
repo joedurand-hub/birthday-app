@@ -73,9 +73,14 @@ function Birthdays({ data }) {
     });
   };
 
-  const per_page = 3;
-  const { currentData, nextPage, previousPage, changePage, currentPage } =
-    usePagination(dataMatching, per_page);
+  const {
+    currentData,
+    nextPage,
+    previousPage,
+    itemsToPaginate,
+    changePage,
+    currentPage,
+  } = usePagination(dataMatching);
 
   return (
     <main className={style.container_components}>
@@ -201,16 +206,13 @@ function Birthdays({ data }) {
             name="Previous"
             type="button"
           />
-          {/* {changePage().map(item => (
-            <button
-              key={item.id}
-              onClick={() => {
-                changePage(1);
-              }}
-            >
-              <span>{currentPage}</span>
+
+          {itemsToPaginate().map((item, index) => (
+            <button key={index} onClick={changePage}>
+              <span>{item}</span>
             </button>
-          ))} */}
+          ))}
+
           <Button
             onClick={() => {
               nextPage();
