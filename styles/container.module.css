@@ -54,9 +54,25 @@
 .container_paginated {
   margin: 20px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-between;
-  
+  justify-content: center;
+  align-items: center;
+}
+
+.container_paginated_items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+@media screen and (max-width: 420px) {
+  .container_paginated {
+    flex-direction: column;
+  }
 }
 
 @media screen and (min-width: 769px) {
@@ -91,6 +107,12 @@
   .container_navigation {
     margin-top: 50px;
     margin-left: 50px;
+  }
+  .container_paginated {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 }
 

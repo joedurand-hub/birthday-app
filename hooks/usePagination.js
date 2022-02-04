@@ -10,11 +10,8 @@ export const usePagination = (data, itemsPerPage = 5) => {
     return data.slice(start, end);
   };
 
-  const itemsToPaginate = () => {
-    return new Array(numberOfPages)
-      .fill()
-      .map((irrelevant, index) => index + 1);
-  };
+  const itemsToPaginate = new Array(numberOfPages).fill().map((irrelevant, index) => index + 1);
+  
 
   const previousPage = () => {
     if (currentPage > 0) {
@@ -23,7 +20,7 @@ export const usePagination = (data, itemsPerPage = 5) => {
   };
 
   const nextPage = () => {
-    if (currentPage + 5 < data.length) {
+    if (currentPage + 1 <= data.length) {
       setCurrentPage((currentPage) => Math.min(currentPage + 1, numberOfPages));
     }
   };

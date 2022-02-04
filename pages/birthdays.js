@@ -8,6 +8,7 @@ import button from "../styles/Buttons.module.css";
 import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
 import Image from "next/image";
+import Paginate from "../Components/Paginate/Paginate";
 import Input from "../Components/Input/Input";
 import Button from "../Components/Button/Button";
 import Link from "next/link";
@@ -198,33 +199,44 @@ function Birthdays({ data }) {
           </Card>
         ))}
         <div className={style.container_paginated}>
-          <Button
-            onClick={() => {
-              previousPage();
-            }}
-            variant={`${currentPage - 1 <= 0 ? button.disabled : "primary"}`}
-            name="Previous"
-            type="button"
-          />
 
-          {itemsToPaginate().map((item, index) => (
-            <button key={index} onClick={changePage}>
-              <span>{item}</span>
-            </button>
-          ))}
+          {itemsToPaginate <= 1 ? (
+            ""
+          ) : (
+            <>
+              <Button
+                onClick={() => {
+                  console.log(previousPage());
+                  previousPage();
+                }}
+                variant={`${
+                  currentPage - 1 <= 0 ? button.disabled : "primary"
+                }`}
+                name="Previous"
+                type="button"
+              />
+              <div>
 
-          <Button
-            onClick={() => {
-              nextPage();
-            }}
-            name="Next"
-            variant={`${
-              currentPage + 1 >= dataMatching.length
-                ? button.disabled
-                : "primary"
-            }`}
-            type="button"
-          />
+              {itemsToPaginate.map((item, index) => (
+                <Paginate key={index} onClick={changePage} items={item} />
+                ))}
+                </div>
+
+              <Button
+                onClick={() => {
+                  nextPage();
+                }}
+                name="Next"
+                variant={`${
+                  currentPage === itemsToPaginate.length
+                    ? button.disabled
+                    : "primary"
+                }`}
+                type="button"
+              />
+            </>
+          )}
+
         </div>
       </div>
       <NavBar />

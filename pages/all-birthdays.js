@@ -71,29 +71,42 @@ function AllBirthdays({ data }) {
           <Loading />
         )}
         <div className={style.container_paginated}>
-          <Button
-            onClick={() => {
-              previousPage();
-            }}
-            variant={`${currentPage - 1 <= 0 ? button.disabled : "primary"}`}
-            name="Previous"
-            type="button"
-          />
+          {console.log("itemsToPaginate", itemsToPaginate)}
+          {itemsToPaginate.length <= 1 ? (
+            ""
+          ) : (
+            <>
+              <Button
+                onClick={() => {
+                  previousPage();
+                }}
+                variant={`${
+                  currentPage - 1 <= 0 ? button.disabled : "primary"
+                }`}
+                name="Previous"
+                type="button"
+              />
+              
+              <div className={style.container_paginated_items}>
+                {itemsToPaginate.map((item, index) => (
+                  <Paginate key={index} onClick={changePage} items={item} />
+                ))}
+              </div>
 
-          {itemsToPaginate().map((item, index) => (
-            <Paginate key={index} onClick={changePage} items={item} />
-          ))}
-
-          <Button
-            onClick={nextPage}
-            name="Next"
-            variant={`${
-              currentPage + 1 >= currentData().length
-                ? button.disabled
-                : "primary"
-            }`}
-            type="button"
-          />
+              <Button
+                onClick={() => {
+                  nextPage();
+                }}
+                name="Next"
+                variant={`${
+                  itemsToPaginate.length + 1 <= currentData().length
+                    ? "primary"
+                    : button.disabled
+                }`}
+                type="button"
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
