@@ -34,8 +34,8 @@ function Card({
       .then((response) => {
         if (response.ok) {
           alert("Birthday deleted!");
-          router.push("/birthdays");
-          return response.json();
+          response.json();
+          return router.push("/birthdays");
         }
       })
       .catch((error) => {

@@ -1,16 +1,18 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import { usePagination } from "../hooks/usePagination";
 import Link from "next/link";
+import { useState } from "react";
 import style from "../styles/container.module.css";
 import card from "../styles/card.module.css";
 import button from "../styles/Buttons.module.css";
-import Button from "../Components/Button/Button"
+import Button from "../Components/Button/Button";
 import Loading from "../Components/Loading/Loading";
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
 function AllBirthdays({ data }) {
-  const [filterData, nextPage, previousPage, currentPage] = usePagination(data.birthdays)
+  const { currentData, nextPage, previousPage, changePage, currentPage } =
+    usePagination(data.birthdays);
 
   return (
     <div className={style.container_all_birthdays}>
@@ -35,7 +37,7 @@ function AllBirthdays({ data }) {
         )}
 
         {data.birthdays.length > 0 ? (
-          filterData().map((objectUser) => (
+          currentData().map((objectUser) => (
             <Card
               key={objectUser.id}
               firstName={objectUser.firstName}
@@ -64,13 +66,30 @@ function AllBirthdays({ data }) {
         <div className={style.container_divs_button}>
           <Button
             onClick={() => {
-              console.log("previousPage", previousPage())
-              previousPage()
+              previousPage();
             }}
-            variant={`${currentPage -1 < 0 ? button.disabled : "primary" }`}
+            variant={`${currentPage - 1 < 0 ? button.disabled : "primary"}`}
             name="Previous"
             type="button"
           />
+          {!currentPage === 1 && (
+            <button
+              onClick={() => {
+                changePage(1);
+              }}
+            >
+              Click
+            </button>
+          )}
+
+          {currentData().map((pageNumber, index) => {
+            return (
+              <button key={index} onClick={() => changePage(pageNumber)}>
+                <span>{pageNumber}</span>
+              </button>
+            );
+          })}
+
           <Button
             onClick={nextPage}
             name="Next"

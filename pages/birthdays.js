@@ -4,7 +4,7 @@ import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import Modal from "../Components/Modal/Modal";
 import modal from "../styles/modal.module.css";
-import button from "../styles/Buttons.module.css"
+import button from "../styles/Buttons.module.css";
 import card from "../styles/card.module.css";
 import style from "../styles/container.module.css";
 import Image from "next/image";
@@ -59,8 +59,6 @@ function Birthdays({ data }) {
   const dataInModal = dataMatching.find(
     (objectUser) => objectUser.id === dataUser
   );
-  const userDataForTheModal = [];
-  userDataForTheModal.push(dataInModal);
 
   const handleMessage = (e) => {
     const eTargetName = e.target.name;
@@ -75,7 +73,9 @@ function Birthdays({ data }) {
     });
   };
 
-  const [filterData, nextPage, previousPage, currentPage] = usePagination(dataMatching)
+  const per_page = 3;
+  const { currentData, nextPage, previousPage, changePage, currentPage } =
+    usePagination(dataMatching, per_page);
 
   return (
     <main className={style.container_components}>
@@ -142,8 +142,7 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
-        {
-        filterData().map((objectUser) => (
+        {currentData().map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}
@@ -193,19 +192,28 @@ function Birthdays({ data }) {
             )}
           </Card>
         ))}
-        <div className={style.container_divs_button}>
+        <div className={style.container_paginated}>
           <Button
             onClick={() => {
-              previousPage()
+              previousPage();
             }}
-            variant={`${currentPage -1 <= 0 ? button.disabled : "primary" }`}
+            variant={`${currentPage - 1 <= 0 ? button.disabled : "primary"}`}
             name="Previous"
             type="button"
           />
+          {/* {changePage().map(item => (
+            <button
+              key={item.id}
+              onClick={() => {
+                changePage(1);
+              }}
+            >
+              <span>{currentPage}</span>
+            </button>
+          ))} */}
           <Button
             onClick={() => {
-              console.log("currentPage", currentPage)
-              nextPage()
+              nextPage();
             }}
             name="Next"
             variant={`${
@@ -218,9 +226,6 @@ function Birthdays({ data }) {
         </div>
       </div>
       <NavBar />
-      {
-
-      }
     </main>
   );
 }
