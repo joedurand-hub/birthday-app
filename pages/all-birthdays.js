@@ -12,10 +12,10 @@ import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
 function AllBirthdays({ data }) {
   const {
-    currentData,
     nextPage,
     previousPage,
     changePage,
+    currentData,
     itemsToPaginate,
     currentPage,
   } = usePagination(data.birthdays);

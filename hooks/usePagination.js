@@ -2,10 +2,10 @@ import { useState } from "react";
 
 export const usePagination = (data, itemsPerPage = 5) => {
   const [currentPage, setCurrentPage] = useState(1);
+
   const numberOfPages = Math.ceil(data.length / itemsPerPage);
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-
   const currentData = data.slice(start, end);
 
   const itemsToPaginate = new Array(numberOfPages)
@@ -32,9 +32,9 @@ export const usePagination = (data, itemsPerPage = 5) => {
   return {
     previousPage,
     nextPage,
-    itemsToPaginate,
     changePage,
     currentData,
+    itemsToPaginate,
     currentPage,
   };
 };

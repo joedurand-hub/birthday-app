@@ -75,12 +75,12 @@ function Birthdays({ data }) {
   };
 
   const {
-    currentData,
     nextPage,
     previousPage,
-    itemsToPaginate,
     changePage,
+    currentData,
     currentPage,
+    itemsToPaginate,
   } = usePagination(dataMatching);
 
   return (
