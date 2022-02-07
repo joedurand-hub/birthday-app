@@ -2,10 +2,13 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import React, { useState } from "react";
 import { usePagination } from "../hooks/usePagination";
 import Link from "next/link";
-import Paginate from "../Components/Paginate/Paginate";
 import style from "../styles/container.module.css";
 import card from "../Components/Card/card.module.css";
 import button from "../styles/Buttons.module.css";
+import Search from "../Components/Search/Search";
+import NavBar from "../Components/NavBar/navBar";
+import Input from "../Components/Input/Input";
+import Paginate from "../Components/Paginate/Paginate";
 import Button from "../Components/Button/Button";
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
@@ -15,6 +18,8 @@ function AllBirthdays({ data }) {
     nextPage,
     previousPage,
     changePage,
+    filteredBirthdays,
+    handleInputChange,
     currentData,
     itemsToPaginate,
     currentPage,
@@ -23,14 +28,8 @@ function AllBirthdays({ data }) {
   return (
     <div className={style.container_all_birthdays}>
       <div className={style.container_cards}>
-        <Link href="/birthdays" passHref>
-          <AnchorIcons
-            src="/back.png"
-            alt="Previous page"
-            width={50}
-            height={50}
-          />
-        </Link>
+        <NavBar name="Birthdays" href="/birthdays" />
+
         {data.birthdays.length > 0 ? (
           <h1 className={style.container_title}> Birthdays coming soon! </h1>
         ) : (
@@ -41,7 +40,27 @@ function AllBirthdays({ data }) {
           />
         )}
 
-        {currentData.map((objectUser) => (
+        <form>
+          <Input
+            type="text"
+            placeholder={"Search"}
+            name="Search"
+            onChange={handleInputChange}
+          />
+
+          <Button
+            type="button"
+            name="Search"
+            variant="search"
+            onClick={(e) => {
+              e.preventDefault();
+              console.log("click");
+              filteredBirthdays();
+            }}
+          />
+        </form>
+
+        {filteredBirthdays().map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}
@@ -90,7 +109,7 @@ function AllBirthdays({ data }) {
                 }}
                 name="Next"
                 variant={`${
-                  itemsToPaginate.length + 1 <= currentData.length
+                  itemsToPaginate.length + 1 <= filteredBirthdays().length
                     ? "primary"
                     : button.disabled
                 }`}

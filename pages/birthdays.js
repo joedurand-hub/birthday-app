@@ -78,7 +78,7 @@ function Birthdays({ data }) {
     nextPage,
     previousPage,
     changePage,
-    currentData,
+    filteredBirthdays,
     currentPage,
     itemsToPaginate,
   } = usePagination(dataMatching);
@@ -148,7 +148,7 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
-        {currentData.map((objectUser) => (
+        {filteredBirthdays().map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}
@@ -235,7 +235,8 @@ function Birthdays({ data }) {
           )}
         </div>
       </div>
-      <NavBar />
+      <NavBar name="All Birthdays" href="/all-birthdays"/>
+
     </main>
   );
 }

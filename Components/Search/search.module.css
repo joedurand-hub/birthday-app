@@ -1,0 +1,23 @@
+@media screen and (max-width: 768px) {
+  .search_birthdays {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin: 10px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .search_birthdays {
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 20px;
+  }
+}

@@ -42,6 +42,22 @@
   border: 1px solid #0000;
 }
 
+.search {
+  margin-left: 5px;
+  color: #ffff;
+  background: #8228b6;
+
+}
+
+.search:hover {
+  background: #8c2bc4;
+  cursor: pointer; 
+}
+
+.search:focus {
+  border: 1px solid rgba(158, 158, 158, 0);
+}
+
 .cancel {
   background: #ee0f0f;
   color: rgb(243, 243, 243);

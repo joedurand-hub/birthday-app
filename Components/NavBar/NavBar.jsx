@@ -2,10 +2,10 @@ import Link from "next/link";
 import styles from "../../styles/navBar.module.css";
 import { Anchor } from "../AnchorsButton/Anchor";
 
-function NavBar() {
+function NavBar({href, name}) {
   return (
     <nav className={styles.navBar}>
-      <Anchor name="All birthdays" to="/all-birthdays" variant="secondary" />
+      <Anchor name={name} to={href} variant="secondary" />
 
       <Anchor name="Add birthday" to="/add-birthday" variant="primary" />
     </nav>
