@@ -6,6 +6,7 @@ import Paginate from "../Components/Paginate/Paginate";
 import style from "../styles/container.module.css";
 import card from "../Components/Card/card.module.css";
 import button from "../styles/Buttons.module.css";
+import NavBar from "../Components/NavBar/NavBar"
 import Button from "../Components/Button/Button";
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
@@ -24,12 +25,7 @@ function AllBirthdays({ data }) {
     <div className={style.container_all_birthdays}>
       <div className={style.container_cards}>
         <Link href="/birthdays" passHref>
-          <AnchorIcons
-            src="/back.png"
-            alt="Previous page"
-            width={50}
-            height={50}
-          />
+          <NavBar name="Birthdays" to="/birthdays" />
         </Link>
         {data.birthdays.length > 0 ? (
           <h1 className={style.container_title}> Birthdays coming soon! </h1>
