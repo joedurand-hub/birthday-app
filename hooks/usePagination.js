@@ -3,15 +3,14 @@ import { useState } from "react";
 export const usePagination = (data, itemsPerPage = 5) => {
   const [currentPage, setCurrentPage] = useState(1);
   const numberOfPages = Math.ceil(data.length / itemsPerPage);
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
 
-  const currentData = () => {
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    return data.slice(start, end);
-  };
+  const currentData = data.slice(start, end);
 
-  const itemsToPaginate = new Array(numberOfPages).fill().map((irrelevant, index) => index + 1);
-  
+  const itemsToPaginate = new Array(numberOfPages)
+    .fill()
+    .map((irrelevant, index) => index + 1);
 
   const previousPage = () => {
     if (currentPage > 0) {
@@ -27,7 +26,6 @@ export const usePagination = (data, itemsPerPage = 5) => {
 
   function changePage(event) {
     const pageNumber = Number(event.target.textContent);
-    console.log("pageNumber", pageNumber);
     setCurrentPage(pageNumber);
   }
 

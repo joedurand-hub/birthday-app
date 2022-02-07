@@ -49,7 +49,6 @@ function Card({
           onSubmit={(e) => {
             e.preventDefault();
             handleSubmit(e);
-            router.push("/birthdays");
           }}
         >
           <h2>User</h2>
@@ -71,7 +70,6 @@ function Card({
               name={"Delete"}
               onSubmit={(e) => {
                 e.preventDefault();
-                router.push("/birthdays");
                 handleSubmit(e);
               }}
             />

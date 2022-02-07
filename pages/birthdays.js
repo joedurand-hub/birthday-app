@@ -148,7 +148,7 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
-        {currentData().map((objectUser) => (
+        {currentData.map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}
@@ -199,7 +199,6 @@ function Birthdays({ data }) {
           </Card>
         ))}
         <div className={style.container_paginated}>
-
           {itemsToPaginate <= 1 ? (
             ""
           ) : (
@@ -215,11 +214,10 @@ function Birthdays({ data }) {
                 type="button"
               />
               <div>
-
-              {itemsToPaginate.map((item, index) => (
-                <Paginate key={index} onClick={changePage} items={item} />
+                {itemsToPaginate.map((item, index) => (
+                  <Paginate key={index} onClick={changePage} items={item} />
                 ))}
-                </div>
+              </div>
 
               <Button
                 onClick={() => {
@@ -235,7 +233,6 @@ function Birthdays({ data }) {
               />
             </>
           )}
-
         </div>
       </div>
       <NavBar />

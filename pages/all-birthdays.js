@@ -1,4 +1,5 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
+import React, { useState } from "react";
 import { usePagination } from "../hooks/usePagination";
 import Link from "next/link";
 import Paginate from "../Components/Paginate/Paginate";
@@ -19,92 +20,88 @@ function AllBirthdays({ data }) {
     currentPage,
   } = usePagination(data.birthdays);
 
+  return (
+    <div className={style.container_all_birthdays}>
+      <div className={style.container_cards}>
+        <Link href="/birthdays" passHref>
+          <AnchorIcons
+            src="/back.png"
+            alt="Previous page"
+            width={50}
+            height={50}
+          />
+        </Link>
+        {data.birthdays.length > 0 ? (
+          <h1 className={style.container_title}> Birthdays coming soon! </h1>
+        ) : (
+          <Anchor
+            to="/add-birthday"
+            name="Set your Birthday reminders"
+            variant="secondary"
+          />
+        )}
 
-    return (
-      <div className={style.container_all_birthdays}>
-        <div className={style.container_cards}>
-          <Link href="/birthdays" passHref>
-            <AnchorIcons
-              src={"/back.png"}
-              alt={"Icon to back"}
-              width={50}
-              height={50}
-            />
-          </Link>
-          {data.birthdays.length > 0 ? (
-            <h1 className={style.container_title}> Birthdays coming soon! </h1>
-          ) : (
-            <Anchor
-              to="/add-birthday"
-              name="Set your Birthday reminders"
-              variant="secondary"
-            />
+        {currentData.map((objectUser) => (
+          <Card
+            key={objectUser.id}
+            firstName={objectUser.firstName}
+            lastName={objectUser.lastName}
+            birthday={objectUser.birthday}
+            email={objectUser.email}
+            id={objectUser.id}
+            src="/avatar.png"
+            width={90}
+            height={75}
+          >
+            <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
+              <AnchorIcons
+                src="/edit.png"
+                alt="Edit data"
+                width={35}
+                height={35}
+                className={card.icons}
+              />
+            </Link>
+          </Card>
+        ))}
+        <div className={style.container_paginated}>
+          {itemsToPaginate.length <= 1 ? null : (
+            <>
+              <Button
+                onClick={() => {
+                  previousPage();
+                }}
+                variant={`${
+                  currentPage - 1 <= 0 ? button.disabled : "primary"
+                }`}
+                name="Previous"
+                type="button"
+              />
+
+              <div className={style.container_paginated_items}>
+                {itemsToPaginate.map((item, index) => (
+                  <Paginate key={index} onClick={changePage} items={item} />
+                ))}
+              </div>
+
+              <Button
+                onClick={() => {
+                  nextPage();
+                }}
+                name="Next"
+                variant={`${
+                  itemsToPaginate.length + 1 <= currentData.length
+                    ? "primary"
+                    : button.disabled
+                }`}
+                type="button"
+              />
+            </>
           )}
-
-          {currentData().map((objectUser) => (
-            <Card
-              key={objectUser.id}
-              firstName={objectUser.firstName}
-              lastName={objectUser.lastName}
-              birthday={objectUser.birthday}
-              email={objectUser.email}
-              id={objectUser.id}
-              src={"/avatar.png"}
-              width={90}
-              height={75}
-            >
-              <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
-                <AnchorIcons
-                  src={"/edit.png"}
-                  alt={"Edit icon"}
-                  width={35}
-                  height={35}
-                  className={card.icons}
-                />
-              </Link>
-            </Card>
-          ))}
-          <div className={style.container_paginated}>
-            {itemsToPaginate.length <= 1 ? (
-              ""
-            ) : (
-              <>
-                <Button
-                  onClick={() => {
-                    previousPage();
-                  }}
-                  variant={`${
-                    currentPage - 1 <= 0 ? button.disabled : "primary"
-                  }`}
-                  name="Previous"
-                  type="button"
-                />
-
-                <div className={style.container_paginated_items}>
-                  {itemsToPaginate.map((item, index) => (
-                    <Paginate key={index} onClick={changePage} items={item} />
-                  ))}
-                </div>
-
-                <Button
-                  onClick={() => {
-                    nextPage();
-                  }}
-                  name="Next"
-                  variant={`${
-                    itemsToPaginate.length + 1 <= currentData().length
-                      ? "primary"
-                      : button.disabled
-                  }`}
-                  type="button"
-                />
-              </>
-            )}
-          </div>
         </div>
       </div>
-    );
-  
+    </div>
+  );
 }
 
 export async function getStaticProps() {
