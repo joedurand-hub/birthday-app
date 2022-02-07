@@ -24,12 +24,7 @@ function AllBirthdays({ data }) {
     <div className={style.container_all_birthdays}>
       <div className={style.container_cards}>
         <Link href="/birthdays" passHref>
-          <AnchorIcons
-            src="/back.png"
-            alt="Previous page"
-            width={50}
-            height={50}
-          />
+          <NavBar name="Birthdays" to="/birthdays" />
         </Link>
         {data.birthdays.length > 0 ? (
           <h1 className={style.container_title}> Birthdays coming soon! </h1>
