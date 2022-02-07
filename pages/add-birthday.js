@@ -41,7 +41,6 @@ function AddBirthday() {
       })
       .catch((error) => {
         alert("An error has occurred, please try again later");
-        console.error("Error:", error);
       });
   };
 

@@ -1,19 +1,32 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
-import React from "react";
+import React, { useState } from "react";
+import { usePagination } from "../hooks/usePagination";
 import Link from "next/link";
+import Paginate from "../Components/Paginate/Paginate";
 import style from "../styles/container.module.css";
-import card from '../styles/card.module.css';
+import card from "../Components/Card/card.module.css";
+import button from "../styles/Buttons.module.css";
+import Button from "../Components/Button/Button";
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
-function allBirthdays({ data }) {
+function AllBirthdays({ data }) {
+  const {
+    nextPage,
+    previousPage,
+    changePage,
+    currentData,
+    itemsToPaginate,
+    currentPage,
+  } = usePagination(data.birthdays);
+
   return (
     <div className={style.container_all_birthdays}>
       <div className={style.container_cards}>
         <Link href="/birthdays" passHref>
           <AnchorIcons
-            src={"/back.png"}
-            alt={"Icon to back"}
+            src="/back.png"
+            alt="Previous page"
             width={50}
             height={50}
           />
@@ -27,7 +40,8 @@ function allBirthdays({ data }) {
             variant="secondary"
           />
         )}
-        {data.birthdays?.map((objectUser) => (
+
+        {currentData.map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}
@@ -35,33 +49,67 @@ function allBirthdays({ data }) {
             birthday={objectUser.birthday}
             email={objectUser.email}
             id={objectUser.id}
-            src={"/avatar.png"}
+            src="/avatar.png"
             width={90}
             height={75}
-            className={card.image}
           >
-             <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
-                <AnchorIcons
-                  src={"/edit.png"}
-                  alt={"Edit icon"}
-                  width={35}
-                  height={35}
-                  className={card.icons}
-                />
-              </Link>
+            <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
+              <AnchorIcons
+                src="/edit.png"
+                alt="Edit data"
+                width={35}
+                height={35}
+                className={card.icons}
+              />
+            </Link>
           </Card>
         ))}
+        <div className={style.container_paginated}>
+          {itemsToPaginate.length <= 1 ? null : (
+            <>
+              <Button
+                onClick={() => {
+                  previousPage();
+                }}
+                variant={`${
+                  currentPage - 1 <= 0 ? button.disabled : "primary"
+                }`}
+                name="Previous"
+                type="button"
+              />
+
+              <div className={style.container_paginated_items}>
+                {itemsToPaginate.map((item, index) => (
+                  <Paginate key={index} onClick={changePage} items={item} />
+                ))}
+              </div>
+
+              <Button
+                onClick={() => {
+                  nextPage();
+                }}
+                name="Next"
+                variant={`${
+                  itemsToPaginate.length + 1 <= currentData.length
+                    ? "primary"
+                    : button.disabled
+                }`}
+                type="button"
+              />
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-export default allBirthdays;
-
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const data = await getBirthdaysInfo();
 
   return {
     props: { data },
   };
 }
+
+export default AllBirthdays;

@@ -56,11 +56,11 @@ function Terms() {
           <Anchor name="Decline" to="/" variant="cancel" />
 
           <Button
+            disabled={buttonActive}
+            name={"Accept"}
             onClick={() => {
               router.push("/birthdays");
             }}
-            disabled={buttonActive}
-            name={"Accept"}
           />
         </footer>
       </main>

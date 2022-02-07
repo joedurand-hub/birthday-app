@@ -1,11 +1,9 @@
-import { AnchorIcons } from "../AnchorsButton/Anchor";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
-import Link from "next/link";
 import Image from "next/image";
 import Button from "../Button/Button";
 import { useRouter } from "next/router";
-import card from "../../styles/card.module.css";
+import card from "./card.module.css";
 import modal from "../../styles/modal.module.css";
 
 function Card({
@@ -35,7 +33,6 @@ function Card({
         if (response.ok) {
           alert("Birthday deleted!");
           router.push("/birthdays");
-          return response.json();
         }
       })
       .catch((error) => {
@@ -45,8 +42,14 @@ function Card({
 
   return (
     <>
-      <Modal key={id} isOpen={isOpenModalDelete} closeModal={closeModalDelete}>
-        <form className={modal.modal_form}>
+      <Modal isOpen={isOpenModalDelete} closeModal={closeModalDelete}>
+        <form
+          className={modal.modal_form}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(e);
+          }}
+        >
           <h2>User</h2>
           <p>
             Do you want to delete <strong>{firstName}</strong>’s birthday?
@@ -66,7 +69,6 @@ function Card({
               name={"Delete"}
               onSubmit={(e) => {
                 e.preventDefault();
-                router.push("/birthdays");
                 handleSubmit(e);
               }}
             />
