@@ -24,9 +24,7 @@ function AllBirthdays({ data }) {
   return (
     <div className={style.container_all_birthdays}>
       <div className={style.container_cards}>
-        <Link href="/birthdays" passHref>
-          <NavBar name="Birthdays" to="/birthdays" />
-        </Link>
+          <NavBar name="Birthdays" href="/birthdays" />
         {data.birthdays.length > 0 ? (
           <h1 className={style.container_title}> Birthdays coming soon! </h1>
         ) : (
