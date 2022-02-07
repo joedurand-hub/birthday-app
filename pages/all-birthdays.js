@@ -6,6 +6,7 @@ import Paginate from "../Components/Paginate/Paginate";
 import style from "../styles/container.module.css";
 import card from "../Components/Card/card.module.css";
 import button from "../styles/Buttons.module.css";
+import NavBar from "../Components/NavBar/NavBar"
 import Button from "../Components/Button/Button";
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";

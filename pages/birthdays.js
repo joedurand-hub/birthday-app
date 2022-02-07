@@ -235,7 +235,6 @@ function Birthdays({ data }) {
           )}
         </div>
       </div>
-      <NavBar />
       <NavBar name="All Birthdays" to="/all-birthdays" />
 
     </main>
