@@ -1,11 +1,9 @@
-import { AnchorIcons } from "../AnchorsButton/Anchor";
 import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
-import Link from "next/link";
 import Image from "next/image";
 import Button from "../Button/Button";
 import { useRouter } from "next/router";
-import card from "../../styles/card.module.css";
+import card from "./card.module.css";
 import modal from "../../styles/modal.module.css";
 
 function Card({
@@ -50,8 +48,8 @@ function Card({
           className={modal.modal_form}
           onSubmit={(e) => {
             e.preventDefault();
-            router.push("/birthdays");
             handleSubmit(e);
+            router.push("/birthdays");
           }}
         >
           <h2>User</h2>

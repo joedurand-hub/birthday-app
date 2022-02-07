@@ -1,5 +1,7 @@
 import styles from "./loading.module.css";
 import Image from "next/image";
+
+// Functionality to be implemented soon
 const Loading = () => {
   return (
     <div className={styles.loading}>

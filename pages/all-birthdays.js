@@ -2,12 +2,10 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import { usePagination } from "../hooks/usePagination";
 import Link from "next/link";
 import Paginate from "../Components/Paginate/Paginate";
-import { useState } from "react";
 import style from "../styles/container.module.css";
-import card from "../styles/card.module.css";
+import card from "../Components/Card/card.module.css";
 import button from "../styles/Buttons.module.css";
 import Button from "../Components/Button/Button";
-import Loading from "../Components/Loading/Loading";
 import Card from "../Components/Card/Card";
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
@@ -16,35 +14,34 @@ function AllBirthdays({ data }) {
     currentData,
     nextPage,
     previousPage,
-    itemsToPaginate,
     changePage,
+    itemsToPaginate,
     currentPage,
   } = usePagination(data.birthdays);
 
-  return (
-    <div className={style.container_all_birthdays}>
-      <div className={style.container_cards}>
-        <Link href="/birthdays" passHref>
-          <AnchorIcons
-            src={"/back.png"}
-            alt={"Icon to back"}
-            width={50}
-            height={50}
-          />
-        </Link>
 
-        {data.birthdays.length > 0 ? (
-          <h1 className={style.container_title}> Birthdays coming soon! </h1>
-        ) : (
-          <Anchor
-            to="/add-birthday"
-            name="Set your Birthday reminders"
-            variant="secondary"
-          />
-        )}
+    return (
+      <div className={style.container_all_birthdays}>
+        <div className={style.container_cards}>
+          <Link href="/birthdays" passHref>
+            <AnchorIcons
+              src={"/back.png"}
+              alt={"Icon to back"}
+              width={50}
+              height={50}
+            />
+          </Link>
+          {data.birthdays.length > 0 ? (
+            <h1 className={style.container_title}> Birthdays coming soon! </h1>
+          ) : (
+            <Anchor
+              to="/add-birthday"
+              name="Set your Birthday reminders"
+              variant="secondary"
+            />
+          )}
 
-        {data.birthdays.length > 0 ? (
-          currentData().map((objectUser) => (
+          {currentData().map((objectUser) => (
             <Card
               key={objectUser.id}
               firstName={objectUser.firstName}
@@ -66,59 +63,56 @@ function AllBirthdays({ data }) {
                 />
               </Link>
             </Card>
-          ))
-        ) : (
-          <Loading />
-        )}
-        <div className={style.container_paginated}>
-          {console.log("itemsToPaginate", itemsToPaginate)}
-          {itemsToPaginate.length <= 1 ? (
-            ""
-          ) : (
-            <>
-              <Button
-                onClick={() => {
-                  previousPage();
-                }}
-                variant={`${
-                  currentPage - 1 <= 0 ? button.disabled : "primary"
-                }`}
-                name="Previous"
-                type="button"
-              />
-              
-              <div className={style.container_paginated_items}>
-                {itemsToPaginate.map((item, index) => (
-                  <Paginate key={index} onClick={changePage} items={item} />
-                ))}
-              </div>
+          ))}
+          <div className={style.container_paginated}>
+            {itemsToPaginate.length <= 1 ? (
+              ""
+            ) : (
+              <>
+                <Button
+                  onClick={() => {
+                    previousPage();
+                  }}
+                  variant={`${
+                    currentPage - 1 <= 0 ? button.disabled : "primary"
+                  }`}
+                  name="Previous"
+                  type="button"
+                />
 
-              <Button
-                onClick={() => {
-                  nextPage();
-                }}
-                name="Next"
-                variant={`${
-                  itemsToPaginate.length + 1 <= currentData().length
-                    ? "primary"
-                    : button.disabled
-                }`}
-                type="button"
-              />
-            </>
-          )}
+                <div className={style.container_paginated_items}>
+                  {itemsToPaginate.map((item, index) => (
+                    <Paginate key={index} onClick={changePage} items={item} />
+                  ))}
+                </div>
+
+                <Button
+                  onClick={() => {
+                    nextPage();
+                  }}
+                  name="Next"
+                  variant={`${
+                    itemsToPaginate.length + 1 <= currentData().length
+                      ? "primary"
+                      : button.disabled
+                  }`}
+                  type="button"
+                />
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  
 }
 
-export default AllBirthdays;
-
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const data = await getBirthdaysInfo();
 
   return {
     props: { data },
   };
 }
+
+export default AllBirthdays;

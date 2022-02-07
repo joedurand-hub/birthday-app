@@ -5,7 +5,7 @@ import Card from "../Components/Card/Card";
 import Modal from "../Components/Modal/Modal";
 import modal from "../styles/modal.module.css";
 import button from "../styles/Buttons.module.css";
-import card from "../styles/card.module.css";
+import card from "../Components/Card/card.module.css";
 import style from "../styles/container.module.css";
 import Image from "next/image";
 import Paginate from "../Components/Paginate/Paginate";
@@ -206,7 +206,6 @@ function Birthdays({ data }) {
             <>
               <Button
                 onClick={() => {
-                  console.log(previousPage());
                   previousPage();
                 }}
                 variant={`${
