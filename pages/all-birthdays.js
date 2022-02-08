@@ -21,6 +21,7 @@ function AllBirthdays({ data }) {
     filteredBirthdays,
     handleInputChange,
     currentData,
+    handleSubmit,
     itemsToPaginate,
     currentPage,
   } = usePagination(data.birthdays);
@@ -40,25 +41,7 @@ function AllBirthdays({ data }) {
           />
         )}
 
-        <form>
-          <Input
-            type="text"
-            placeholder={"Search"}
-            name="Search"
-            onChange={handleInputChange}
-          />
-
-          <Button
-            type="button"
-            name="Search"
-            variant="search"
-            onClick={(e) => {
-              e.preventDefault();
-              console.log("click");
-              filteredBirthdays();
-            }}
-          />
-        </form>
+        <Search onChange={handleInputChange} onSubmit={handleSubmit} />
 
         {filteredBirthdays().map((objectUser) => (
           <Card

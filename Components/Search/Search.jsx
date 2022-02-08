@@ -1,27 +1,18 @@
-import { useState } from "react";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import styles from "./search.module.css";
-import { usePagination } from "../../hooks/usePagination";
 
-const Search = ({ onClick }) => {
-  const [search, setSearch] = useState("");
-
-  const handleInputChange = (e) => { // Manipular cambios en el input al suceder un evento
-    e.preventDefault();
-    setSearch(e.target.value);
-    console.log(e.target.value);
-  };
-
+export const Search = ({ onChange, handleSubmit}) => {
   return (
-    <form className={styles.search_birthdays}>
+    <form className={styles.search_birthdays} onSubmit={(e) => handleSubmit(e)} >
       <Input
         type="search"
         placeholder={"Search"}
-        name="Search"
-        onChange={handleInputChange}
+        name="search"
+        onChange={onChange}
       />
-      <Button type="button" variant="search" onClick={onClick} name="Search" />
+
+      <Button type="submit" variant="search" name="Buscar" />
     </form>
   );
 };
