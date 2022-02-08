@@ -2,43 +2,33 @@ import { useState, useEffect } from "react";
 
 export const usePagination = (data, itemsPerPage = 5) => {
   const [currentPage, setCurrentPage] = useState(1);
-  
-  const [search, setSearch] = useState("")
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [search, setSearch] = useState("");
+
   const numberOfPages = Math.ceil(data.length / itemsPerPage);
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  const currentData = data.slice(start, end);
-  
+  const currentData = data.slice(start, end)
 
   const filteredBirthdays = () => {
-    // Caso de input vacío y se hace click en buscar
     if (search.length === 0) {
-      console.log("No search criteria entered")
       return currentData;
     }
-    return data.filter((elements) => elements.firstName.includes(search))
 
-  };
-  
-  const handleInputChange = (e) => { // Manipular cambios en el input al suceder un evento
-    setCurrentPage(1);
-    setSearch(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsSubmitted(true)
-  }
-
-  useEffect(() => {
-    if(isSubmitted) {
-      console.log("submiteado")
-      filteredBirthdays()
-      setIsSubmitted(false)
+  const filteredByNameAndEmail = data.filter((elements) => {
+    if(elements.firstName.includes(search)) {
+      return elements
+    } 
+    if(elements.email.includes(search)) {
+      return elements
     }
-  }, [isSubmitted])
+      
+  });
+    return filteredByNameAndEmail.slice(start, end)
+  };
+
+  const handleInputChange = (e) => {
+    setSearch(e.target.value);
+  };
 
   const itemsToPaginate = new Array(numberOfPages)
     .fill()
@@ -67,7 +57,6 @@ export const usePagination = (data, itemsPerPage = 5) => {
     changePage,
     handleInputChange,
     filteredBirthdays,
-    handleSubmit,
     currentData,
     itemsToPaginate,
     currentPage,

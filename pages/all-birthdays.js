@@ -21,10 +21,10 @@ function AllBirthdays({ data }) {
     filteredBirthdays,
     handleInputChange,
     currentData,
-    handleSubmit,
     itemsToPaginate,
     currentPage,
   } = usePagination(data.birthdays);
+
 
   return (
     <div className={style.container_all_birthdays}>
@@ -41,7 +41,11 @@ function AllBirthdays({ data }) {
           />
         )}
 
-        <Search onChange={handleInputChange} onSubmit={handleSubmit} />
+        <Search
+          onChange={(e) => {
+            handleInputChange(e);
+          }}
+        />
 
         {filteredBirthdays().map((objectUser) => (
           <Card
@@ -92,7 +96,7 @@ function AllBirthdays({ data }) {
                 }}
                 name="Next"
                 variant={`${
-                  itemsToPaginate.length + 1 <= filteredBirthdays().length
+                  itemsToPaginate.length + 1 <= currentData.length
                     ? "primary"
                     : button.disabled
                 }`}

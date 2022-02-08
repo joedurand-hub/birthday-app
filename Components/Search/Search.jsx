@@ -1,18 +1,11 @@
 import Input from "../Input/Input";
-import Button from "../Button/Button";
 import styles from "./search.module.css";
 
-export const Search = ({ onChange, handleSubmit}) => {
+export const Search = ({ onChange}) => {
   return (
-    <form className={styles.search_birthdays} onSubmit={(e) => handleSubmit(e)} >
-      <Input
-        type="search"
-        placeholder={"Search"}
-        name="search"
-        onChange={onChange}
-      />
+    <form className={styles.search_birthdays} >
+      <Input type="text" placeholder={"Search by name or email"} onChange={onChange} name="search" />
 
-      <Button type="submit" variant="search" name="Buscar" />
     </form>
   );
 };

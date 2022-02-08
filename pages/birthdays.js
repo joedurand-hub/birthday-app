@@ -2,6 +2,7 @@ import getBirthdaysInfo from "./api/getBirthdaysInfo";
 import { useState, useMemo } from "react";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
+import Search from "../Components/Search/Search"
 import Modal from "../Components/Modal/Modal";
 import modal from "../styles/modal.module.css";
 import button from "../styles/Buttons.module.css";
@@ -79,6 +80,7 @@ function Birthdays({ data }) {
     previousPage,
     changePage,
     filteredBirthdays,
+    handleInputChange,
     currentPage,
     itemsToPaginate,
   } = usePagination(dataMatching);
@@ -148,6 +150,9 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
+<Search
+  onChange={handleInputChange}
+/>
         {filteredBirthdays().map((objectUser) => (
           <Card
             key={objectUser.id}
