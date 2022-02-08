@@ -23,7 +23,6 @@ function AllBirthdays({ data }) {
     currentPage,
   } = usePagination(data.birthdays);
 
-
   return (
     <div className={style.container_all_birthdays}>
       <div className={style.container_cards}>

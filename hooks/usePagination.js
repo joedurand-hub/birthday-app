@@ -7,23 +7,21 @@ export const usePagination = (data, itemsPerPage = 5) => {
   const numberOfPages = Math.ceil(data.length / itemsPerPage);
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  const currentData = data.slice(start, end)
+  const currentData = data.slice(start, end);
 
   const filteredBirthdays = () => {
     if (search.length === 0) {
       return currentData;
     }
-
-  const filteredByNameAndEmail = data.filter((elements) => {
-    if(elements.firstName.includes(search)) {
-      return elements
-    } 
-    if(elements.email.includes(search)) {
-      return elements
-    }
-      
-  });
-    return filteredByNameAndEmail.slice(start, end)
+    const filteredByNameAndEmail = data.filter((elements) => {
+      if (elements.firstName.includes(search)) {
+        return elements;
+      }
+      if (elements.email.includes(search)) {
+        return elements;
+      }
+    });
+    return filteredByNameAndEmail.slice(start, end);
   };
 
   const handleInputChange = (e) => {
