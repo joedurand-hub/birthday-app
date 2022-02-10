@@ -1,5 +1,6 @@
 import styles from "./input.module.css";
 const InputField = ({
+  p,
   value,
   label,
   name,
@@ -9,6 +10,9 @@ const InputField = ({
   maxLength,
   pattern,
   onChange,
+  onKeyUp,
+  onBlur,
+  regExp,
 }) => {
   return (
     <div className={styles.field}>
@@ -22,13 +26,19 @@ const InputField = ({
         type={type}
         value={value}
         name={name}
+        regExp={regExp}
         placeholder={placeholder}
         onChange={onChange}
+        onKeyUp={onKeyUp}
+        onBlur={onBlur}
         minLength={minLength}
         maxLength={maxLength}
         pattern={pattern}
         required={true}
       />
+      {p && (
+        <p className={styles.form_input_error} htmlFor={name}>{p}</p>
+      )}
     </div>
   );
 };

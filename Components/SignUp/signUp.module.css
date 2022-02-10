@@ -1,0 +1,23 @@
+.failed_to_send {
+    border: 1px solid red;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    background: rgb(250, 68, 68);
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px 0 10px;
+    text-align: center;
+    display: none;
+}
+
+.success_sending {
+    border: 1px solid rgb(7, 167, 34);
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    background: rgb(16, 223, 126);
+    height: 50px;
+    line-height: 50px;
+    padding: 0 10px 0 10px;
+    text-align: center;
+    display: none;
+}
