@@ -7,6 +7,16 @@
   max-height: 40vh;
 }
 
+.form_input {
+  padding-left: 10px;
+}
+
+.form_input[type=text]:focus {
+  -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+  -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+  box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+
 @media screen and (max-width: 768px) {
   .field {
     margin: 0;

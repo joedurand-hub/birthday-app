@@ -17,6 +17,12 @@
   justify-content: center;
   align-items: center;
   background: rgb(236, 236, 236);
+  border-end-start-radius: none;
+  border-start-end-radius: none;
+  box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.336);
+  -webkit-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.329);
+  -moz-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.253);
+  border-radius: 30px;
 }
 
 .container_components {
@@ -91,6 +97,7 @@
     box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.336);
     -webkit-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.329);
     -moz-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.253);
+    border-radius: 30px;
   }
   .container_cards {
     display: flex;

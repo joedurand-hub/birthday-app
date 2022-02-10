@@ -99,9 +99,9 @@ function AllBirthdays({ data }) {
                 }}
                 name="Next"
                 variant={`${
-                  itemsToPaginate.length + 1 <= currentData.length
-                    ? "primary"
-                    : button.disabled
+                  currentData.length === 5
+                    ? "primary" 
+                    : button.disabled 
                 }`}
                 type="button"
               />

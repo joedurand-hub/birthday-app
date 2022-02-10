@@ -11,6 +11,7 @@
 		border-right: none;
 		border-top-left-radius: 15px;
 		border-top-right-radius: 15px;
+		border-top: 1px solid rgba(122, 122, 122, 0.678);
 		border-bottom: none;
 		position: fixed;
 		bottom: 0;
@@ -31,6 +32,7 @@
 		border-right: none;
 		border-bottom-left-radius: 15px;
 		border-bottom-right-radius: 15px;
+		border-bottom: 1px solid rgba(122, 122, 122, 0.678);
 		border-top: none;
 		position: fixed;
 		top: 0;

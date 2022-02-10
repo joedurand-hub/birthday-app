@@ -1,9 +1,8 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import styles from "../styles/container.module.css";
-import { Anchor } from "../Components/AnchorsButton/Anchor";
+import SignUp from "../Components/SignUp/SignUp"
+
 
 function Home() {
   return (
@@ -15,13 +14,7 @@ function Home() {
       </Head>
 
       <main className={styles.containerApp}>
-        <Image
-          src="/boxHappy.svg"
-          width={350}
-          height={350}
-          alt="Image not found"
-        />
-        <Anchor name="Log in" to="/terms" variant="primary" />
+        <SignUp/>
       </main>
     </div>
   );

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import styles from "../../styles/navBar.module.css";
 import { Anchor } from "../AnchorsButton/Anchor";
 

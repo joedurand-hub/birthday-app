@@ -1,4 +1,4 @@
-import input from "./input.module.css";
+import styles from "./input.module.css";
 const InputField = ({
   value,
   label,
@@ -11,14 +11,14 @@ const InputField = ({
   onChange,
 }) => {
   return (
-    <div className={input.field}>
+    <div className={styles.field}>
       {label && (
-        <label htmlFor={name} className={input.form_label}>
+        <label htmlFor={name} className={styles.form_label}>
           {label}
         </label>
       )}
       <input
-        className={input.form_input}
+        className={styles.form_input}
         type={type}
         value={value}
         name={name}

@@ -8,7 +8,8 @@ export const usePagination = (data, itemsPerPage = 5) => {
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const currentData = data.slice(start, end);
-
+  let itemsToPaginate;
+  
   const filteredBirthdays = () => {
     if (search.length === 0) {
       return currentData;
@@ -28,7 +29,7 @@ export const usePagination = (data, itemsPerPage = 5) => {
     setSearch(e.target.value);
   };
 
-  const itemsToPaginate = new Array(numberOfPages)
+  itemsToPaginate = new Array(numberOfPages)
     .fill()
     .map((irrelevant, index) => index + 1);
 

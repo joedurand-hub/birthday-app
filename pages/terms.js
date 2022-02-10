@@ -25,23 +25,46 @@ function Terms() {
       </Head>
 
       <main className={container.container_content}>
-        <div className={terms.terms_instructions}>
           <h1 className={terms.terms_title}>Hello name of user</h1>
-          <Image
-            src="/cake.jpg"
-            width={225}
-            height={225}
-            alt="Image not found"
-          />
-          <h4>Author: Joel Durand</h4>
+        <div className={terms.terms_instructions}>
+  
+          <h5>Author: Joel Durand</h5>
           <p className={terms.terms_paragraph}>
+            <strong>Exercitation ullamco:</strong> <br/>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. <br/>
+            - Quis nostrud exercitation ullamco laboris <br/>
+            - Quis nostrud exercitation ullamco laboris <br/>
+            - Quis nostrud exercitation ullamco laboris <br/>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. <br/>
+            <strong>Tempor incididunt ut labore:</strong>  <br/>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. <br/>
+            <strong>Exercitation ullamco:</strong> <br/>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. <br/>
+            - Quis nostrud exercitation ullamco laboris <br/>
+            - Quis nostrud exercitation ullamco laboris <br/>
+            - Quis nostrud exercitation ullamco laboris <br/>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. <br/>
+            <strong>Tempor incididunt ut labore:</strong>  <br/>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
           </p>
-        </div>
-
         <section className={terms.section}>
           <input
             type="checkbox"
@@ -52,6 +75,8 @@ function Terms() {
             Terms and Conditions
           </label>
         </section>
+        </div>
+
         <footer className={terms.navBarMobileTerms}>
           <Anchor name="Decline" to="/" variant="cancel" />
 
