@@ -4,72 +4,83 @@ import styles from "./signUp.module.css";
 import { useState } from "react";
 
 export const SignUp = () => {
-  const [userData, setUserData] = useState({
-    field: "",
-    isValid: null,
-  });
-
-  const handleInputChange = (e) => {
-    setUserData({...userData, field: e.target.value })
-  }
-
-  const validateInput = (e) => {
-    if(regExp) {
-      if(regExp.test(userData.field)){
-        console.log("input correcto")
-      } else {
-        console.log("input incorrecto")
-      }
-    }
-  }
+  const [name, setName] = useState({ field: "", isValid: null});
+  const [lastname, setLastName] = useState({ field: "", isValid: null });
+  const [email, setEmail] = useState({ field: "", isValid: null});
+  const [password, setPassword] = useState({ field: "", isValid: null});
+  const [password2, setPassword2] = useState({ field: "", isValid: null});
+  const [dateOfBirth, setDateOfBirth] = useState({ field: "", isValid: null});
 
 
-// 	usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-//	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-//	password: /^.{4,12}$/, // 4 a 12 digitos.
-//	correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  const validateWithExpressions = {
+    name_and_lastname: /^[a-zA-ZÀ-ÿ\s]{3,16}$/,
+    email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    password: /^.{8,16}$/,
+  };
 
   return (
     <form>
       <Input
-        value={userData.field}
-        onKeyUp={validateInput}
-        onBlur={validateInput}
-        onChange={handleInputChange}
+        state={name}
+        setState={setName}
         label="Name"
         type="text"
         placeholder="Ethan"
         name="name"
-        p="Mensaje de error del nombre"
+        p="El nombre sólo debe contener letras y/o espacios."
+        regExpre={validateWithExpressions.name_and_lastname}
       />
+
       <Input
         label="Last name"
+        state={lastname}
+        setState={setLastName}
         type="text"
         placeholder="Windhandel"
         name="lastname"
-        p="Mensaje de error del apellido"
+        p="El apellido sólo debe contener letras y/o espacios."
+        regExpre={validateWithExpressions.name_and_lastname}
       />
       <Input
         label="Email"
+        state={email}
+        setState={setEmail}
         type="email"
-        placeholder="user@user.com"
+        placeholder="ethan@windhandel.com"
         name="email"
-        p="Mensaje de error del email"
+        p="El email debe contener @ y finalizar .algo"
+        regExpre={validateWithExpressions.email}
       />
       <Input
         label="Password"
+        state={password}
+        setState={setPassword}
         type="password"
-        placeholder="Password"
+        placeholder="********"
         name="password"
-        p="Mensaje de error de la contraseña"
+        p="Debe tener más de 8 caracteres, tener al menos una letra mayúscula, una letra minúscula, un símbolo especial y un número."
+        regExpre={validateWithExpressions.password}
       />
       <Input
         label="Repeat password"
+        state={password2}
+        setState={setPassword2}
         type="password"
-        placeholder="Repeat password"
+        placeholder="********"
         name="password"
-        p="Mensaje de error de la contraseña"
+        p="Por favor repita correctamente la contraseña"
       />
+
+      <Input
+        label="Fecha de nacimiento"
+        state={dateOfBirth}
+        setState={setDateOfBirth}
+        type="date"
+        placeholder="mm/dd/yyyy"
+        name="dateOfBirth"
+        p="Ingrese una fecha correcta"
+      />
+
       <p className={styles.failed_to_send}>
         <b>Error:</b> Please complete the form correctly.
       </p>
