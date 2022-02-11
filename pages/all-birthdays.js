@@ -39,9 +39,9 @@ function AllBirthdays({ data }) {
         )}
 
         <Search
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
+        onChange={(e) => {
+          handleInputChange(e)
+        }}
         />
 
         {filteredBirthdays().map((objectUser) => (

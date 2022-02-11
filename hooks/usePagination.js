@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import debounce from "lodash.debounce";
 
 export const usePagination = (data, itemsPerPage = 5) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -8,7 +9,8 @@ export const usePagination = (data, itemsPerPage = 5) => {
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const currentData = data.slice(start, end);
-
+  let itemsToPaginate;
+  
   const filteredBirthdays = () => {
     if (search.length === 0) {
       return currentData;
@@ -24,11 +26,12 @@ export const usePagination = (data, itemsPerPage = 5) => {
     return filteredByNameAndEmail.slice(start, end);
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = debounce((e) => {
+    console.log(e.target.value)
     setSearch(e.target.value);
-  };
+  }, 700);
 
-  const itemsToPaginate = new Array(numberOfPages)
+  itemsToPaginate = new Array(numberOfPages)
     .fill()
     .map((irrelevant, index) => index + 1);
 
