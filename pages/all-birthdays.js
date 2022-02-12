@@ -1,4 +1,5 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
+import { useState } from "react";
 import { usePagination } from "../hooks/usePagination";
 import Link from "next/link";
 import Head from "next/head";
@@ -18,11 +19,18 @@ function AllBirthdays({ data }) {
     previousPage,
     changePage,
     filteredBirthdays,
-    handleInputChange,
     currentData,
     itemsToPaginate,
     currentPage,
   } = usePagination(data.birthdays);
+
+  const [search, setSearch] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const search = e.target.search.value;
+    setSearch(search);
+  };
 
   return (
     <main className={style.container_all_birthdays}>
@@ -43,14 +51,9 @@ function AllBirthdays({ data }) {
             variant="secondary"
           />
         )}
+        <Search onSubmit={handleSubmit} />
 
-        <Search
-          onChange={(e) => {
-            handleInputChange(e);
-          }}
-        />
-
-        {filteredBirthdays().map((objectUser) => (
+        {filteredBirthdays(search).map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}
