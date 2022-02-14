@@ -217,9 +217,7 @@ function Birthdays({ data }) {
           </Card>
         ))}
         <div className={style.container_paginated}>
-          {itemsToPaginate <= 1 ? (
-            ""
-          ) : (
+          {search != undefined && search.length <= 4 ? null : itemsToPaginate.length <= 1 ? null :(      
             <>
               <Button
                 onClick={() => {

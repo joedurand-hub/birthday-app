@@ -1,7 +1,8 @@
 import styles from "../../styles/navBar.module.css";
 import { Anchor } from "../AnchorsButton/Anchor";
 
-function NavBar({href, name}) {
+
+function NavBar({name, href}) {
   return (
     <nav className={styles.navBar}>
       <Anchor name={name} to={href} variant="secondary" />
