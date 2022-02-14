@@ -80,10 +80,18 @@ function Birthdays({ data }) {
     previousPage,
     changePage,
     filteredBirthdays,
-    handleInputChange,
     currentPage,
     itemsToPaginate,
   } = usePagination(dataMatching);
+
+  const [search, setSearch] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const search = e.target.search.value;
+    setSearch(search);
+  };
+
 
   return (
     <main className={style.container_components}>
@@ -150,8 +158,9 @@ function Birthdays({ data }) {
             No Birthdays coming soon
           </h1>
         )}
-        <Search onChange={handleInputChange} />
-        {filteredBirthdays().map((objectUser) => (
+        <Search onSubmit={handleSubmit} />
+
+        {filteredBirthdays(search).map((objectUser) => (
           <Card
             key={objectUser.id}
             firstName={objectUser.firstName}
