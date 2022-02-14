@@ -1,5 +1,4 @@
 import { useState } from "react";
-import debounce from "lodash.debounce";
 
 export const usePagination = (data, itemsPerPage = 5) => {
   const [currentPage, setCurrentPage] = useState(1);
