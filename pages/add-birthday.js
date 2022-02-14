@@ -12,7 +12,7 @@ function AddBirthday() {
     email: "",
     birthday: "",
   });
-
+  
   const handleInputChange = function (e) {
     const eTargetName = e.target.name;
     const value = e.target.value;

@@ -10,10 +10,12 @@ const InputField = ({
   pattern,
   state,
   setState,
+  value,
+  onChange,
   regExpre,
 }) => {
-  const onChange = (e) => {
-    setState({ ...state, field: e.target.value });
+  const handleInputChange = (e) => {
+    setState ? setState({ ...state, field: e.target.value }) : null
   };
 
   const validateInput = (e) => {
@@ -23,11 +25,9 @@ const InputField = ({
         : setState({ ...state, isValid: "false" });
     }
   };
-  const inputIsValid = state.isValid;
 
-  const inputValidation =
-    (inputIsValid === "true" && styles.isValid) ||
-    (inputIsValid === "false" && styles.notIsValid);
+  const inputValidation = (state ? (state.isValid === "true" && styles.isValid) ||
+    (state.isValid === "false" && styles.notIsValid) : styles.form_input);
 
   console.log("state", state);
 
@@ -45,15 +45,15 @@ const InputField = ({
         placeholder={placeholder}
         onKeyUp={validateInput}
         onBlur={validateInput}
-        value={state.field}
-        onChange={onChange}
+        value={state && state.field}
+        onChange={onChange ? onChange : handleInputChange}
         minLength={minLength}
         maxLength={maxLength}
         pattern={pattern}
         required={true}
       />
       {p && (
-        <p className={`${inputIsValid === "false" ? styles.form_text_input_error : styles.form_input_error}`} htmlFor={name}>
+        <p className={`${state.isValid === "false" ? styles.form_text_input_error : styles.form_input_error}`} htmlFor={name}>
           {p}
         </p>
       )}

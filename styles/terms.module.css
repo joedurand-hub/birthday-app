@@ -18,9 +18,11 @@
 }
 
 .terms_paragraph {
+  background: #ffffff;
   text-align: left;
   overflow-y: scroll;
-  height: 40vh;
+  width: 100%;
+  height: 45vh;
   padding: 20px;
   border-radius: 20px;
   box-shadow: -1px 2px 41px 2px rgb(255, 255, 255);
@@ -54,6 +56,7 @@
     width: 60%;
   }
   .terms_paragraph {
+    width: 80%;
     box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.171);
     -webkit-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.198);
     -moz-box-shadow: -1px 2px 41px 2px rgba(0, 0, 0, 0.157);
