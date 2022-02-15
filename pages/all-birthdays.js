@@ -77,7 +77,8 @@ function AllBirthdays({ data }) {
           </Card>
         ))}
         <div className={style.container_paginated}>
-          {search != undefined && search.length >= 4 ? null : itemsToPaginate.length <= 1 ? null : (
+          {search !== undefined &&
+          search.length >= 4 ? null : itemsToPaginate.length <= 1 ? null : (
             <>
               <Button
                 onClick={() => {
@@ -102,9 +103,7 @@ function AllBirthdays({ data }) {
                 }}
                 name="Next"
                 variant={`${
-                  currentData.length === 5
-                    ? "primary" 
-                    : button.disabled 
+                  currentData.length === 5 ? "primary" : button.disabled
                 }`}
                 type="button"
               />

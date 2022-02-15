@@ -64,7 +64,6 @@ function Form({ onSubmit, onChange, values, title }) {
             <Button
               variant="primary"
               type="submit"
-              name="submit"
               onSubmit={onSubmit}
               name={"Save"}
             />

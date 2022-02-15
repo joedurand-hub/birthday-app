@@ -36,8 +36,8 @@ function AddBirthday() {
       .then((response) => {
         if (response.ok) {
           alert("Birthday saved!");
-          router.push("/birthdays");
-          return response.json();
+          response.json();
+          return router.push("/birthdays");
         }
       })
       .catch((error) => {

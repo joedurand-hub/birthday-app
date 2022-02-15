@@ -10,26 +10,27 @@ const InputField = ({
   pattern,
   state,
   setState,
-  value,
   onChange,
   regExpre,
+  validator,
 }) => {
   const handleInputChange = (e) => {
-    setState ? setState({ ...state, field: e.target.value }) : null
+    setState ? setState({ ...state, field: e.target.value }) : null;
   };
 
   const validateInput = (e) => {
     if (regExpre) {
       regExpre.test(state.field)
-        ? setState({ ...state, isValid: "true" })
-        : setState({ ...state, isValid: "false" });
+        ? setState({ ...state, isValid: true })
+        : setState({ ...state, isValid: false });
     }
+    validator && validator();
   };
 
-  const inputValidation = (state ? (state.isValid === "true" && styles.isValid) ||
-    (state.isValid === "false" && styles.notIsValid) : styles.form_input);
-
-  console.log("state", state);
+  const inputValidation = state
+    ? (state.isValid === true && styles.isValid) ||
+      (state.isValid === false && styles.notIsValid)
+    : styles.form_input;
 
   return (
     <div className={styles.field}>
@@ -53,7 +54,14 @@ const InputField = ({
         required={true}
       />
       {p && (
-        <p className={`${state.isValid === "false" ? styles.form_text_input_error : styles.form_input_error}`} htmlFor={name}>
+        <p
+          className={`${
+            state.isValid === false
+              ? styles.form_text_input_error
+              : styles.form_input_error
+          }`}
+          htmlFor={name}
+        >
           {p}
         </p>
       )}

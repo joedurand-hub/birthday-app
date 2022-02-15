@@ -93,7 +93,6 @@ function Birthdays({ data }) {
     setSearch(search);
   };
 
-
   return (
     <main className={style.container_components}>
       <Head>
@@ -217,7 +216,8 @@ function Birthdays({ data }) {
           </Card>
         ))}
         <div className={style.container_paginated}>
-          {search != undefined && search.length <= 4 ? null : itemsToPaginate.length <= 1 ? null :(      
+          {search !== undefined &&
+          search.length <= 4 ? null : itemsToPaginate.length <= 1 ? null : (
             <>
               <Button
                 onClick={() => {
