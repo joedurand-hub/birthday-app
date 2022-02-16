@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { Anchor, AnchorIcons } from "../AnchorsButton/Anchor";
-import styles from "../../styles/navBar.module.css";
+import styles from "./footer.module.css";
 
-function NavBar({ name, href }) {
+function Footer({ name, href }) {
   return (
-    <nav className={styles.navBar}>
-      <div className={styles.navBar_logo}>
+    <nav className={styles.content}>
+      <div className={styles.content_contact}>
         <Link href="/birthdays">
           <AnchorIcons alt="Logo" src="/cake.ico" width={45} height={45} />
         </Link>
       </div>
-      <div className={styles.navBar_menu}>
+      <p className={styles.content_contact_tale}></p>
+      <div className={styles.content_contact_icons}>
         <Anchor name={name} to={href} variant="secondary" />
 
         <Anchor name="Add birthday" to="/add-birthday" variant="primary" />
@@ -19,4 +20,4 @@ function NavBar({ name, href }) {
   );
 }
 
-export default NavBar;
+export default Footer;

@@ -22,8 +22,8 @@ export const SignUp = () => {
   const validateWithExpressions = {
     name_and_lastname: /^[a-zA-ZÀ-ÿ\s]{2,16}$/,
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    password: /^.{8,16}$/,
-    birthday: /^(\/|-)(0[1-9]|1[0-2])([0-2][0-9]|3[0-1])\2(\d{4})$/,
+    password:
+      /^(?=(.*[a-zA-Z].*){2,})(?=.*\d.*)(?=.*\W.*)[a-zA-Z0-9 \S]{8,32}$/,
   };
   const date = new Date(dateOfBirth.field);
   const birthday = date ? format(date, "MM/dd/yyyy") : null;
@@ -88,7 +88,7 @@ export const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.container_field} onSubmit={handleSubmit}>
       <Input
         state={name}
         setState={setName}
@@ -127,7 +127,7 @@ export const SignUp = () => {
         type="password"
         placeholder="********"
         name="password"
-        p="Debe tener más de 8 caracteres, tener al menos una letra mayúscula, una letra minúscula, un símbolo especial y un número."
+        p="La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un símbolo especial y un número."
         regExpre={validateWithExpressions.password}
       />
       <Input
@@ -164,8 +164,10 @@ export const SignUp = () => {
       >
         Account Created!
       </p>
-      <Anchor to="sigin" name="Cancel" variant="cancel" />
-      <Button onSubmit={handleSubmit} type="submit" name="Aceptar" />
+      <div className={styles.container_buttons_signup}>
+        <Anchor to="sigin" name="Cancel" variant="cancel" />
+        <Button onSubmit={handleSubmit} type="submit" name="Aceptar" />
+      </div>
     </form>
   );
 };

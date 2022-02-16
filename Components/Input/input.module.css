@@ -1,9 +1,10 @@
 .field {
-  margin: 0;
+  margin-left: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  max-width: 350px;
+  width: 300px;
   max-height: 40vh;
 }
 
@@ -14,7 +15,8 @@
 }
 
 .form_input {
-  width: 100%;
+  width: 300px;
+  max-width: 350px;
   padding-left: 10px;
   padding-right: 15px;
   height: 37px;
@@ -25,6 +27,8 @@
 }
 
 .form_input:focus {
+  max-width: 350px;
+  width: 300px;
   border: 2px solid #0077ffd0;
   outline: none;
   box-shadow: 3px 0 30px rgba(130, 130, 130, 0.2);
@@ -32,24 +36,34 @@
 }
 
 .isValid {
+  max-width: 350px;
+  width: 300px;
   outline: none;
   border: 2px solid #0ec727 !important;
 }
 
 .notIsValid {
+  max-width: 350px;
+  width: 300px;
   outline: none;
   border: 2px solid #e71616 !important;
 }
 
 .form_input:focus:not(:focus-visible) {
+  width: 300px;
+  max-width: 350px;
   background: transparent;
 }
 
-.form_input_error {
+.form_text {
   display: none;
 }
 
 .form_text_input_error {
+  text-align: left;
+  padding-right: 5px;
+  max-width: 350px;
+  width: 100%;
   font-size: 13px;
   margin: 5px 0 0 2px;
   color: #e92121e1;

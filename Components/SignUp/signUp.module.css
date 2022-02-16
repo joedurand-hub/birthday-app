@@ -1,3 +1,17 @@
+.container_field {
+    width: 650px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.container_buttons_signup {
+    display: flex;
+    margin-top: 20px;
+}
+
 .hidden {
     display: none;
 }

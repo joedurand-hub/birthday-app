@@ -58,7 +58,7 @@ const InputField = ({
           className={`${
             state.isValid === false
               ? styles.form_text_input_error
-              : styles.form_input_error
+              : styles.form_text
           }`}
           htmlFor={name}
         >
