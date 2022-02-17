@@ -1,5 +1,9 @@
 .content {
-
+    width: 100%;
+    height: 9vh;
+    display: flex;
+    flex-direction: row;
+    bottom: 0;
 }
 
 .content_contact {

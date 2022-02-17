@@ -87,6 +87,15 @@ export const SignUp = () => {
     }
   };
 
+  const clearInputsOnCancel = (e) => {
+    setName({ field: "", isValid: null });
+    setLastName({ field: "", isValid: null });
+    setEmail({ field: "", isValid: null });
+    setPassword({ field: "", isValid: null });
+    setPassword2({ field: "", isValid: null });
+    setDateOfBirth({ field: new Date() });
+  }
+
   return (
     <form className={styles.container_field} onSubmit={handleSubmit}>
       <Input
@@ -165,8 +174,8 @@ export const SignUp = () => {
         Account Created!
       </p>
       <div className={styles.container_buttons_signup}>
-        <Anchor to="sigin" name="Cancel" variant="cancel" />
-        <Button onSubmit={handleSubmit} type="submit" name="Aceptar" />
+        <Button onClick={clearInputsOnCancel} name="Cancel" variant="cancel" />
+        <Button onSubmit={handleSubmit} type="submit" name="Create" />
       </div>
     </form>
   );
