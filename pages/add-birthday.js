@@ -2,6 +2,7 @@ import { useState } from "react";
 import Head from "next/head"
 import { useRouter } from "next/router";
 import Form from "../Components/Form/Form";
+import Footer from "../Components/Footer/Footer"
 import styles from "../styles/container.module.css";
 
 function AddBirthday() {
@@ -61,6 +62,7 @@ function AddBirthday() {
         values={values}
         title={"¡Add a birthday to your list!"}
       ></Form>
+      <Footer/>
     </div>
   );
 }

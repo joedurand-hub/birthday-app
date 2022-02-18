@@ -1,12 +1,11 @@
 import Button from "../Button/Button";
-import input from "../Input/input.module.css";
 import styles from "./search.module.css";
 
 export const Search = ({ onSubmit }) => {
   return (
     <form className={styles.search_birthdays} onSubmit={onSubmit}>
       <input
-        className={input.form_input}
+        className={styles.search_input}
         name="search"
         type="text"
         placeholder="Search by name or email"

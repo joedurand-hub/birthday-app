@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import SignUp from "../Components/SignUp/SignUp";
+import Footer from "..Components/Footer/Footer"
 
 function SignIn() {
   return (
@@ -14,6 +14,7 @@ function SignIn() {
       <main>
         <p>Nueva ruta para LogIn</p>
       </main>
+      <Footer/>
     </div>
   );
 }

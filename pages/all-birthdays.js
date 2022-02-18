@@ -11,6 +11,7 @@ import NavBar from "../Components/NavBar/NavBar";
 import Paginate from "../Components/Paginate/Paginate";
 import Button from "../Components/Button/Button";
 import Card from "../Components/Card/Card";
+import Footer from "../Components/Footer/Footer"
 import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
 
 function AllBirthdays({ data }) {
@@ -33,6 +34,8 @@ function AllBirthdays({ data }) {
   };
 
   return (
+    <>
+    
     <main className={style.container_all_birthdays}>
       <Head>
         <title>Birthday App</title>
@@ -112,6 +115,8 @@ function AllBirthdays({ data }) {
         </div>
       </div>
     </main>
+    <Footer/>
+    </>
   );
 }
 

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head"
 import { format } from "date-fns";
 import Form from "../Components/Form/Form";
+import Footer from "../Components/Footer/Footer"
 import styles from "../styles/container.module.css";
 
 function UpdateBirthday({ user }) {
@@ -81,6 +82,7 @@ function UpdateBirthday({ user }) {
         values={state}
         title={"Edit the birthday Card!"}
       ></Form>
+      <Footer/>
     </div>
   );
 }
