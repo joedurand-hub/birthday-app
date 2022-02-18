@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Footer from "..Components/Footer/Footer"
+import Footer from "../Components/Footer/Footer"
 
 function SignIn() {
   return (

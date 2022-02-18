@@ -1,10 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import style from "../styles/container.module.css"
-import styles from "../Components/Signup/signUp.module.css";
 import SignUp from "../Components/SignUp/SignUp";
 import Footer from "../Components/Footer/Footer";
 import { Anchor } from "../Components/AnchorsButton/Anchor";
+import styles from "../Components/Signup/signup.module.css";
 
 function Home() {
   return (
