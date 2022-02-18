@@ -3,7 +3,7 @@ import Head from "next/head";
 import SignUp from "../Components/SignUp/SignUp";
 import Footer from "../Components/Footer/Footer";
 import { Anchor } from "../Components/AnchorsButton/Anchor";
-import styles from "../Components/SignUp/signup.module.css";
+import styles from "../Components/SignUp/signon.module.css";
 
 function Home() {
   return (
@@ -14,7 +14,6 @@ function Home() {
         <link rel="icon" href="/cake.ico" />
       </Head>
       <main className={styles.container}>
-
         <section className={styles.container_text_sign_up}>
           <h1>Create account</h1>
           <p className={styles.record_paragraph}>
@@ -24,17 +23,17 @@ function Home() {
           </p>
           <div className={styles.container_log_in}>
             <strong>¿You have account?</strong>
-            <Anchor to="sign-in" name="Log In" variant="secondary"/>
+            <Anchor to="sign-in" name="Log In" variant="secondary" />
           </div>
         </section>
 
         <SignUp />
         <div className={styles.container_log_in_mobile}>
-            <strong>¿You have account?</strong>
-            <Anchor to="sign-in" name="Log In" variant="secondary"/>
-          </div>
+          <strong>¿You have account?</strong>
+          <Anchor to="sign-in" name="Log In" variant="secondary" />
+        </div>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }

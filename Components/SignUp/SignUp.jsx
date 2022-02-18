@@ -1,9 +1,8 @@
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import styles from "./signUp.module.css";
+import styles from "./signon.module.css";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Anchor } from "../AnchorsButton/Anchor";
 import { format } from "date-fns";
 
 export const SignUp = () => {
