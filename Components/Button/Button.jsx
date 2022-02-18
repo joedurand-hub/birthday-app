@@ -26,3 +26,8 @@ const Button = ({
 };
 
 export default Button;
+
+
+// Creo que acá debería ir la manipulación de errores "failed to send" y
+// su respectivo CSS module, teniendo como propiedad un p para mostrar esos errores
+// al realizar click en un botón y que no se haya podido completar

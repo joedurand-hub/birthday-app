@@ -1,12 +1,41 @@
-@media screen and (max-width: 768px) {
+.search_input {
+  max-width: 350px;
+  padding-right: 15px;
+  height: 37px;
+  line-height: 37px;
+  border: 2px solid transparent;
+  transition: 0.3s ease all;
+  border-radius: 5px;
+  border-bottom-left-radius: none;
+  border-bottom-right-radius: none;
+}
+
+@media screen and (min-width: 320px) {
   .search_birthdays {
-    width: 60%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .search_input {
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  .search_birthdays {
+    width: 55%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     text-align: center;
     margin: 10px;
+  }
+  .search_input {
+    width: 220px;
   }
 }
 
@@ -19,5 +48,8 @@
     justify-content: center;
     text-align: center;
     margin: 20px;
+  }
+  .search_input {
+    width: 250px;
   }
 }

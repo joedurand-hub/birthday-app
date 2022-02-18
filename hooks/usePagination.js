@@ -1,18 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const usePagination = (data, itemsPerPage = 5) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
-
   const numberOfPages = Math.ceil(data.length / itemsPerPage);
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const currentData = data.slice(start, end);
-
-  const filteredBirthdays = () => {
-    if (search.length === 0) {
-      return currentData;
-    }
+  let itemsToPaginate;
+  
+  const filteredBirthdays = (search) => {
     const filteredByNameAndEmail = data.filter((elements) => {
       if (elements.firstName.includes(search)) {
         return elements;
@@ -20,15 +16,15 @@ export const usePagination = (data, itemsPerPage = 5) => {
       if (elements.email.includes(search)) {
         return elements;
       }
+      if (search === undefined || search === null || search.length === 0) {
+        return currentData;
+      }
     });
     return filteredByNameAndEmail.slice(start, end);
   };
 
-  const handleInputChange = (e) => {
-    setSearch(e.target.value);
-  };
 
-  const itemsToPaginate = new Array(numberOfPages)
+  itemsToPaginate = new Array(numberOfPages)
     .fill()
     .map((irrelevant, index) => index + 1);
 
@@ -53,7 +49,6 @@ export const usePagination = (data, itemsPerPage = 5) => {
     previousPage,
     nextPage,
     changePage,
-    handleInputChange,
     filteredBirthdays,
     currentData,
     itemsToPaginate,

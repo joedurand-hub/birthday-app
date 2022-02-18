@@ -8,7 +8,7 @@ export const Anchor = React.forwardRef(
   ({ onClick, to, name, variant = "primary", disabled }, ref) => {
     return (
       <Link href={to} passHref>
-        <a
+        <a rel="noreferrer noopener"
           onClick={onClick}
           ref={ref}
           className={cc(
@@ -27,7 +27,7 @@ export const Anchor = React.forwardRef(
 export const AnchorIcons = React.forwardRef(
   ({ onClick, href, src, alt, width, height }, ref) => {
     return (
-      <a href={href} onClick={onClick} ref={ref}>
+      <a href={href} onClick={onClick} ref={ref} rel="noreferrer noopener">
         <Image src={src} width={width} height={height} alt={alt} />
       </a>
     );

@@ -45,7 +45,7 @@ function Form({ onSubmit, onChange, values, title }) {
             onChange={onChange}
             type="email"
             name="email"
-            placeholder={"user@user.com"}
+            placeholder="user@user.com"
             value={values.email}
             required={true}
           />
@@ -64,7 +64,6 @@ function Form({ onSubmit, onChange, values, title }) {
             <Button
               variant="primary"
               type="submit"
-              name="submit"
               onSubmit={onSubmit}
               name={"Save"}
             />
