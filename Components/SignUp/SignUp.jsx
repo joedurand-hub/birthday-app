@@ -75,7 +75,7 @@ export const SignUp = () => {
             setPassword({ field: "", isValid: null });
             setPassword2({ field: "", isValid: null });
             setDateOfBirth({ field: new Date() });
-            return router.push("/sign-in");
+            return router.push("/terms");
           }
         })
         .catch((error) => {
@@ -93,7 +93,7 @@ export const SignUp = () => {
     setPassword({ field: "", isValid: null });
     setPassword2({ field: "", isValid: null });
     setDateOfBirth({ field: new Date() });
-  }
+  };
 
   return (
     <form className={styles.container_field} onSubmit={handleSubmit}>
@@ -104,7 +104,7 @@ export const SignUp = () => {
         type="text"
         placeholder="Ethan"
         name="name"
-        p="El nombre sólo debe contener letras y/o espacios."
+        p="The name must only contain letters and/or spaces."
         regExpre={validateWithExpressions.name_and_lastname}
       />
 
@@ -115,7 +115,7 @@ export const SignUp = () => {
         type="text"
         placeholder="Windhandel"
         name="lastname"
-        p="El apellido sólo debe contener letras y/o espacios."
+        p="The last name must only contain letters and/or spaces."
         regExpre={validateWithExpressions.name_and_lastname}
       />
       <Input
@@ -125,7 +125,7 @@ export const SignUp = () => {
         type="email"
         placeholder="ethan@windhandel.com"
         name="email"
-        p="El email debe contener @ y finalizar .algo"
+        p="The email must contain @ and end with a period."
         regExpre={validateWithExpressions.email}
       />
       <Input
@@ -135,7 +135,7 @@ export const SignUp = () => {
         type="password"
         placeholder="********"
         name="password"
-        p="La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un símbolo especial y un número."
+        p="The password must have at least 8 characters, one uppercase letter, one lowercase letter, one special symbol, and one number."
         regExpre={validateWithExpressions.password}
       />
       <Input
@@ -145,7 +145,7 @@ export const SignUp = () => {
         type="password"
         placeholder="********"
         name="password"
-        p="Por favor repita correctamente la contraseña"
+        p="Please repeat the password correctly."
         validator={comparePassword}
       />
 
@@ -155,7 +155,7 @@ export const SignUp = () => {
         setState={setDateOfBirth}
         type="date"
         name="dateOfBirth"
-        p="Ingrese una fecha correcta"
+        p="Please enter a correct date."
       />
 
       <p
