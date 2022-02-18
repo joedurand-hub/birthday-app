@@ -1,197 +1,201 @@
-
 .container_buttons_signup {
-    display: flex;
-    margin: 10px;
+  display: flex;
+  margin: 10px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .failed_to_send {
-    border: 1px solid red;
-    font-size: 20px;
-    color: rgb(0, 0, 0);
-    background: rgb(250, 68, 68);
-    height: 50px;
-    line-height: 50px;
-    padding: 0 10px 0 10px;
-    text-align: center;
+  border: 1px solid red;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  background: rgb(250, 68, 68);
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px 0 10px;
+  text-align: center;
 }
-
 
 .success_sending {
-    border: 1px solid rgb(7, 167, 34);
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    background: rgb(16, 223, 126);
-    height: 50px;
-    line-height: 50px;
-    padding: 0 10px 0 10px;
-    text-align: center;
+  border: 1px solid rgb(7, 167, 34);
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  background: rgb(16, 223, 126);
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px 0 10px;
+  text-align: center;
 }
-
 
 .container_text_sign_up {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 }
 .record_paragraph {
-    text-align: center;
-    width: 70%;
+  text-align: center;
+  width: 70%;
 }
 
 .container_log_in {
+  text-align: center;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+  .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../public/wave.png");
+    background-repeat: no-repeat;
+  }
+  .container_log_in {
+    display: none;
+  }
+  .container_log_in_mobile {
+    display: flex;
     text-align: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .container_field {
+    width: 320px;
+    height: 87vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: white;
+    margin: 10px;
+    border-radius: 15px;
+  }
+  .record_paragraph {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 820px) {
+  .container {
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    background-image: url("../../public/wave.png");
+    background-repeat: no-repeat;
+  }
+  .container_field {
+    min-width: 600px;
+    max-width: 720px;
+    height: 60vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 15px;
+    box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;
+    padding: 5px;
+  }
+  .container_log_in {
+    display: none;
+  }
+  .container_log_in_mobile {
     display: inline-flex;
+    text-align: center;
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    margin: 15px;
+  }
 }
 
-@media screen and (min-width: 320px) and (max-width: 768px) { 
-    .container {
-      height: 91vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    .container_log_in {
-        display: none;
-    }
-    .container_log_in_mobile {
-        display: inline-flex;
-        text-align: center;
-        flex-direction: row;
-        justify-content: left;
-        align-items: center;
-        margin: 15px;
-    }
-    .container_field {
-        min-width: 320px;
-        max-width: 480px;
-        height: 85vh;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        background: white;
-        margin: 10px;
-        border-radius: 15px;
-    }
-    
+@media screen and (min-width: 820px) {
+  .container {
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 15px;
+    padding-right: 25px;
+    background-image: url("../../public/wave.png");
+    background-repeat: no-repeat;
+  }
+  .container_field {
+    min-width: 600px;
+    max-width: 720px;
+    height: 60vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 15px;
+    box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;
+    padding: 5px;
+  }
+  .container_text_sign_up {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    padding: 0;
+    margin: 0;
+  }
+  .container_log_in {
+    display: flex;
+    flex-direction: column;
+  }
+  .container_log_in_mobile {
+    display: none;
+  }
+  .record_paragraph {
+    text-align: left;
+    width: 100%;
+  }
 }
 
-
-@media screen and (min-width: 769px) and (max-width: 820px) { 
-
-    .container {
-      height: 93vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        padding: 20px;   
-    }
-    .container_field {
-        min-width: 600px;
-        max-width: 720px;
-        height: 60vh;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        background: white;
-        border-radius: 15px;
-        box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;    
-        padding: 5px;
-    }
-    .container_log_in {
-        display: none;
-    }
-    .container_log_in_mobile {
-        display: inline-flex;
-        text-align: center;
-        flex-direction: row;
-        justify-content: left;
-        align-items: center;
-        margin: 15px;
-    }
+@media screen and (min-width: 1024px) {
+  .container_field {
+    min-width: 650px;
+    max-width: 720px;
+    height: 60vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: white;
+    border-radius: 15px;
+    box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;
+  }
+  .container_log_in_mobile {
+    display: none;
+  }
+  .container_log_in {
+    display: flex;
+    flex-direction: row;
+  }
+  .record_paragraph {
+    text-align: center;
+    width: 70%;
+  }
 }
-
-@media screen and (min-width: 820px) { 
-
-    .container {
-      height: 93vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        padding-left: 15px;
-        padding-right: 25px;   
-    }
-    .container_field {
-        min-width: 600px;
-        max-width: 720px;
-        height: 60vh;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        background: white;
-        border-radius: 15px;
-        box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;    
-        padding: 5px;
-    }
-    .container_text_sign_up {
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        align-items: left;
-    }
-    .container_log_in {
-        display: flex;
-        flex-direction: column;
-    }
-    .container_log_in_mobile {
-        display: none;
-    }
-    .record_paragraph {
-        text-align: left;
-        width: 100%;
-    }
-}
-
-    @media screen and (min-width: 1024px) { 
-        .container_field {
-            min-width: 650px;
-            max-width: 720px;
-            height: 60vh;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            background: white;
-            border-radius: 15px;
-            box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;    
-        }
-        .container_log_in_mobile {
-            display: none;
-        }
-        .container_log_in {
-            display: flex;
-            flex-direction: row;
-        }
-        .record_paragraph {
-            text-align: center;
-            width: 70%;
-        }
-    }

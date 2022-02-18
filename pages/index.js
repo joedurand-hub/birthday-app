@@ -17,9 +17,9 @@ function Home() {
         <section className={styles.container_text_sign_up}>
           <h1>Create account</h1>
           <p className={styles.record_paragraph}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam. <br />
+            Birthday App is an application for you to store, manage and consult
+            all the birthdays that you will have soon, in an orderly manner and
+            even send your greetings. <br />
           </p>
           <div className={styles.container_log_in}>
             <strong>¿You have account?</strong>
@@ -28,11 +28,11 @@ function Home() {
         </section>
 
         <SignUp />
+      </main>
         <div className={styles.container_log_in_mobile}>
           <strong>¿You have account?</strong>
           <Anchor to="sign-in" name="Log In" variant="secondary" />
         </div>
-      </main>
       <Footer />
     </>
   );
