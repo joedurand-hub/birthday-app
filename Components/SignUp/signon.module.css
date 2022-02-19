@@ -110,7 +110,7 @@
     flex-wrap: wrap;
     background: white;
     border-radius: 15px;
-    box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;
+    box-shadow: rgba(86, 83, 241, 0.39) 0px 22px 70px 4px;
     padding: 5px;
   }
   .container_log_in {
@@ -149,7 +149,7 @@
     flex-wrap: wrap;
     background: white;
     border-radius: 15px;
-    box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;
+    box-shadow: rgba(86, 83, 241, 0.39) 0px 22px 70px 4px;
     padding: 5px;
   }
   .container_text_sign_up {
@@ -185,7 +185,7 @@
     flex-wrap: wrap;
     background: white;
     border-radius: 15px;
-    box-shadow: rgb(86, 83, 241) 0px 22px 70px 4px;
+    box-shadow: rgba(86, 83, 241, 0.39) 0px 22px 70px 4px;
   }
   .container_log_in_mobile {
     display: none;
