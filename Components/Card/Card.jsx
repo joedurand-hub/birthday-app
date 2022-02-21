@@ -1,9 +1,10 @@
-import { useModal } from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import Image from "next/image";
 import Button from "../Button/Button";
-import { useRouter } from "next/router";
 import card from "./card.module.css";
+import { useModal } from "../../hooks/useModal";
+import { AiTwotoneDelete } from "react-icons/ai";
+import { useRouter } from "next/router";
 import modal from "../../styles/modal.module.css";
 
 function Card({
@@ -92,14 +93,7 @@ function Card({
         </div>
         <div className={card.container_icons}>
           {children}
-          <Image
-            src={"/delete-icon.png"}
-            alt={"Delete icon"}
-            width={35}
-            height={35}
-            className={card.icons}
-            onClick={openModalDelete}
-          />
+          <i onClick={openModalDelete}> <AiTwotoneDelete className={card.delete}/> </i>
         </div>
       </div>
     </>

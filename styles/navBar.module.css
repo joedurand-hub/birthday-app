@@ -29,6 +29,18 @@
 .navBar_menu {
 	display: flex;
 }
+
+.logo {
+	width: 45px;
+	height: 45px;
+	line-height: 45px;
+	color:rgb(115, 17, 153);
+}
+
+.logo:hover {
+	color:rgb(153, 29, 202);
+}
+
 @media screen and (min-width: 769px) {
 	.navBar {
 		width: 100%;

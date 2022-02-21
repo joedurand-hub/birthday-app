@@ -117,10 +117,10 @@
     display: none;
   }
   .container_log_in_mobile {
-    display: inline-flex;
+    display: flex;
     text-align: center;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     margin: 15px;
   }

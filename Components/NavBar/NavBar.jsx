@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Anchor, AnchorIcons } from "../AnchorsButton/Anchor";
+import { FaBirthdayCake } from "react-icons/fa"
+import { Anchor } from "../AnchorsButton/Anchor";
 import styles from "../../styles/navBar.module.css";
 
 function NavBar({ name, href }) {
@@ -7,12 +8,11 @@ function NavBar({ name, href }) {
     <nav className={styles.navBar}>
       <div className={styles.navBar_logo}>
         <Link href="/birthdays">
-          <AnchorIcons alt="Logo" src="/cake.ico" width={45} height={45} />
+          <a><i><FaBirthdayCake className={styles.logo}/></i></a>
         </Link>
       </div>
       <div className={styles.navBar_menu}>
         <Anchor name={name} to={href} variant="secondary" />
-
         <Anchor name="Add birthday" to="/add-birthday" variant="primary" />
       </div>
     </nav>
