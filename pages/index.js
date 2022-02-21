@@ -23,7 +23,7 @@ function Home() {
           </p>
           <div className={styles.container_log_in}>
             <strong>¿You have account?</strong>
-            <Anchor to="sign-in" name="Log In" variant="secondary" />
+            <Anchor to="/sign-in" name="Log In" variant="secondary" />
           </div>
         </section>
 
@@ -31,7 +31,7 @@ function Home() {
       </main>
         <div className={styles.container_log_in_mobile}>
           <strong>¿You have account?</strong>
-          <Anchor to="sign-in" name="Log In" variant="secondary" />
+          <Anchor to="/sign-in" name="Log In" variant="secondary" />
         </div>
       <Footer />
     </>

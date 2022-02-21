@@ -44,22 +44,77 @@
   margin: 0;
 }
 
-.icons {
-  cursor: pointer;
-}
-
 .container_icons {
   display: flex;
   flex-direction: column;
 }
 
-.email {
+.icons {
   display: none;
 }
 
-.card:hover .email {
- display:block;
- cursor: pointer;
+.card:hover .icons {
+  display: block;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.email {
+  margin: 1px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  color: rgb(58, 26, 163);
+}
+
+.email:hover {
+  padding: 3px;
+  color: rgb(44, 33, 200);
+  background: rgb(219, 219, 219);
+  border-radius: 15px;
+  transition: 0.3s;
+}
+.email:active {
+  padding: 0;
+  background: rgb(255, 255, 255);
+}
+.delete {
+  margin: 1px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  color: rgb(230, 17, 17);
+  cursor: pointer;
+}
+
+.delete:hover {
+  padding: 3px;
+  color: rgb(241, 38, 38);
+  background: rgb(219, 219, 219);
+  border-radius: 15px;
+  transition: 0.3s;
+}
+.delete:active {
+  padding: 0;
+  background: rgb(255, 255, 255);
+}
+.edit {
+  margin: 1px;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  color: rgb(113, 26, 163);
+}
+
+.edit:hover {
+  padding: 3px;
+  background: rgb(219, 219, 219);
+  border-radius: 15px;
+  transition: 0.3s;
+}
+.edit:active {
+  padding: 0;
+  background: rgb(255, 255, 255);
 }
 
 @media screen and (min-width: 769px) {
@@ -77,10 +132,9 @@
   }
 
   .card:hover {
-    cursor: pointer;
-    box-shadow: -1px 2px 21px 2px rgba(0, 0, 0, 0.336);
-    -webkit-box-shadow: -1px 2px 21px 2px rgba(0, 0, 0, 0.329);
-    -moz-box-shadow: -1px 2px 21px 2px rgba(0, 0, 0, 0.253);
+    box-shadow: -1px 2px 21px 2px rgba(0, 0, 0, 0.137);
+    -webkit-box-shadow: -1px 2px 21px 2px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: -1px 2px 21px 2px rgba(0, 0, 0, 0.109);
   }
 
   .image {

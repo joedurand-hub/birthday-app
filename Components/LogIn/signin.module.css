@@ -1,83 +1,115 @@
-
 .container_field {
-    min-width: 320px;
-    max-width: 380px;
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: white;
-    border-radius: 15px;
+  min-width: 320px;
+  max-width: 380px;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 15px;
 }
 
 .container_signup {
-    display: flex;
-    margin: 10px;
+  display: flex;
+  margin: 10px;
 }
 .container_signup > strong {
-    margin-right: 5px;
+  margin-right: 5px;
+}
+
+.container_buttons_signin {
+  margin-top: 15px;
 }
 
 .container_text_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.record_paragraph {
+  text-align: center;
+  width: 70%;
+}
+
+.hidden {
+  display: none;
+}
+
+.failed_to_send {
+  transition-duration: 4s;
+  transition-delay: 2s;
+  transition-property: font-size;
+  border: 1px solid red;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  background: rgb(250, 68, 68);
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px 0 10px;
+  text-align: center;
+  transition: .3s;
+}
+
+/* .failed_to_send:hover {
+  transition-delay: 3s;
+  transition-duration: 4s;
+  transition-delay: 2s;
+  color: rgb(0, 0, 0);
+  height: 80px;
+  line-height: 50px;
+  padding: 0 10px 0 10px;
+  text-align: center;
+  font-size: 22px;
+} */
+
+
+@media screen and (min-width: 320px) {
+  .container_text_login {
+    display: none;
+  }
+  .container_login {
+    height: 93vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    padding-left: 15px;
+    padding-right: 25px;
+    background-image: url("../../public/wave.png");
+    background-repeat: no-repeat;
+  }
 }
-
-.record_paragraph {
+@media screen and (min-width: 769px) {
+  .container_signup {
+    display: flex;
     text-align: center;
-    width: 70%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .container_text_login {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+  .record_paragraph {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  .container_login {
+    height: 93vh;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 25px;
+    background-image: url("../../public/wave.png");
+    background-repeat: no-repeat;
+  }
 }
-
-
-
-@media screen and (min-width: 320px) {
-    .container_text_login {
-        display: none;
-    }
-    .container_login {
-        height: 93vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-left: 15px;
-        padding-right: 25px;   
-        background-image: url('../../public/wave.png');
-        background-repeat: no-repeat;
-    }
-}
-        @media screen and (min-width: 769px) {
-            .container_signup {
-                display: flex;
-                text-align: center;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-            } 
-            .container_text_login {
-                display: flex;
-                justify-content: center;
-                text-align: center;
-                align-items: center;
-        
-            }
-            .record_paragraph {
-                display: flex;
-                align-items: center;
-                text-align: center;
-            }
-            .container_login {
-                height: 93vh;
-                display: grid;
-                grid-template-columns: repeat(2, 50%);
-                align-items: center;
-                padding-left: 15px;
-                padding-right: 25px;   
-                background-image: url('../../public/wave.png');
-                background-repeat: no-repeat;
-            }
-        }

@@ -15,8 +15,10 @@ import Paginate from "../Components/Paginate/Paginate";
 import Input from "../Components/Input/Input";
 import Button from "../Components/Button/Button";
 import Link from "next/link";
+import { MdEmail } from "react-icons/md";
+import { BiEdit } from "react-icons/bi";
 import { useModal } from "../hooks/useModal";
-import { Anchor, AnchorIcons } from "../Components/AnchorsButton/Anchor";
+import { Anchor } from "../Components/AnchorsButton/Anchor";
 import {
   differenceInCalendarDays,
   compareAsc,
@@ -147,6 +149,7 @@ function Birthdays({ data }) {
                     variant="cancel"
                     type="button"
                   />
+
                   <Anchor
                     className={modal.modal_anchor}
                     to={`mailto:${dataInModal.email}?subject=${mailto.subject}&body=${mailto.message}`}
@@ -183,38 +186,32 @@ function Birthdays({ data }) {
             >
               {isToday(objectUser.birthday) ? (
                 <>
-                  <div className={card.email}>
-                    <Image
-                      src={"/email.png"}
-                      width={35}
-                      height={35}
-                      alt={"Email icon"}
+                  <div className={card.icons}>
+                    <i
                       onClick={() => {
                         setDataUser(objectUser.id);
                         openModalEmail();
                       }}
-                    />
+                    >
+                      <MdEmail className={card.email} />
+                    </i>
                   </div>
                   <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
-                    <AnchorIcons
-                      src={"/edit.png"}
-                      alt={"Edit icon"}
-                      width={35}
-                      height={35}
-                      className={card.icons}
-                    />
+                    <a>
+                      <i>
+                        <BiEdit className={card.edit} />
+                      </i>
+                    </a>
                   </Link>
                 </>
               ) : (
                 <Link href={`update-birthday/?id=${objectUser.id}`} passHref>
-                  <AnchorIcons
-                    src={"/edit.png"}
-                    alt={"Edit icon"}
-                    width={35}
-                    height={35}
-                    className={card.icons}
-                  />
-                </Link>
+                <a>
+                  <i>
+                    <BiEdit className={card.edit} />
+                  </i>
+                </a>
+              </Link>
               )}
             </Card>
           ))}

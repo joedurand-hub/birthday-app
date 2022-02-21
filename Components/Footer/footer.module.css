@@ -5,20 +5,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-align: center;
   justify-content: space-evenly;
   bottom: 0;
-  padding: 5px;
-  
-}
-
-.content_contact {
-}
-
-.content_contact_tale {
 }
 
 .content_contact_icons {
   width: 35px;
+  line-height: 35px;
   height: 35px;
   color: #8228b6;
 }
