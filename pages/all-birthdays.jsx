@@ -5,7 +5,7 @@ import Link from "next/link";
 import Head from "next/head";
 import style from "../styles/container.module.css";
 import card from "../Components/Card/card.module.css";
-import button from "../styles/Buttons.module.css";
+import button from "../Components/Button/button.module.css";
 import Search from "../Components/Search/Search";
 import NavBar from "../Components/NavBar/NavBar";
 import Paginate from "../Components/Paginate/Paginate";

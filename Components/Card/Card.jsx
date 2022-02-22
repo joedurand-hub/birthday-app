@@ -5,7 +5,7 @@ import card from "./card.module.css";
 import { useModal } from "../../hooks/useModal";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { useRouter } from "next/router";
-import modal from "../../styles/modal.module.css";
+import modal from "../Modal/modal.module.css";
 
 function Card({
   firstName,

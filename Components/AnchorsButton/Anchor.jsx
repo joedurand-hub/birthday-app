@@ -1,6 +1,5 @@
 import React from "react";
-import styles from "../../styles/Buttons.module.css";
-import Image from "next/image";
+import styles from "../Button/button.module.css";
 import { cc } from "../../helpers/variant.js";
 import Link from "next/link";
 

@@ -16,7 +16,7 @@ export const SignUp = () => {
     // if (email.isValid === true && password.isValid === true) {
     //   setFormIsValid(true);
       fetch("https://birthday-app-api.vercel.app/api/v2/signin", {
-        mode: 'CORS',
+        mode: 'no-cors',
         method: "POST",
         headers: {
           Accept: "application/json",
