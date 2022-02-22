@@ -76,7 +76,7 @@ function Terms() {
         </section>
         </div>
 
-        <footer className={terms.navBarMobileTerms}>
+        <footer className={terms.navBarSecondary}>
           <Anchor name="Decline" to="/" variant="cancel" />
 
           <Button

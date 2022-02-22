@@ -1,5 +1,5 @@
 import { cc } from "../../helpers/variant.js";
-import styles from "../../styles/Buttons.module.css";
+import styles from "./button.module.css";
 const Button = ({
   name,
   type,

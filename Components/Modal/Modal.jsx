@@ -1,4 +1,4 @@
-import styles from "../../styles/modal.module.css";
+import styles from "./modal.module.css";
 
 function Modal({ children, isOpen, closeModal }) {
   const modalHandleClick = (e) => e.stopPropagation();

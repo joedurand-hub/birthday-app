@@ -1,3 +1,4 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import React from "react";
 import Head from "next/head";
 import SignUp from "../Components/SignUp/SignUp";

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaBirthdayCake } from "react-icons/fa"
 import { Anchor } from "../AnchorsButton/Anchor";
-import styles from "../../styles/navBar.module.css";
+import styles from "./navBar.module.css";
 
 function NavBar({ name, href }) {
   return (
