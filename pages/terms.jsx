@@ -25,7 +25,6 @@ function Terms() {
       </Head>
 
       <main className={container.container_content}>
-          <h1 className={terms.terms_title}>Hello name of user</h1>
         <div className={terms.terms_instructions}>
   
           <h5>Author: Joel Durand</h5>

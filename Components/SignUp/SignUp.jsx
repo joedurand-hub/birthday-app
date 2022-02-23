@@ -67,19 +67,18 @@ export const SignUp = () => {
         }),
       })
         .then((response) => {
+          response.json();
+          setName({ field: "", isValid: null });
+          setLastName({ field: "", isValid: null });
+          setEmail({ field: "", isValid: null });
+          setPassword({ field: "", isValid: null });
+          setPassword2({ field: "", isValid: null });
+          setDateOfBirth({ field: new Date() });
           if (response.ok) {
-            response.json();
-            setName({ field: "", isValid: null });
-            setLastName({ field: "", isValid: null });
-            setEmail({ field: "", isValid: null });
-            setPassword({ field: "", isValid: null });
-            setPassword2({ field: "", isValid: null });
-            setDateOfBirth({ field: new Date() });
-            return router.push("/terms");
           }
         })
         .catch((error) => {
-          alert(error, "An error has occurred, please try again later");
+          console.log(error, "An error has occurred, please try again later");
         });
     } else {
       setFormIsValid(false);
@@ -96,87 +95,102 @@ export const SignUp = () => {
   };
 
   return (
-    <form className={styles.container_field} onSubmit={handleSubmit}>
-      <Input
-        state={name}
-        setState={setName}
-        label="Name"
-        type="text"
-        placeholder="Ethan"
-        name="name"
-        p="The name must only contain letters and/or spaces."
-        regExpre={validateWithExpressions.name_and_lastname}
-      />
+    <>
+      <form className={styles.container_field} onSubmit={handleSubmit}>
+        <Input
+          state={name}
+          setState={setName}
+          label="Name"
+          type="text"
+          placeholder="Ethan"
+          name="name"
+          p="The name must only contain letters and/or spaces."
+          regExpre={validateWithExpressions.name_and_lastname}
+        />
 
-      <Input
-        label="Last name"
-        state={lastname}
-        setState={setLastName}
-        type="text"
-        placeholder="Windhandel"
-        name="lastname"
-        p="The last name must only contain letters and/or spaces."
-        regExpre={validateWithExpressions.name_and_lastname}
-      />
-      <Input
-        label="Email"
-        state={email}
-        setState={setEmail}
-        type="email"
-        placeholder="ethan@windhandel.com"
-        name="email"
-        p="The email must contain @ and end with a period."
-        regExpre={validateWithExpressions.email}
-      />
-      <Input
-        label="Password"
-        state={password}
-        setState={setPassword}
-        type="password"
-        placeholder="********"
-        name="password"
-        p="The password must have at least 8 characters, one uppercase letter, one lowercase letter, one special symbol, and one number."
-        regExpre={validateWithExpressions.password}
-      />
-      <Input
-        label="Repeat password"
-        state={password2}
-        setState={setPassword2}
-        type="password"
-        placeholder="********"
-        name="password"
-        p="Please repeat the password correctly."
-        validator={comparePassword}
-      />
+        <Input
+          label="Last name"
+          state={lastname}
+          setState={setLastName}
+          type="text"
+          placeholder="Windhandel"
+          name="lastname"
+          p="The last name must only contain letters and/or spaces."
+          regExpre={validateWithExpressions.name_and_lastname}
+        />
+        <Input
+          label="Email"
+          state={email}
+          setState={setEmail}
+          type="email"
+          placeholder="ethan@windhandel.com"
+          name="email"
+          p="The email must contain @ and end with a period."
+          regExpre={validateWithExpressions.email}
+        />
+        <Input
+          label="Password"
+          state={password}
+          setState={setPassword}
+          type="password"
+          placeholder="********"
+          name="password"
+          p="The password must have at least 8 characters, one uppercase letter, one lowercase letter, one special symbol, and one number."
+          regExpre={validateWithExpressions.password}
+        />
+        <Input
+          label="Repeat password"
+          state={password2}
+          setState={setPassword2}
+          type="password"
+          placeholder="********"
+          name="password"
+          p="Please repeat the password correctly."
+          validator={comparePassword}
+        />
 
-      <Input
-        label="Fecha de nacimiento"
-        state={birthday}
-        setState={setDateOfBirth}
-        type="date"
-        name="dateOfBirth"
-        p="Please enter a correct date."
-      />
+        <Input
+          label="Fecha de nacimiento"
+          state={birthday}
+          setState={setDateOfBirth}
+          type="date"
+          name="dateOfBirth"
+          p="Please enter a correct date."
+        />
 
-      <p
-        className={`${
-          formIsValid === false ? styles.failed_to_send : styles.hidden
-        }`}
-      >
-        <b>Error:</b> Please complete the form correctly.
-      </p>
-      <p
-        className={`${
-          formIsValid === true ? styles.success_sending : styles.hidden
-        }`}
-      >
-        Account Created!
-      </p>
-      <div className={styles.container_buttons_signup}>
-        <Button onClick={clearInputsOnCancel} name="Cancel" variant="cancel" />
-        <Button onSubmit={handleSubmit} type="submit" name="Create" />
-      </div>
-    </form>
+        <div className={styles.container_notifications}>
+          <p
+            className={`${
+              formIsValid === false ? styles.failed_to_send : styles.hidden
+            }`}
+          >
+            <b>Error:</b> Please complete the form correctly.
+          </p>
+          <p
+            className={`${
+              formIsValid === true ? styles.success_sending : styles.hidden
+            }`}
+          >
+            Account Created!
+          </p>
+        </div>
+        <div className={styles.container_buttons_signup}>
+          <Button
+            onClick={clearInputsOnCancel}
+            name="Cancel"
+            variant="cancel"
+          />
+          <Button
+            onSubmit={handleSubmit}
+            onClick={() => {
+              router.push("/terms");
+            }}
+            type="submit"
+            name="Create"
+          />
+        </div>
+      </form>
+    </>
   );
 };
 
