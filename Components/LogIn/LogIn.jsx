@@ -13,8 +13,8 @@ export const SignUp = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // if (email.isValid === true && password.isValid === true) {
-    //   setFormIsValid(true);
+    if (email.isValid === true && password.isValid === true) {
+      setFormIsValid(true);
       fetch("https://birthday-app-api.vercel.app/api/v2/signin", {
         mode: 'no-cors',
         method: "POST",
@@ -29,7 +29,6 @@ export const SignUp = () => {
       })
         .then((response) => {
           if (response.ok) {
-            console.log("response:", response, "Lograste iniciar sesion")
             response.json();
             setEmail({ field: "", isValid: null });
             setPassword({ field: "", isValid: null });
@@ -38,11 +37,10 @@ export const SignUp = () => {
         })
         .catch((error) => {
           console.log("error:", error)
-          alert(error, "An error has occurred, please try again later");
         });
-    // } else {
-    //   setFormIsValid(false);
-    // }
+    } else {
+      setFormIsValid(false);
+    }
   };
 
   return (

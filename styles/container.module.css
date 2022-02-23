@@ -57,7 +57,6 @@
 }
 
 .container_paginated {
-  margin: 20px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -75,15 +74,31 @@
 
 
 @media screen and (max-width: 420px) {
+  .containerApp {
+    padding: 25px;
+    background: transparent;
+  }
   .container_paginated {
     flex-direction: column;
+    margin: 0;
   }
 }
 
 @media screen and (min-width: 769px) {
-
   .containerApp {
     padding: 25px;
+    background: transparent;
+  }
+  .containerApp_form {
+    height: 100vh;
+    margin: 0;
+    background: #e6e6e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../public/wave.png");
+    background-repeat: no-repeat;
   }
 
   .container_content {
