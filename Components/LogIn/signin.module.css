@@ -54,19 +54,6 @@
   transition: .3s;
 }
 
-/* .failed_to_send:hover {
-  transition-delay: 3s;
-  transition-duration: 4s;
-  transition-delay: 2s;
-  color: rgb(0, 0, 0);
-  height: 80px;
-  line-height: 50px;
-  padding: 0 10px 0 10px;
-  text-align: center;
-  font-size: 22px;
-} */
-
-
 @media screen and (min-width: 320px) {
   .container_text_login {
     display: none;
