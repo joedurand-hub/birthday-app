@@ -3,7 +3,7 @@ import styles from "../../styles/container.module.css";
 import styleForm from "./form.module.css";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import formNavBar from "../../styles/terms.module.css";
+import formNavBar from "../NavBar/navBar.module.css";
 
 function Form({ onSubmit, onChange, values, title }) {
   return (
