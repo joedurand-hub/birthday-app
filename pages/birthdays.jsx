@@ -1,5 +1,5 @@
 import getBirthdaysInfo from "./api/getBirthdaysInfo";
-import { useState, useMemo } from "react";
+import { useState, useMemo } from "react";z
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import Search from "../Components/Search/Search";
